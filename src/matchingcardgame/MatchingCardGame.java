@@ -4,13 +4,18 @@
  */
 package matchingcardgame;
 
+import javax.swing.JFrame;
+
 public class MatchingCardGame {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        HomePage p = new HomePage();
+        p.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        p.pack();
+        p.setVisible(true);
     }
     
 }
