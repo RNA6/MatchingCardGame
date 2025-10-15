@@ -71,7 +71,7 @@ public class HomePage extends JFrame {
         //#End of SignOut panel
 
         //UserIcon Label
-        user_icon = new ImageIcon(getClass().getResource("user1.png"));
+        user_icon = new ImageIcon(getClass().getResource("user.png"));
         
         userIcon_label = new JLabel(user_icon);
         userIcon_label.setVerticalAlignment(SwingConstants.TOP);
