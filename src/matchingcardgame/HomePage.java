@@ -122,7 +122,7 @@ public class HomePage extends JFrame {
     //Sign Out Button Declaration
     private void createSignOut_button(){
         signOut_button = new JButton("Sign Out");
-        signOut_button.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+        signOut_button.setFont(new Font(Theme.fontName1, Font.BOLD, 12));
         signOut_button.setPreferredSize(new Dimension(90, 30));
         signOut_button.setFocusable(false);
         signOut_button.setBackground(Theme.color_CC66DA);
@@ -149,7 +149,7 @@ public class HomePage extends JFrame {
     private void createHead_label(){
         head_label = new JLabel("Game Type");
         head_label.setForeground(Theme.color_CC66DA);
-        head_label.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
+        head_label.setFont(new Font(Theme.fontName1, Font.BOLD, 48));
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
@@ -166,7 +166,7 @@ public class HomePage extends JFrame {
     private JButton creatGameTypes_button(String buttonLabel){
         JButton button = new JButton(buttonLabel);
         button.setFocusable(false);
-        button.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+        button.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
         button.setBackground(Theme.color_63C8FF);
         button.setPreferredSize(new Dimension(130, 130));
         return button;
@@ -187,7 +187,7 @@ public class HomePage extends JFrame {
         showScore_button = new JButton("Show Score");
         showScore_button.setFocusable(false);
         showScore_button.setBackground(Theme.color_4DFFBE);
-        showScore_button.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        showScore_button.setFont(new Font(Theme.fontName1, Font.BOLD, 20));
         showScore_button.setPreferredSize(new Dimension(150, 50));
         showScore_button.setHorizontalAlignment(SwingConstants.CENTER);
     }

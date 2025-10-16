@@ -158,7 +158,7 @@ public class UserInfo extends JFrame{
     //Head Label Declaration
     private void createHead_label(){
         head_label = new JLabel("Update User Information");
-        head_label.setFont(new Font("Comic Sans MS", Font.BOLD, 36));
+        head_label.setFont(new Font(Theme.fontName1, Font.BOLD, 36));
         head_label.setForeground(Theme.color_CC66DA);
         head_label.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -190,7 +190,7 @@ public class UserInfo extends JFrame{
         
         for(int counter = 0; counter < labelNames.length; counter++){
             inputLabels[counter] = new JLabel(labelNames[counter]);
-            inputLabels[counter].setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+            inputLabels[counter].setFont(new Font(Theme.fontName1, Font.BOLD, 24));
             inputLabels[counter].setHorizontalAlignment(SwingConstants.LEFT);
             inputLabels[counter].setPreferredSize(new Dimension(220, 30));
             inputLabels[counter].setForeground(Theme.color_CC66DA);
@@ -288,7 +288,7 @@ public class UserInfo extends JFrame{
     //Cancel Button Declaration
     private void createCancel_button(){
         cancel_button = new JButton("Cancel");
-        cancel_button.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        cancel_button.setFont(new Font(Theme.fontName1, Font.BOLD, 15));
         cancel_button.setBackground(Theme.color_63C8FF);
         cancel_button.setPreferredSize(new Dimension(150, 40));
         cancel_button.setFocusable(false);
@@ -297,7 +297,7 @@ public class UserInfo extends JFrame{
     //Update Button Declaration
     private void createUpdate_button(){
         update_button = new JButton("Update");
-        update_button.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        update_button.setFont(new Font(Theme.fontName1, Font.BOLD, 15));
         update_button.setBackground(Theme.color_4DFFBE);
         update_button.setPreferredSize(new Dimension(150, 40));
         update_button.setFocusable(false);
@@ -306,7 +306,7 @@ public class UserInfo extends JFrame{
     //Cancel Updating Button Declaration
     private void createCancelUpdating_button(){
         cancelUpdating_button = new JButton("Cancel Updating");
-        cancelUpdating_button.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        cancelUpdating_button.setFont(new Font(Theme.fontName1, Font.BOLD, 15));
         cancelUpdating_button.setBackground(Theme.color_63C8FF);
         cancelUpdating_button.setPreferredSize(new Dimension(150, 40));
         cancelUpdating_button.setFocusable(false);
@@ -316,7 +316,7 @@ public class UserInfo extends JFrame{
     //Confirm Update Button Declaration
     private void createConfirmUpdate_button(){
         confirmUpdate_button = new JButton("Confirm Update");
-        confirmUpdate_button.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        confirmUpdate_button.setFont(new Font(Theme.fontName1, Font.BOLD, 15));
         confirmUpdate_button.setBackground(Theme.color_4DFFBE);
         confirmUpdate_button.setPreferredSize(new Dimension(150, 40));
         confirmUpdate_button.setFocusable(false);
