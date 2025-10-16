@@ -41,97 +41,128 @@ public class HomePage extends JFrame {
     public HomePage() {
         super("Home Page");
         getContentPane().setBackground(Theme.color_FDFFB8);
-        setBounds(350, 95, 200, 200);
+        setBounds(300, 130, 0, 0);
         setMinimumSize(new Dimension(700,500));
-        
-        layout = new FlowLayout();
-        
-        //Begining of Top Panel
-        top_panel = new JPanel();
-        top_panel.setLayout(new BorderLayout());
-        top_panel.setPreferredSize(new Dimension(50,50));
-        top_panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 15));
-        top_panel.setOpaque(false);
-        
-        //Begining of SignOut Panel
-        signOut_panel = new JPanel();
-        signOut_panel.setLayout(new FlowLayout());
-        signOut_panel.setOpaque(false);
-        
-        //SignOut Button
-        signOut_button = new JButton("Sign Out");
-        signOut_button.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-        signOut_button.setSize(74, 31);
-        signOut_button.setFocusable(false);
-        signOut_button.setBackground(Theme.color_CC66DA);
 
+        //Beginning of Top Panel
+        createTop_panel();
+
+        //Beginning of SignOut Panel
+        createSignOut_panel();
+
+        //SignOut Button
+        createSignOut_button();
         signOut_panel.add(signOut_button);
         top_panel.add(signOut_panel, BorderLayout.WEST);
         //#End of SignOut panel
 
-        //UserIcon Label
-        user_icon = new ImageIcon(getClass().getResource("user.png"));
-        
-        userIcon_label = new JLabel(user_icon);
-        userIcon_label.setVerticalAlignment(SwingConstants.TOP);
+        //User Icon Label
+        createUserIcon_label();
         top_panel.add(userIcon_label, BorderLayout.EAST);
 
         add(top_panel, BorderLayout.NORTH);
         //#End of Header Panel
-        
-        //Begining of Center Panel
-        center_panel = new JPanel();
-        center_panel.setLayout(new BorderLayout());
-        center_panel.setOpaque(false);
-        
+
+        //Beginning of Center Panel
+        createCenter_panel();
+
         //Head Label
-        head_label = new JLabel("Game Type");
-        head_label.setForeground(Theme.color_CC66DA);
-        head_label.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
-        head_label.setHorizontalAlignment(SwingConstants.CENTER);
+        createHead_label();
         center_panel.add(head_label, BorderLayout.NORTH);
-        
-        //Begining of GameTypes Panel
-        gameTypes_panel = new JPanel();
-        gameTypes_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 0));
-        gameTypes_panel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
-        gameTypes_panel.setOpaque(false);
-        
+
+        //Beginning of GameTypes Panel
+        createGameTypes_panel();
+
         //Easy Button
         easy_button = creatGameTypes_button("Easy");
         gameTypes_panel.add(easy_button);
-        
+
         //Normal Button
         normal_button = creatGameTypes_button("Normal");
         gameTypes_panel.add(normal_button);
-        
+
         //Hard Button
         hard_button = creatGameTypes_button("Hard");
         gameTypes_panel.add(hard_button);
 
         center_panel.add(gameTypes_panel, BorderLayout.CENTER);
         //#End of GameTypes Panel
-        
+
         add(center_panel, BorderLayout.CENTER);
         //#End of Center Panel
-        
-        //Begining of Bottom Panel
-        bottom_panel = new JPanel();
-        bottom_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 55));
-        bottom_panel.setOpaque(false);
-        
+
+        //Beginning of Bottom Panel
+        createBottom_panel();
+
         //ShowScore Button
-        showScore_button = new JButton("Show Score");
-        showScore_button.setFocusable(false);
-        showScore_button.setBackground(Theme.color_4DFFBE);
-        showScore_button.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-        showScore_button.setPreferredSize(new Dimension(150, 50));
-        showScore_button.setHorizontalAlignment(SwingConstants.CENTER);
-        
+        createShowScore_button();
+
         bottom_panel.add(showScore_button);
         add(bottom_panel, BorderLayout.SOUTH);
+        //#End of Bottom Panel
     }
-    
+
+    //Top Panel Declaration
+    private void createTop_panel(){
+        top_panel = new JPanel();
+        top_panel.setLayout(new BorderLayout());
+        top_panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 15));
+        top_panel.setOpaque(false);
+    }
+
+    //Top Panel Components
+    //Sign Out Panel Declaration
+    private void createSignOut_panel(){
+        signOut_panel = new JPanel();
+        signOut_panel.setLayout(new FlowLayout());
+        signOut_panel.setOpaque(false);
+    }
+
+    //Sign Out Panel Components
+    //Sign Out Button Declaration
+    private void createSignOut_button(){
+        signOut_button = new JButton("Sign Out");
+        signOut_button.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+        signOut_button.setPreferredSize(new Dimension(90, 30));
+        signOut_button.setFocusable(false);
+        signOut_button.setBackground(Theme.color_CC66DA);
+    }
+    //#End of Sign Out Panel Components
+
+    //User Icon Label Declaration
+    private void createUserIcon_label(){
+        user_icon = new ImageIcon(getClass().getResource("user.png"));
+        userIcon_label = new JLabel(user_icon);
+        userIcon_label.setVerticalAlignment(SwingConstants.TOP);
+    }
+    //#End of Top Panel Components
+
+    //Center Panel Declaration
+    private void createCenter_panel(){
+        center_panel = new JPanel();
+        center_panel.setLayout(new BorderLayout());
+        center_panel.setOpaque(false);
+    }
+
+    //Center Panel Components
+    //Head Label Declaration
+    private void createHead_label(){
+        head_label = new JLabel("Game Type");
+        head_label.setForeground(Theme.color_CC66DA);
+        head_label.setFont(new Font("Comic Sans MS", Font.BOLD, 48));
+        head_label.setHorizontalAlignment(SwingConstants.CENTER);
+    }
+
+    //Game Types Panel Declaration
+    private void createGameTypes_panel(){
+        gameTypes_panel = new JPanel();
+        gameTypes_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 0));
+        gameTypes_panel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
+        gameTypes_panel.setOpaque(false);
+    }
+
+    //Game Types Panel Components
+    //Object of a Game Type Button Declaration
     private JButton creatGameTypes_button(String buttonLabel){
         JButton button = new JButton(buttonLabel);
         button.setFocusable(false);
@@ -140,5 +171,25 @@ public class HomePage extends JFrame {
         button.setPreferredSize(new Dimension(130, 130));
         return button;
     }
+    //#End of Game Types Panel Components
 
+
+    //Bottom Panel Declaration
+    private void createBottom_panel(){
+        bottom_panel = new JPanel();
+        bottom_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 55));
+        bottom_panel.setOpaque(false);
+    }
+
+    //Bottom Panel Components
+    //Show Score Button Declaration
+    private void createShowScore_button(){
+        showScore_button = new JButton("Show Score");
+        showScore_button.setFocusable(false);
+        showScore_button.setBackground(Theme.color_4DFFBE);
+        showScore_button.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        showScore_button.setPreferredSize(new Dimension(150, 50));
+        showScore_button.setHorizontalAlignment(SwingConstants.CENTER);
+    }
+    //#End of Bottom Panel Components
 }
