@@ -258,7 +258,8 @@ public class UserInfo extends JFrame{
     
     //Male Box Declaration
     private void createMale_box(){
-        male_box = Box.createHorizontalBox();male_box.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 80));
+        male_box = Box.createHorizontalBox();
+        male_box.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 80));
     }
     
     //Male Box Components
