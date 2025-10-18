@@ -31,8 +31,6 @@ public class HomePage extends JFrame {
     private JPanel signOut_panel;
     private JPanel gameTypes_panel;
 
-    private FlowLayout layout;
-
     private Icon user_icon;
 
     private JLabel userIcon_label;
@@ -158,7 +156,7 @@ public class HomePage extends JFrame {
     private void createGameTypes_panel(){
         gameTypes_panel = new JPanel();
         gameTypes_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 0));
-        gameTypes_panel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
+        gameTypes_panel.setBorder(BorderFactory.createEmptyBorder(60, 0, 0, 0));
         gameTypes_panel.setOpaque(false);
     }
 
@@ -178,7 +176,7 @@ public class HomePage extends JFrame {
     //Bottom Panel Declaration
     private void createBottom_panel(){
         bottom_panel = new JPanel();
-        bottom_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 55));
+        bottom_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
         bottom_panel.setOpaque(false);
     }
 
