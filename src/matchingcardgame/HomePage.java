@@ -43,6 +43,7 @@ public class HomePage extends JFrame {
         getContentPane().setBackground(Theme.color_FDFFB8);
         setBounds(300, 130, 0, 0);
         setMinimumSize(new Dimension(700,500));
+        setResizable(false);
 
         //Beginning of Top Panel
         createTop_panel();

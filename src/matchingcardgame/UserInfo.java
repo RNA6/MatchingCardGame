@@ -5,11 +5,9 @@
 package matchingcardgame;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
@@ -66,6 +64,7 @@ public class UserInfo extends JFrame{
         getContentPane().setBackground(Theme.color_FDFFB8);
         setBounds(300, 130, 0, 0);
         setMinimumSize(new Dimension(700,500));
+        setResizable(false);
         
         //Head Label
         createHead_label();
