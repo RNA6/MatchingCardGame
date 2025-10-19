@@ -40,7 +40,11 @@ public class WinLose extends JFrame{
     setMinimumSize(new Dimension(700,500));
     setResizable(false);
     // put images
-    
+    star1.setIcon(new ImageIcon("normal-star.png"));
+    star2.setIcon(new ImageIcon("normal-star.png"));
+    star3.setIcon(new ImageIcon("dark-star.png"));
+
+        
     star1.setSize(80, 80);
     star2.setSize(120, 120);
     star3.setSize(80, 80);
@@ -63,3 +67,4 @@ public class WinLose extends JFrame{
     }
     
 }
+
