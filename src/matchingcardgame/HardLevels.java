@@ -37,7 +37,7 @@ public class HardLevels extends JFrame {
     private JLabel head_label;
 
     public HardLevels() {
-        super("Home Page");
+        super("Hard Levels");
         getContentPane().setBackground(Theme.color_FDFFB8);
         setBounds(300, 130, 0, 0);
         setMinimumSize(new Dimension(700,500));

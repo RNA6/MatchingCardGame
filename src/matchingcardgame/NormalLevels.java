@@ -37,7 +37,7 @@ public class NormalLevels extends JFrame {
     private JLabel head_label;
 
     public NormalLevels() {
-        super("Home Page");
+        super("Normal Levels");
         getContentPane().setBackground(Theme.color_FDFFB8);
         setBounds(300, 130, 0, 0);
         setMinimumSize(new Dimension(700,500));

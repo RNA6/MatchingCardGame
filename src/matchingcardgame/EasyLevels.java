@@ -37,7 +37,7 @@ public class EasyLevels extends JFrame {
     private JLabel head_label;
 
     public EasyLevels() {
-        super("Home Page");
+        super("Easy Levels");
         getContentPane().setBackground(Theme.color_FDFFB8);
         setBounds(300, 130, 0, 0);
         setMinimumSize(new Dimension(700,500));
