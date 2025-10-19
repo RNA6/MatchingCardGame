@@ -1,6 +1,7 @@
 
 package matchingcardgame;
 
+import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -33,32 +34,36 @@ public class WelcomePage extends JFrame{
     super("matching cards game");
     //panel
     main.setBackground(new Color(255, 252, 210));
-   
+
+    setBounds(300, 130, 0, 0);
+    setMinimumSize(new Dimensin(700,500));
+    setResizable(false);
+        
     //title labels
     welcome.setFont(new Font("Monospaced", Font.BOLD, 36));
-    welcome.setForeground(new Color(120, 40, 150));
+    welcome.setForeground(new Color(204, 102, 218));
     welcome.setAlignmentX(JPanel.CENTER_ALIGNMENT);
     
-    match.setFont(new Font("SansSerif", Font.BOLD, 80));
-    match.setForeground(new Color(255, 51, 170));
+    match.setFont(new Font("Comic Sans MS", Font.BOLD, 80));
+    match.setForeground(new Color(255, 45, 209));
     match.setAlignmentX(JPanel.CENTER_ALIGNMENT);
     
-    game.setFont(new Font("SansSerif", Font.BOLD, 80));
+    game.setFont(new Font("Comic Sans MS", Font.BOLD, 80));
     game.setForeground(new Color(255, 51, 170));
     game.setAlignmentX(JPanel.CENTER_ALIGNMENT);
     
     //or join us as a guist label color black
-    join.setFont(new Font("Dialog", Font.PLAIN, 12));
+    join.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
     join.setAlignmentX(JPanel.CENTER_ALIGNMENT);
     
     //ButtonPanel for signup/in
-    signPanel.setBackground(new Color(255, 252, 210));
+    signPanel.setBackground(new Color(253, 255, 184));
     
     //ButtonPanel for guest
-    guestPanel.setBackground(new Color(255, 252, 210));
+    guestPanel.setBackground(new Color(253, 255, 184));
     
     //Buttons
-    signin.setBackground(new Color(98, 174, 238));
+    signin.setBackground(new Color(99, 200, 255));
     signin.setFont(new Font("Monospaced", Font.PLAIN, 18));
     signin.setFocusPainted(false);
     
@@ -91,4 +96,5 @@ public class WelcomePage extends JFrame{
     }
     
 }
+
 
