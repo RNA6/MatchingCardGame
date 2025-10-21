@@ -178,6 +178,7 @@ public class UserInfo extends JFrame{
         labels_panel = new JPanel(); 
         labels_panel.setOpaque(false);
         labels_panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0,25));
+        labels_panel.setPreferredSize(new Dimension(250, 300));
         labels_panel.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 0));
     }
     
