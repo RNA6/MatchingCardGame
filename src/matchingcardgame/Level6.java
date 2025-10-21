@@ -16,20 +16,20 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 
-public class Level1 extends JFrame{
+public class Level6 extends JFrame{
     private JLabel timerLabel;
     private JLabel messageLabel;
     
-    public Level1() {
-        super("Level 1");
+    public Level6() {
+        super("Level 6");
         setLayout(new BorderLayout());
         initializeUI();
     }
 
     private void initializeUI() {
         getContentPane().setBackground(Theme.color_FDFFB8);
-        setBounds(300, 130, 0, 0);
-        setMinimumSize(new Dimension(700, 500));
+        setBounds(300, 40, 0, 0);
+        setMinimumSize(new Dimension(700, 700));
         setResizable(false);
 
         JPanel topPanel = new JPanel(new BorderLayout());
@@ -38,13 +38,13 @@ public class Level1 extends JFrame{
 
         JButton homeButton = new JButton("Home");
         homeButton.setFont(new Font(Theme.fontName2, Font.BOLD, 14));
-        homeButton.setBackground(Theme.color_FF2DD1);
+        homeButton.setBackground(Theme.color_CC66DA);
         homeButton.setFocusable(false);
         homeButton.setPreferredSize(new Dimension(80, 30));
 
-        JLabel levelLabel = new JLabel("Level 1");
+        JLabel levelLabel = new JLabel("Level 6");
         levelLabel.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
-        levelLabel.setForeground(Theme.color_CC66DA);
+        levelLabel.setForeground(Theme.color_FF2DD1);
         levelLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         timerLabel = new JLabel("5:00");
@@ -65,7 +65,7 @@ public class Level1 extends JFrame{
         add(messageLabel, BorderLayout.CENTER);
 
         
-        JPanel cardsPanel = new JPanel(new GridLayout(2, 2, 25, 20));
+        JPanel cardsPanel = new JPanel(new GridLayout(4, 3, 25, 20));
         cardsPanel.setOpaque(false);
         cardsPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 30, 50));
         
@@ -85,8 +85,41 @@ public class Level1 extends JFrame{
         cardStyle(card4);            
         cardsPanel.add(card4);
         
+        JButton card5 = new JButton("?");
+        cardStyle(card5);            
+        cardsPanel.add(card5);
+        
+        JButton card6 = new JButton("?");
+        cardStyle(card6);            
+        cardsPanel.add(card6);
+        
+        JButton card7 = new JButton("?");
+        cardStyle(card7);            
+        cardsPanel.add(card7);
+        
+        JButton card8 = new JButton("?");
+        cardStyle(card8);            
+        cardsPanel.add(card8);
+        
+        JButton card9= new JButton("?");
+        cardStyle(card9);            
+        cardsPanel.add(card9);
+        
+        JButton card10 = new JButton("?");
+        cardStyle(card10);            
+        cardsPanel.add(card10);
+        
+        JButton card11 = new JButton("?");
+        cardStyle(card11);            
+        cardsPanel.add(card11);
+        
+        JButton card12 = new JButton("?");
+        cardStyle(card12);            
+        cardsPanel.add(card12);
+        
+        
         add(cardsPanel, BorderLayout.SOUTH);
-    }
+        }
 
     private void cardStyle(JButton card){
         card.setFont(new Font(Theme.fontName1, Font.BOLD, 36));
