@@ -191,7 +191,6 @@ public class UserInfo extends JFrame{
             inputLabels[counter] = new JLabel(labelNames[counter]);
             inputLabels[counter].setFont(new Font(Theme.fontName1, Font.BOLD, 24));
             inputLabels[counter].setHorizontalAlignment(SwingConstants.LEFT);
-            inputLabels[counter].setPreferredSize(new Dimension(220, 30));
             inputLabels[counter].setForeground(Theme.color_CC66DA);
             labels_panel.add(inputLabels[counter]);
         }
