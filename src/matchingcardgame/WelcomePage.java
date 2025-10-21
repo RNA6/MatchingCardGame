@@ -33,46 +33,46 @@ public class WelcomePage extends JFrame{
         
     super("matching cards game");
     //panel
-    main.setBackground(new Color(255, 252, 210));
+    main.setBackground(Theme.FDFFB8);
 
     setBounds(300, 130, 0, 0);
     setMinimumSize(new Dimensin(700,500));
     setResizable(false);
         
     //title labels
-    welcome.setFont(new Font("Monospaced", Font.BOLD, 36));
-    welcome.setForeground(new Color(204, 102, 218));
+    welcome.setFont(new Font(Theme.fontName2, Font.BOLD, 36));
+    welcome.setForeground(Theme.CC66DA);
     welcome.setAlignmentX(JPanel.CENTER_ALIGNMENT);
     
-    match.setFont(new Font("Comic Sans MS", Font.BOLD, 80));
-    match.setForeground(new Color(255, 45, 209));
+    match.setFont(new Font(Theme.fontName1, Font.BOLD, 80));
+    match.setForeground(Theme.FF2DD1);
     match.setAlignmentX(JPanel.CENTER_ALIGNMENT);
     
-    game.setFont(new Font("Comic Sans MS", Font.BOLD, 80));
-    game.setForeground(new Color(255, 51, 170));
+    game.setFont(new Font(Theme.FontName1, Font.BOLD, 80));
+    game.setForeground(Theme.FF2DD1);
     game.setAlignmentX(JPanel.CENTER_ALIGNMENT);
     
     //or join us as a guist label color black
-    join.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+    join.setFont(new Font(Theme.fontName1, Font.PLAIN, 12));
     join.setAlignmentX(JPanel.CENTER_ALIGNMENT);
     
     //ButtonPanel for signup/in
-    signPanel.setBackground(new Color(253, 255, 184));
+    signPanel.setBackground(Theme.FDFFB8);
     
     //ButtonPanel for guest
-    guestPanel.setBackground(new Color(253, 255, 184));
+    guestPanel.setBackground(Theme.FDFFB8);
     
     //Buttons
-    signin.setBackground(new Color(99, 200, 255));
-    signin.setFont(new Font("Monospaced", Font.PLAIN, 18));
+    signin.setBackground(Theme.63C8FF);
+    signin.setFont(new Font(Theme.fontName2, Font.PLAIN, 18));
     signin.setFocusPainted(false);
     
-    signup.setBackground(new Color(208, 92, 202));
-    signup.setFont(new Font("Monospaced", Font.PLAIN, 18));
+    signup.setBackground(Theme.CC66DA);
+    signup.setFont(new Font(Theme.fontName2, Font.PLAIN, 18));
     signup.setFocusPainted(false);
     
-    guest.setBackground(new Color(105, 235, 183));
-    guest.setFont(new Font("Monospaced", Font.PLAIN, 18));
+    guest.setBackground(Theme.4DFFBE);
+    guest.setFont(new Font(Theme.fontName2, Font.PLAIN, 18));
     guest.setFocusPainted(false);
     
     signPanel.add(signup);
@@ -96,5 +96,6 @@ public class WelcomePage extends JFrame{
     }
     
 }
+
 
 
