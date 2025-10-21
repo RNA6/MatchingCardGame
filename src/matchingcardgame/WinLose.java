@@ -30,16 +30,16 @@ public class WinLose extends JFrame{
     
     public WinLose(){
     super("win lose");
-    mainpanel.setBackground(Theme.FDFFB8);
-    iconpanel.setBackground(Theme.FDFFB8);
+    mainpanel.setBackground(Theme.color_FDFFB8);
+    iconpanel.setBackground(Theme.color_FDFFB8);
     
     setBounds(300, 130, 0, 0);
     setMinimumSize(new Dimension(700,500));
     setResizable(false);
     // put images
-    star1.setIcon(new ImageIcon(getClass().getResource("normal-star.png"));
-    star2.setIcon(new ImageIcon(getClass().getResource("normal-star.png"));
-    star3.setIcon(new ImageIcon(getClass().getResource("dark-star.png"));
+    star1.setIcon(new ImageIcon(getClass().getResource("normal-star.png")));
+    star2.setIcon(new ImageIcon(getClass().getResource("normal-star.png")));
+    star3.setIcon(new ImageIcon(getClass().getResource("dark-star.png")));
 
         
     star1.setSize(80, 80);
