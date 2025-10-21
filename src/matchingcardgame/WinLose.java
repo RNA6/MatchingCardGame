@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package matchingcardgame;
 
 
@@ -33,16 +30,16 @@ public class WinLose extends JFrame{
     
     public WinLose(){
     super("win lose");
-    mainpanel.setBackground(new Color(253, 255, 184));
-    iconpanel.setBackground(new Color(253, 255, 184));
+    mainpanel.setBackground(Theme.FDFFB8);
+    iconpanel.setBackground(Theme.FDFFB8);
     
     setBounds(300, 130, 0, 0);
     setMinimumSize(new Dimension(700,500));
     setResizable(false);
     // put images
-    star1.setIcon(new ImageIcon("normal-star.png"));
-    star2.setIcon(new ImageIcon("normal-star.png"));
-    star3.setIcon(new ImageIcon("dark-star.png"));
+    star1.setIcon(new ImageIcon(getClass().getResource("normal-star.png"));
+    star2.setIcon(new ImageIcon(getClass().getResource("normal-star.png"));
+    star3.setIcon(new ImageIcon(getClass().getResource("dark-star.png"));
 
         
     star1.setSize(80, 80);
@@ -53,10 +50,10 @@ public class WinLose extends JFrame{
     iconpanel.add(star1);
     iconpanel.add(star2);
     iconpanel.add(star3);
-    win.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
+    win.setFont(new Font(Theme.fontName1, Font.BOLD, 40));
     win.setForeground(new Color(255, 51, 170));
     
-    lose.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
+    lose.setFont(new Font(Theme.fontName1, Font.BOLD, 40));
     win.setForeground(new Color(120, 40, 150));
     
     
@@ -67,4 +64,5 @@ public class WinLose extends JFrame{
     }
     
 }
+
 
