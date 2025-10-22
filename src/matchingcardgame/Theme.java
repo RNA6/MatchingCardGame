@@ -4,6 +4,8 @@
  */
 package matchingcardgame;
 import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JFrame;
 
 public class Theme {
     public static Color color_FF2DD1 = new Color(255, 45, 209);
@@ -15,4 +17,11 @@ public class Theme {
     public static Color color_A19F9F = new Color(161, 159, 159);
     public static String fontName1 = "Comic Sans MS";
     public static String fontName2 = "Monospaced";
+    
+    public static void setFrameProperties(JFrame frame, int y_location, int frame_hieght){
+        frame.getContentPane().setBackground(color_FDFFB8);
+        frame.setLocation(300, y_location);
+        frame.setPreferredSize(new Dimension(700, frame_hieght));
+        frame.setResizable(false);
+    }
 }

@@ -27,10 +27,7 @@ public class ShowScore extends JFrame{
     public ShowScore(){
         super("Score");
         setLayout(new BorderLayout());
-        getContentPane().setBackground(Theme.color_FDFFB8);
-        setBounds(300, 130, 0, 0);
-        setMinimumSize(new Dimension(700, 500));
-        setResizable(false);
+        Theme.setFrameProperties(this, 130, 500);
         
         lbl.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
         lbl.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));

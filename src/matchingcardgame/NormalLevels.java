@@ -38,10 +38,7 @@ public class NormalLevels extends JFrame {
 
     public NormalLevels() {
         super("Normal Levels");
-        getContentPane().setBackground(Theme.color_FDFFB8);
-        setBounds(300, 130, 0, 0);
-        setMinimumSize(new Dimension(700,500));
-        setResizable(false);
+        Theme.setFrameProperties(this, 130, 500);
 
         //Beginning of Top Panel
         createTop_panel();

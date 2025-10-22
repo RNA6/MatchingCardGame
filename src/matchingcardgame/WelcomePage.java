@@ -20,7 +20,7 @@ public class WelcomePage extends JFrame{
     JPanel guestPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
     
     JLabel welcome = new JLabel("WELCOME TO THE",JLabel.CENTER);
-    JLabel match = new JLabel("MACHING",JLabel.CENTER);
+    JLabel match = new JLabel("MATCHING",JLabel.CENTER);
     JLabel game = new JLabel("CARDS GAME",JLabel.CENTER);
     JLabel join = new JLabel("or join us as:",JLabel.CENTER);
     
@@ -33,11 +33,7 @@ public class WelcomePage extends JFrame{
     public WelcomePage(){
         super("matching cards game");
         setLayout(new GridLayout(6, 1));
-        getContentPane().setBackground(Theme.color_FDFFB8);
-        
-        setBounds(300, 130, 0, 0);
-        setPreferredSize(new Dimension(700,500));
-        setResizable(false);
+        Theme.setFrameProperties(this, 130, 500);
         
         signPanel.setOpaque(false);
         guestPanel.setOpaque(false);
