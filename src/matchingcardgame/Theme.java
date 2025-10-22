@@ -23,5 +23,7 @@ public class Theme {
         frame.setLocation(300, y_location);
         frame.setPreferredSize(new Dimension(700, frame_hieght));
         frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
     }
 }
