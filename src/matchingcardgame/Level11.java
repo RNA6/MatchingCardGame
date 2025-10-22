@@ -27,11 +27,8 @@ public class Level11 extends JFrame{
     }
 
     private void initializeUI() {
-        getContentPane().setBackground(Theme.color_FDFFB8);
-        setBounds(300, 40, 0, 0);
-        setMinimumSize(new Dimension(700, 700));
-        setResizable(false);
-
+        Theme.setFrameProperties(this, 40, 700);
+        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         topPanel.setOpaque(false);

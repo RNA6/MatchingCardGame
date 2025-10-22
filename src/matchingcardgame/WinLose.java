@@ -16,7 +16,7 @@ public class WinLose extends JFrame {
     // both panels now use FlowLayout
     JPanel mainpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
     JPanel iconpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-    JPanel btnpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    JPanel btnpanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
 
     JLabel star1 = new JLabel();
     JLabel star2 = new JLabel();
@@ -33,14 +33,11 @@ public class WinLose extends JFrame {
 
     public WinLose() {
         super("win lose");
-        getContentPane().setBackground(Theme.color_FDFFB8);
+        Theme.setFrameProperties(this, 130, 500);
+        
         mainpanel.setOpaque(false);
         iconpanel.setOpaque(false);
         btnpanel.setOpaque(false);
-
-        setBounds(300, 130, 0, 0);
-        setMinimumSize(new Dimension(700, 500));
-        setResizable(false);
 
         // put images
         star1.setIcon(new ImageIcon(getClass().getResource("normal-star.png")));
@@ -71,18 +68,18 @@ public class WinLose extends JFrame {
         
         //btn style
         home.setBackground(Theme.color_63C8FF);
-        home.setFont(new Font(Theme.fontName2, Font.BOLD, 18));
+        home.setFont(new Font(Theme.fontName2, Font.BOLD, 20));
+        home.setPreferredSize(new Dimension(150, 40));
         home.setFocusPainted(false);
         
         next.setBackground(Theme.color_4DFFBE);
-        next.setFont(new Font(Theme.fontName2, Font.BOLD, 18));
+        next.setFont(new Font(Theme.fontName2, Font.BOLD, 20));
+        next.setPreferredSize(new Dimension(150, 40));
         next.setFocusPainted(false);
         
         //add buttons to panel
         btnpanel.add(home);
-        btnpanel.add(next);
-        
-        
+        btnpanel.add(next);        
         
         // SET PANELS TO SET POSITIONS
         
@@ -96,7 +93,7 @@ public class WinLose extends JFrame {
         iconpanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 0, 5));
         
         btnpanel.setPreferredSize(new Dimension(500, 500));
-        btnpanel.setBorder(BorderFactory.createEmptyBorder(50, 00, 50, 50));
+        btnpanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 50, 0));
 
         // add components (same order as before)
         mainpanel.add(win);

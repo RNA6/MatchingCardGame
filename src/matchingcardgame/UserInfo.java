@@ -61,10 +61,7 @@ public class UserInfo extends JFrame{
 
     public UserInfo(){
         super("User Info");
-        getContentPane().setBackground(Theme.color_FDFFB8);
-        setBounds(300, 130, 0, 0);
-        setMinimumSize(new Dimension(700,500));
-        setResizable(false);
+        Theme.setFrameProperties(this, 130, 500);
         
         //Head Label
         createHead_label();
