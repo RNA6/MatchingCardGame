@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import javax.swing.BorderFactory;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -15,7 +16,6 @@ import javax.swing.SwingConstants;
 
 public class WelcomePage extends JFrame{
     
-    JPanel main = new JPanel(new GridLayout(7, 1, 0, 5));
     JPanel signPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
     JPanel guestPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
     
@@ -32,27 +32,27 @@ public class WelcomePage extends JFrame{
     
     public WelcomePage(){
         super("matching cards game");
+        setLayout(new GridLayout(6, 1));
         getContentPane().setBackground(Theme.color_FDFFB8);
-        main.setOpaque(false);
+        
+        setBounds(300, 130, 0, 0);
+        setPreferredSize(new Dimension(700,500));
+        setResizable(false);
+        
         signPanel.setOpaque(false);
         guestPanel.setOpaque(false);
-        //panel
-        main.setBackground(Theme.color_FDFFB8);
-
-        setBounds(300, 130, 0, 0);
-        setMinimumSize(new Dimension(700,500));
-        setResizable(false);
-
+        
         //title labels
         welcome.setFont(new Font(Theme.fontName2, Font.BOLD, 36));
         welcome.setForeground(Theme.color_CC66DA);
         welcome.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
-        match.setFont(new Font(Theme.fontName1, Font.BOLD, 80));
+        match.setFont(new Font(Theme.fontName1, Font.BOLD, 70));
         match.setForeground(Theme.color_FF2DD1);
         match.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
-        game.setFont(new Font(Theme.fontName1, Font.BOLD, 80));
+        game.setFont(new Font(Theme.fontName1, Font.BOLD, 70));
+        game.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         game.setForeground(Theme.color_FF2DD1);
         game.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
@@ -72,21 +72,19 @@ public class WelcomePage extends JFrame{
         guest.setBackground(Theme.color_4DFFBE);
         guest.setFont(new Font(Theme.fontName2, Font.BOLD, 18));
         guest.setFocusPainted(false);
-
+        
+        signPanel.setBorder(BorderFactory.createEmptyBorder(40, 0, 0, 0));
         signPanel.add(signup);
         signPanel.add(signin);
     
         guestPanel.add(guest);
 
-
-        main.add(welcome);
-        main.add(match);
-        main.add(game);
-        main.add(new JLabel(" "));
-        main.add(signPanel);
-        main.add(join);
-        main.add(guestPanel);
-        add(main);
+        add(welcome);
+        add(match);
+        add(game);
+        add(signPanel);
+        add(join);
+        add(guestPanel);
     }
 }
 
