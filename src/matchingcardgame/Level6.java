@@ -35,13 +35,13 @@ public class Level6 extends JFrame{
 
         JButton homeButton = new JButton("Home");
         homeButton.setFont(new Font(Theme.fontName2, Font.BOLD, 14));
-        homeButton.setBackground(Theme.color_CC66DA);
+        homeButton.setBackground(Theme.color_FF2DD1);
         homeButton.setFocusable(false);
         homeButton.setPreferredSize(new Dimension(80, 30));
 
         JLabel levelLabel = new JLabel("Level 6");
         levelLabel.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
-        levelLabel.setForeground(Theme.color_FF2DD1);
+        levelLabel.setForeground(Theme.color_CC66DA);
         levelLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         timerLabel = new JLabel("5:00");
