@@ -4,8 +4,6 @@
  */
 package matchingcardgame;
 
-import javax.swing.JFrame;
-
 public class MatchingCardGame {
 
     /**
