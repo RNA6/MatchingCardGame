@@ -83,10 +83,7 @@ public class MatchingCardGame {
         level15.setVisible(true);
         
         WinLose winLose = new WinLose();
-        winLose.setVisible(true);
-        
-        
-        
+        winLose.setVisible(true);        
     }
     
 }
