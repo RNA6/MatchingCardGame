@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
  *
  * @author RNA
  */
-public class CustomPanels{
+public class CustomizedComponents{
     
     public static JPanel createScrolling_panel(){
         JPanel panel = new JPanel();
