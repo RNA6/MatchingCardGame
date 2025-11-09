@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 public class Theme {
     public static Color color_FF2DD1 = new Color(255, 45, 209);//Pink
     public static Color color_CC66DA = new Color(204, 102, 218);//Purple
+    public static Color color_E29EEB = new Color(226, 158, 235);//Light Purple
     public static Color color_FDFFB8 = new Color(253, 255, 184);//Yellow
     public static Color color_63C8FF = new Color(99, 200, 255);//Blue
     public static Color color_C2EAFF = new Color(194, 234, 255);//Light Blue
