@@ -84,6 +84,5 @@ public class MatchingCardGame {
         
         WinLose winLose = new WinLose();
         winLose.setVisible(true);        
-    }
-    
+    }    
 }
