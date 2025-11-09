@@ -14,22 +14,27 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class HomePage extends JFrame {
 
-    private JButton signOut_button;
+    private JButton savedLevels_button;
     private JButton easy_button;
     private JButton normal_button;
     private JButton hard_button;
     private JButton showScore_button;
+    
+    private JLayeredPane layeredPane;
 
+    private JPanel base_panel;
     private JPanel top_panel;
     private JPanel center_panel;
     private JPanel bottom_panel;
-    private JPanel signOut_panel;
+    private JPanel savedLevels_panel;
     private JPanel gameTypes_panel;
+    private JPanel userMenu_panel;
 
     private Icon user_icon;
 
@@ -40,23 +45,27 @@ public class HomePage extends JFrame {
         super("Home Page");
         Theme.setFrameProperties(this, 130, 500);
         
+        layeredPane = new JLayeredPane();
+        base_panel = new JPanel(new BorderLayout());
+        base_panel.setBounds(0, 0, 690, 450);
+        base_panel.setOpaque(false);
         //Beginning of Top Panel
         createTop_panel();
 
         //Beginning of SignOut Panel
-        createSignOut_panel();
+        createSavedLevels_panel();
 
         //SignOut Button
-        createSignOut_button();
-        signOut_panel.add(signOut_button);
-        top_panel.add(signOut_panel, BorderLayout.WEST);
+        createSavedLevels_button();
+        savedLevels_panel.add(savedLevels_button);
+        top_panel.add(savedLevels_panel, BorderLayout.WEST);
         //#End of SignOut panel
 
         //User Icon Label
         createUserIcon_label();
         top_panel.add(userIcon_label, BorderLayout.EAST);
 
-        add(top_panel, BorderLayout.NORTH);
+        base_panel.add(top_panel, BorderLayout.NORTH);
         //#End of Header Panel
 
         //Beginning of Center Panel
@@ -84,7 +93,7 @@ public class HomePage extends JFrame {
         center_panel.add(gameTypes_panel, BorderLayout.CENTER);
         //#End of GameTypes Panel
 
-        add(center_panel, BorderLayout.CENTER);
+        base_panel.add(center_panel, BorderLayout.CENTER);
         //#End of Center Panel
 
         //Beginning of Bottom Panel
@@ -94,8 +103,15 @@ public class HomePage extends JFrame {
         createShowScore_button();
 
         bottom_panel.add(showScore_button);
-        add(bottom_panel, BorderLayout.SOUTH);
+        base_panel.add(bottom_panel, BorderLayout.SOUTH);
         //#End of Bottom Panel
+        
+        layeredPane.add(base_panel, JLayeredPane.DEFAULT_LAYER);
+        
+        userMenu_panel = CustomizedComponents.createUserMenu_panel();
+        userMenu_panel.setVisible(false);
+        layeredPane.add(userMenu_panel, JLayeredPane.POPUP_LAYER);
+        add(layeredPane);
     }
 
     //Top Panel Declaration
@@ -107,23 +123,23 @@ public class HomePage extends JFrame {
     }
 
     //Top Panel Components
-    //Sign Out Panel Declaration
-    private void createSignOut_panel(){
-        signOut_panel = new JPanel();
-        signOut_panel.setLayout(new FlowLayout());
-        signOut_panel.setOpaque(false);
+    //Saved Levels Panel Declaration
+    private void createSavedLevels_panel(){
+        savedLevels_panel = new JPanel();
+        savedLevels_panel.setLayout(new FlowLayout());
+        savedLevels_panel.setOpaque(false);
     }
 
-    //Sign Out Panel Components
-    //Sign Out Button Declaration
-    private void createSignOut_button(){
-        signOut_button = new JButton("Sign Out");
-        signOut_button.setFont(new Font(Theme.fontName1, Font.BOLD, 12));
-        signOut_button.setPreferredSize(new Dimension(90, 30));
-        signOut_button.setFocusable(false);
-        signOut_button.setBackground(Theme.color_CC66DA);
+    //Saved Levels Panel Components
+    //Saved Levels Button Declaration
+    private void createSavedLevels_button(){
+        savedLevels_button = new JButton("Saved Levels");
+        savedLevels_button.setFont(new Font(Theme.fontName1, Font.BOLD, 12));
+        savedLevels_button.setPreferredSize(new Dimension(110, 30));
+        savedLevels_button.setFocusable(false);
+        savedLevels_button.setBackground(Theme.color_CC66DA);
     }
-    //#End of Sign Out Panel Components
+    //#End of createSavedLevels_button Panel Components
 
     //User Icon Label Declaration
     private void createUserIcon_label(){

@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -25,11 +26,15 @@ public class EasyLevels extends JFrame {
     private JButton level4_button;
     private JButton level5_button;
     private JButton back_button;
+    
+    private JLayeredPane layeredPane;
 
+    private JPanel base_panel;
     private JPanel top_panel;
     private JPanel center_panel;
     private JPanel bottom_panel;
     private JPanel levels_panel;
+    private JPanel userMenu_panel;
 
     private Icon user_icon;
 
@@ -39,7 +44,12 @@ public class EasyLevels extends JFrame {
     public EasyLevels() {
         super("Easy Levels");
         Theme.setFrameProperties(this, 130, 500);
-
+        
+        layeredPane = new JLayeredPane();
+        base_panel = new JPanel(new BorderLayout());
+        base_panel.setBounds(0, 0, 690, 450);
+        base_panel.setOpaque(false);
+        
         //Beginning of Top Panel
         createTop_panel();
 
@@ -47,7 +57,7 @@ public class EasyLevels extends JFrame {
         createUserIcon_label();
         top_panel.add(userIcon_label, BorderLayout.EAST);
 
-        add(top_panel, BorderLayout.NORTH);
+        base_panel.add(top_panel, BorderLayout.NORTH);
         //#End of Header Panel
 
         //Beginning of Center Panel
@@ -83,7 +93,7 @@ public class EasyLevels extends JFrame {
         center_panel.add(levels_panel, BorderLayout.CENTER);
         //#End of Levels Panel
 
-        add(center_panel, BorderLayout.CENTER);
+        base_panel.add(center_panel, BorderLayout.CENTER);
         //#End of Center Panel
 
         //Beginning of Bottom Panel
@@ -93,8 +103,15 @@ public class EasyLevels extends JFrame {
         createBack_button();
 
         bottom_panel.add(back_button);
-        add(bottom_panel, BorderLayout.SOUTH);
+        base_panel.add(bottom_panel, BorderLayout.SOUTH);
         //#End of Bottom Panel
+        
+        layeredPane.add(base_panel, JLayeredPane.DEFAULT_LAYER);
+        
+        userMenu_panel = CustomizedComponents.createUserMenu_panel();
+        userMenu_panel.setVisible(false);
+        layeredPane.add(userMenu_panel, JLayeredPane.POPUP_LAYER);
+        add(layeredPane);
     }
 
     //Top Panel Declaration
