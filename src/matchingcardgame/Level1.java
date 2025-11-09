@@ -14,16 +14,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 
 public class Level1 extends JFrame{
     private JLabel timerLabel;
     private JLabel messageLabel;
+    private Timer gameTimer;
+    private int secondsLeft = 300;
     
     public Level1() {
         super("Level 1");
         setLayout(new BorderLayout());
         initializeUI();
+        startTimer();
+
     }
 
     private void initializeUI() {
@@ -38,6 +45,10 @@ public class Level1 extends JFrame{
         homeButton.setBackground(Theme.color_FF2DD1);
         homeButton.setFocusable(false);
         homeButton.setPreferredSize(new Dimension(80, 30));
+        homeButton.addActionListener(e -> {
+            dispose();
+            new HomePage().setVisible(true);
+        });
 
         JLabel levelLabel = new JLabel("Level 1");
         levelLabel.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
@@ -83,6 +94,27 @@ public class Level1 extends JFrame{
         cardsPanel.add(card4);
         
         add(cardsPanel, BorderLayout.SOUTH);
+    }
+    
+    private void startTimer() {
+        gameTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                secondsLeft--;
+                if (secondsLeft <= 0) {
+                    gameTimer.stop();
+                    messageLabel.setText("Time's up! Game Over.");
+                }
+                updateTimerDisplay();
+            }
+        });
+        gameTimer.start();
+    }
+    
+    private void updateTimerDisplay() {
+        int minutes = secondsLeft / 60;
+        int seconds = secondsLeft % 60;
+        timerLabel.setText(String.format("%d:%02d", minutes, seconds));
     }
 
     private void cardStyle(JButton card){
