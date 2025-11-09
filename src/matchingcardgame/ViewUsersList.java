@@ -90,7 +90,7 @@ public class ViewUsersList extends JFrame {
         //#End of Sorting Panel
 
         //Beggining of Users List Panel
-        usersList_panel = CustomPanels.createScrolling_panel();
+        usersList_panel = CustomizedComponents.createScrolling_panel();
 
         //Users Panels
         Users_panels = new ArrayList();
@@ -107,7 +107,7 @@ public class ViewUsersList extends JFrame {
         }
         //#End of Users List Panel
         //ScrollPane declaration
-        scrollPane = CustomPanels.createScrollPane(usersList_panel);
+        scrollPane = CustomizedComponents.createScrollPane(usersList_panel);
         center_panel.add(scrollPane);
         
         add(center_panel, BorderLayout.CENTER);
@@ -184,7 +184,7 @@ public class ViewUsersList extends JFrame {
     
     //Users Panel Declaration
     private JPanel createUser_panel(int rank) {
-        JPanel user_panel = CustomPanels.createContent_panel();
+        JPanel user_panel = CustomizedComponents.createContent_panel();
         user_panel.setLayout(new GridLayout(1, 2));
         user_panel.setPreferredSize(new Dimension(500, 120));
         user_panel.add(createUserInfo_panel());

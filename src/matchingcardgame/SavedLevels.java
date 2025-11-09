@@ -60,7 +60,7 @@ public class SavedLevels extends JFrame {
         createCenter_panel();
         
         //Beginning of Users List Panel
-        levelsList_panel = CustomPanels.createScrolling_panel();
+        levelsList_panel = CustomizedComponents.createScrolling_panel();
 
         //Levels Panels
         levels_panels = new ArrayList();
@@ -81,7 +81,7 @@ public class SavedLevels extends JFrame {
         }
         //#End of Levels List Panel
         //ScrollPane declaration
-        scrollPane = CustomPanels.createScrollPane(levelsList_panel);
+        scrollPane = CustomizedComponents.createScrollPane(levelsList_panel);
         center_panel.add(scrollPane);
         
         add(center_panel, BorderLayout.CENTER);
@@ -125,7 +125,7 @@ public class SavedLevels extends JFrame {
     //Center Panel Components    
     //Levels Panel Declaration
     private JPanel createLevels_panel() {
-        JPanel user_panel = CustomPanels.createContent_panel();
+        JPanel user_panel = CustomizedComponents.createContent_panel();
         user_panel.setLayout(new GridLayout(1, 2));
         user_panel.setPreferredSize(new Dimension(150, 120));
         user_panel.add(createLevel_panel());
