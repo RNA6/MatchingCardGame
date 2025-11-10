@@ -46,6 +46,7 @@ public class CustomizedComponents{
         panel.setBackground(Theme.color_CC66DA);
         panel.add(createUser_menuItem("User Info"));
         panel.add(createUser_menuItem("Sign Out"));
+        panel.setVisible(false);
         return(panel);
     }
     
