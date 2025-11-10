@@ -6,13 +6,15 @@ package matchingcardgame;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -43,4 +45,30 @@ public class UIComponents{
         return(panel);
     }     
     
+    //User Icon Label Declaration
+    public static JLabel createUserIcon_label(UserMenuPanel userMenu_panel){
+        Icon user_icon = new ImageIcon(userMenu_panel.getClass().getResource("user.png"));
+        JLabel userIcon_label = new JLabel(user_icon);
+        userIcon_label.setVerticalAlignment(SwingConstants.TOP);
+        userIcon_label.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                userMenu_panel.updateMouseClicked();
+                userMenu_panel.setVisible(userMenu_panel.isMouseClicked());
+            }
+            
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                userMenu_panel.setVisible(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if(!userMenu_panel.isMouseClicked()){
+                    userMenu_panel.setVisible(false);
+                }
+            }
+        });
+        return(userIcon_label);
+    }
 }

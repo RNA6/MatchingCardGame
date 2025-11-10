@@ -32,7 +32,7 @@ public class AdministrationsDashboard extends baseFrame{
     
     private JPanel SignOut_panel;
     private JPanel btns_panel;
-    private JPanel userMenu_panel;
+    private UserMenuPanel userMenu_panel;
 
     private Icon user_icon;
 
@@ -46,6 +46,9 @@ public class AdministrationsDashboard extends baseFrame{
         base_panel = new JPanel(new BorderLayout());
         base_panel.setBounds(0, 0, 690, 450);
         base_panel.setOpaque(false);
+        
+        userMenu_panel = new UserMenuPanel(this);
+        
         //Beginning of Top Panel
         createTop_panel();
 
@@ -59,7 +62,7 @@ public class AdministrationsDashboard extends baseFrame{
         //#End of SignOut panel
 
         //User Icon Label
-        createUserIcon_label();
+        userIcon_label = UIComponents.createUserIcon_label(userMenu_panel);
         top_panel.add(userIcon_label, BorderLayout.EAST);
 
         base_panel.add(top_panel, BorderLayout.NORTH);
@@ -92,11 +95,8 @@ public class AdministrationsDashboard extends baseFrame{
 
         base_panel.add(center_panel, BorderLayout.CENTER);
         //#End of Center Panel
-
  
         layeredPane.add(base_panel, JLayeredPane.DEFAULT_LAYER);
-        
-        userMenu_panel = new UserMenuPanel(this);
         layeredPane.add(userMenu_panel, JLayeredPane.POPUP_LAYER);
         add(layeredPane);
     }
@@ -127,14 +127,6 @@ public class AdministrationsDashboard extends baseFrame{
         signout_button.setBackground(UITheme.color_CC66DA);
     }
     //#End of createSavedLevels_button Panel Components
-
-    //User Icon Label Declaration
-    private void createUserIcon_label(){
-        user_icon = new ImageIcon(getClass().getResource("user.png"));
-        userIcon_label = new JLabel(user_icon);
-        userIcon_label.setVerticalAlignment(SwingConstants.TOP);
-    }
-    //#End of Top Panel Components
 
     //Center Panel Declaration
     private void createCenter_panel(){
