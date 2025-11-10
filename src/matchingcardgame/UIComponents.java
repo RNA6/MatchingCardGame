@@ -18,13 +18,13 @@ import javax.swing.JScrollPane;
  *
  * @author RNA
  */
-public class CustomizedComponents{
+public class UIComponents{
     
     public static JPanel createScrolling_panel(){
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 20));
         panel.setPreferredSize(new Dimension(400,20));
-        panel.setBackground(Theme.color_63C8FF);
+        panel.setBackground(UITheme.color_63C8FF);
         return(panel);
     }
     
@@ -39,17 +39,8 @@ public class CustomizedComponents{
     public static JPanel createContent_panel(){
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
-        panel.setBackground(Theme.color_C2EAFF);
+        panel.setBackground(UITheme.color_C2EAFF);
         return(panel);
     }     
     
-    public static void addNavigation(JButton button, JFrame originalFrame, JFrame nextFrame){
-        button.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                originalFrame.dispose();
-                nextFrame.setVisible(true);
-            }
-        });
-    }
 }

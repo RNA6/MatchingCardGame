@@ -44,7 +44,7 @@ public class SavedLevels extends JFrame {
 
     public SavedLevels() {
         super("Saved Levels");
-        Theme.setFrameProperties(this, 130, 500);
+        UITheme.setFrameProperties(this, 130, 500);
 
         //Beginning of Top Panel
         createTop_panel();
@@ -60,7 +60,7 @@ public class SavedLevels extends JFrame {
         createCenter_panel();
         
         //Beginning of Users List Panel
-        levelsList_panel = CustomizedComponents.createScrolling_panel();
+        levelsList_panel = UIComponents.createScrolling_panel();
 
         //Levels Panels
         levels_panels = new ArrayList();
@@ -81,7 +81,7 @@ public class SavedLevels extends JFrame {
         }
         //#End of Levels List Panel
         //ScrollPane declaration
-        scrollPane = CustomizedComponents.createScrollPane(levelsList_panel);
+        scrollPane = UIComponents.createScrollPane(levelsList_panel);
         center_panel.add(scrollPane);
         
         add(center_panel, BorderLayout.CENTER);
@@ -109,8 +109,8 @@ public class SavedLevels extends JFrame {
     //Head Label Declaration
     private void createHead_label() {
         head_label = new JLabel("Saved Levels");
-        head_label.setForeground(Theme.color_CC66DA);
-        head_label.setFont(new Font(Theme.fontName1, Font.BOLD, 40));
+        head_label.setForeground(UITheme.color_CC66DA);
+        head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 40));
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
     //#End of Top Panel Components
@@ -125,7 +125,7 @@ public class SavedLevels extends JFrame {
     //Center Panel Components    
     //Levels Panel Declaration
     private JPanel createLevels_panel() {
-        JPanel user_panel = CustomizedComponents.createContent_panel();
+        JPanel user_panel = UIComponents.createContent_panel();
         user_panel.setLayout(new GridLayout(1, 2));
         user_panel.setPreferredSize(new Dimension(150, 120));
         user_panel.add(createLevel_panel());
@@ -136,13 +136,13 @@ public class SavedLevels extends JFrame {
     //Level Information Labels Declaration
     private void createLevelInfo_labels() {
         level_label = new JLabel(("Level: " + levelNumber), SwingConstants.LEFT);
-        level_label.setFont(new Font(Theme.fontName1, Font.BOLD, 14));
+        level_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
 
         levelId_label = new JLabel("Id: " + levelId, SwingConstants.LEFT);
-        levelId_label.setFont(new Font(Theme.fontName1, Font.BOLD, 14));
+        levelId_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
 
         date_label = new JLabel("Date: " + date, SwingConstants.LEFT);
-        date_label.setFont(new Font(Theme.fontName1, Font.BOLD, 14));
+        date_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
     }
     
     //Level Information Panel Declaration
@@ -172,8 +172,8 @@ public class SavedLevels extends JFrame {
     private void createBack_button() {
         back_button = new JButton("Back");
         back_button.setFocusable(false);
-        back_button.setBackground(Theme.color_4DFFBE);
-        back_button.setFont(new Font(Theme.fontName1, Font.BOLD, 20));
+        back_button.setBackground(UITheme.color_4DFFBE);
+        back_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 20));
         back_button.setPreferredSize(new Dimension(100, 40));
         back_button.setHorizontalAlignment(SwingConstants.CENTER);
     }

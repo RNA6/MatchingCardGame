@@ -27,21 +27,21 @@ public class Level7 extends JFrame{
     }
 
     private void initializeUI() {
-        Theme.setFrameProperties(this, 40, 700);
+        UITheme.setFrameProperties(this, 40, 700);
 
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         topPanel.setOpaque(false);
 
         JButton homeButton = new JButton("Home");
-        homeButton.setFont(new Font(Theme.fontName2, Font.BOLD, 14));
-        homeButton.setBackground(Theme.color_FF2DD1);
+        homeButton.setFont(new Font(UITheme.fontName2, Font.BOLD, 14));
+        homeButton.setBackground(UITheme.color_FF2DD1);
         homeButton.setFocusable(false);
         homeButton.setPreferredSize(new Dimension(80, 30));
 
         JLabel levelLabel = new JLabel("Level 7");
-        levelLabel.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
-        levelLabel.setForeground(Theme.color_CC66DA);
+        levelLabel.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
+        levelLabel.setForeground(UITheme.color_CC66DA);
         levelLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         timerLabel = new JLabel("5:00");
@@ -55,7 +55,7 @@ public class Level7 extends JFrame{
 
         
         messageLabel = new JLabel("correct, good job /wrong, try again");
-        messageLabel.setFont(new Font(Theme.fontName1, Font.BOLD, 18));
+        messageLabel.setFont(new Font(UITheme.fontName1, Font.BOLD, 18));
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setVerticalAlignment(SwingConstants.CENTER);
         messageLabel.setForeground(Color.BLACK);
@@ -135,8 +135,8 @@ public class Level7 extends JFrame{
         }
 
     private void cardStyle(JButton card){
-        card.setFont(new Font(Theme.fontName1, Font.BOLD, 36));
-        card.setBackground(Theme.color_63C8FF);
+        card.setFont(new Font(UITheme.fontName1, Font.BOLD, 36));
+        card.setBackground(UITheme.color_63C8FF);
         card.setFocusable(false);
         card.setPreferredSize(new Dimension(100, 100));
     }

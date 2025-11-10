@@ -43,7 +43,7 @@ public class EasyLevels extends JFrame {
 
     public EasyLevels() {
         super("Easy Levels");
-        Theme.setFrameProperties(this, 130, 500);
+        UITheme.setFrameProperties(this, 130, 500);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
@@ -141,8 +141,8 @@ public class EasyLevels extends JFrame {
     //Head Label Declaration
     private void createHead_label(){
         head_label = new JLabel("Easy Levels");
-        head_label.setForeground(Theme.color_CC66DA);
-        head_label.setFont(new Font(Theme.fontName1, Font.BOLD, 48));
+        head_label.setForeground(UITheme.color_CC66DA);
+        head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 48));
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
@@ -160,8 +160,8 @@ public class EasyLevels extends JFrame {
     private JButton creatLevels_button(String buttonLabel){
         JButton button = new JButton(buttonLabel);
         button.setFocusable(false);
-        button.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
-        button.setBackground(Theme.color_63C8FF);
+        button.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
+        button.setBackground(UITheme.color_63C8FF);
         button.setPreferredSize(new Dimension(80, 80));
         return button;
     }
@@ -181,8 +181,8 @@ public class EasyLevels extends JFrame {
     private void createBack_button(){
         back_button = new JButton("Back");
         back_button.setFocusable(false);
-        back_button.setBackground(Theme.color_4DFFBE);
-        back_button.setFont(new Font(Theme.fontName1, Font.BOLD, 20));
+        back_button.setBackground(UITheme.color_4DFFBE);
+        back_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 20));
         back_button.setPreferredSize(new Dimension(150, 50));
         back_button.setHorizontalAlignment(SwingConstants.CENTER);
     }
