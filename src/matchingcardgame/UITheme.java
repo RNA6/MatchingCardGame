@@ -20,13 +20,4 @@ public class UITheme {
     
     public static String fontName1 = "Comic Sans MS";
     public static String fontName2 = "Monospaced";
-    
-    public static void setFrameProperties(JFrame frame, int y_location, int frame_hieght){
-        frame.getContentPane().setBackground(color_FDFFB8);
-        frame.setLocation(300, y_location);
-        frame.setPreferredSize(new Dimension(700, frame_hieght));
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
-    }
 }

@@ -10,25 +10,22 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 
-public class Level14 extends JFrame{
+public class Level14 extends baseFrame{
     private JLabel timerLabel;
     private JLabel messageLabel;
     
     public Level14() {
-        super("Level 14");
+        super("Level 14", 130, 500);
         setLayout(new BorderLayout());
         initializeUI();
     }
 
     private void initializeUI() {
-        UITheme.setFrameProperties(this, 130, 500);
-
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         topPanel.setOpaque(false);

@@ -16,19 +16,17 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 
-public class Level6 extends JFrame{
+public class Level6 extends baseFrame{
     private JLabel timerLabel;
     private JLabel messageLabel;
     
     public Level6() {
-        super("Level 6");
+        super("Level 6", 40, 700);
         setLayout(new BorderLayout());
         initializeUI();
     }
 
     private void initializeUI() {
-        UITheme.setFrameProperties(this, 40, 700);
-
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         topPanel.setOpaque(false);

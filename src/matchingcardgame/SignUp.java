@@ -9,14 +9,13 @@ import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-public class SignUp extends JFrame {
+public class SignUp extends baseFrame{
 
     private JLabel head_label;
     private JLabel[] inputLabels;
@@ -43,14 +42,12 @@ public class SignUp extends JFrame {
 
     private JButton cancel_button;
     private JButton submit_button;
-
     
     private Icon female_icon;
     private Icon male_icon;
 
     public SignUp() {
-        super("SignUp");
-        UITheme.setFrameProperties(this, 130, 500);
+        super("SignUp", 130, 500);
         
         createHead_label();
         add(head_label, BorderLayout.NORTH);

@@ -9,7 +9,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.Icon;
@@ -18,7 +17,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class HardLevels extends JFrame {
+public class HardLevels extends baseFrame{
 
     private JButton level11_button;
     private JButton level12_button;
@@ -42,8 +41,7 @@ public class HardLevels extends JFrame {
     private JLabel head_label;
 
     public HardLevels() {
-        super("Hard Levels");
-        UITheme.setFrameProperties(this, 130, 500);
+        super("Hard Levels", 130, 500);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
