@@ -109,7 +109,6 @@ public class EasyLevels extends JFrame {
         layeredPane.add(base_panel, JLayeredPane.DEFAULT_LAYER);
         
         userMenu_panel = CustomizedComponents.createUserMenu_panel();
-        userMenu_panel.setVisible(false);
         layeredPane.add(userMenu_panel, JLayeredPane.POPUP_LAYER);
         add(layeredPane);
     }
