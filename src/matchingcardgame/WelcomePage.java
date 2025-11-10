@@ -4,13 +4,15 @@ package matchingcardgame;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class WelcomePage extends JFrame{
+public class WelcomePage extends JFrame implements ActionListener{
     
     JPanel signPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
     JPanel guestPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
@@ -24,6 +26,11 @@ public class WelcomePage extends JFrame{
     JButton signup = new JButton("Sign Up");
     JButton guest = new JButton("Guest");
     
+    //references of frames
+    
+    SignUp up = new SignUp();
+    SignIn in = new SignIn();
+    HomePage home = new HomePage();
    
     
     public WelcomePage(){
@@ -77,6 +84,27 @@ public class WelcomePage extends JFrame{
         add(signPanel);
         add(join);
         add(guestPanel);
+        
+        signin.addActionListener(this);
+        signup.addActionListener(this);
+        guest.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       if (e.getSource()==signin){
+       in.setVisible(true);
+       setVisible(false);
+       }
+       else if(e.getSource()==signup){
+       up.setVisible(true);
+       setVisible(false);
+       }
+       else{
+       home.setVisible(true);
+       setVisible(false);
+       }
+        
     }
 }
 
