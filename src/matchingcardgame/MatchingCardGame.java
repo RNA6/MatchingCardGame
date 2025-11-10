@@ -6,9 +6,7 @@ package matchingcardgame;
 
 public class MatchingCardGame {
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String[] args) {
         WelcomePage welcomePage = new WelcomePage();
         welcomePage.setVisible(true);        
@@ -82,7 +80,11 @@ public class MatchingCardGame {
         Level15 level15 = new Level15();
         level15.setVisible(true);
         
-        WinLose winLose = new WinLose();
-        winLose.setVisible(true);        
+       WinLose winLose = new WinLose();
+        winLose.setVisible(true); 
+        
+        AdministrationsDashboard adminsDashboard = new AdministrationsDashboard();
+        adminsDashboard.setVisible(true); 
+
     }    
 }
