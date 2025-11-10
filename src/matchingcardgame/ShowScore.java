@@ -27,11 +27,11 @@ public class ShowScore extends JFrame{
     public ShowScore(){
         super("Score");
         setLayout(new BorderLayout());
-        Theme.setFrameProperties(this, 130, 500);
+        UITheme.setFrameProperties(this, 130, 500);
         
-        lbl.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
+        lbl.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
         lbl.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
-        lbl.setForeground(Theme.color_CC66DA);
+        lbl.setForeground(UITheme.color_CC66DA);
         lbl.setHorizontalAlignment(SwingConstants.CENTER);
         add(lbl, BorderLayout.CENTER);
         
@@ -39,16 +39,16 @@ public class ShowScore extends JFrame{
         buttonPanel.setOpaque(false);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 70, 0));
         
-        againButton.setFont(new Font(Theme.fontName2, Font.BOLD, 20));
-        againButton.setBackground(Theme.color_4DFFBE);
+        againButton.setFont(new Font(UITheme.fontName2, Font.BOLD, 20));
+        againButton.setBackground(UITheme.color_4DFFBE);
         againButton.setFocusable(false);
         againButton.setPreferredSize(new Dimension(150, 50));
         buttonPanel.add(againButton);
         
         buttonPanel.add(Box.createHorizontalStrut(100));
         
-        okButton.setFont(new Font(Theme.fontName2, Font.BOLD, 20));
-        okButton.setBackground(Theme.color_63C8FF);
+        okButton.setFont(new Font(UITheme.fontName2, Font.BOLD, 20));
+        okButton.setBackground(UITheme.color_63C8FF);
         okButton.setFocusable(false);
         okButton.setPreferredSize(new Dimension(80, 50));
         buttonPanel.add(okButton);

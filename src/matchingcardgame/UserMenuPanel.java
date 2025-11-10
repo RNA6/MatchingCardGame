@@ -22,14 +22,14 @@ public class UserMenuPanel extends JPanel{
     public UserMenuPanel(JFrame originalFrame){
         setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
         setBounds(540, 60, 120, 110);
-        setBackground(Theme.color_CC66DA);
+        setBackground(UITheme.color_CC66DA);
         
         userInfo_button = createUser_menuItem("User Info");
-        CustomizedComponents.addNavigation(userInfo_button, originalFrame, new UserInfo());
+        UIUtilities.addNavigation(userInfo_button, originalFrame, new UserInfo());
         add(userInfo_button);
         
         signOut_button = createUser_menuItem("Sign Out");
-        CustomizedComponents.addNavigation(signOut_button, originalFrame, new UserInfo());
+        UIUtilities.addNavigation(signOut_button, originalFrame, new UserInfo());
         add(signOut_button);
         
         setVisible(false);
@@ -38,7 +38,7 @@ public class UserMenuPanel extends JPanel{
     private JButton createUser_menuItem(String label){
         JButton button = new JButton(label);  
         button.setFocusable(false);
-        button.setBackground(Theme.color_E29EEB);
+        button.setBackground(UITheme.color_E29EEB);
         button.setPreferredSize(new Dimension(100, 40));
         return(button);
     }

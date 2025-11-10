@@ -42,7 +42,7 @@ public class AdministrationsDashboard extends JFrame{
 
     public AdministrationsDashboard() {
         super("Administrations Dashboard");
-        Theme.setFrameProperties(this, 130, 500);
+        UITheme.setFrameProperties(this, 130, 500);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
@@ -123,10 +123,10 @@ public class AdministrationsDashboard extends JFrame{
     //sign out Button Declaration
     private void createSignOut_button(){
         signout_button = new JButton("Sign Out");
-        signout_button.setFont(new Font(Theme.fontName1, Font.BOLD, 12));
+        signout_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 12));
         signout_button.setPreferredSize(new Dimension(110, 30));
         signout_button.setFocusable(false);
-        signout_button.setBackground(Theme.color_CC66DA);
+        signout_button.setBackground(UITheme.color_CC66DA);
     }
     //#End of createSavedLevels_button Panel Components
 
@@ -149,8 +149,8 @@ public class AdministrationsDashboard extends JFrame{
     //Head Label Declaration
     private void Dashboard_label(){
         dashboard_label = new JLabel("Adminstration Dashboard");
-        dashboard_label.setForeground(Theme.color_CC66DA);
-        dashboard_label.setFont(new Font(Theme.fontName1, Font.BOLD, 48));
+        dashboard_label.setForeground(UITheme.color_CC66DA);
+        dashboard_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 48));
         dashboard_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
@@ -167,8 +167,8 @@ public class AdministrationsDashboard extends JFrame{
     private JButton creatGameTypes_button(String buttonLabel){
         JButton button = new JButton(buttonLabel);
         button.setFocusable(false);
-        button.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
-        button.setBackground(Theme.color_4DFFBE);
+        button.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
+        button.setBackground(UITheme.color_4DFFBE);
         button.setPreferredSize(new Dimension(350, 50));
         return button;
     }

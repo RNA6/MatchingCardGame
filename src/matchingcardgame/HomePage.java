@@ -43,7 +43,7 @@ public class HomePage extends JFrame {
 
     public HomePage() {
         super("Home Page");
-        Theme.setFrameProperties(this, 130, 500);
+        UITheme.setFrameProperties(this, 130, 500);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
@@ -133,10 +133,10 @@ public class HomePage extends JFrame {
     //Saved Levels Button Declaration
     private void createSavedLevels_button(){
         savedLevels_button = new JButton("Saved Levels");
-        savedLevels_button.setFont(new Font(Theme.fontName1, Font.BOLD, 12));
+        savedLevels_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 12));
         savedLevels_button.setPreferredSize(new Dimension(110, 30));
         savedLevels_button.setFocusable(false);
-        savedLevels_button.setBackground(Theme.color_CC66DA);
+        savedLevels_button.setBackground(UITheme.color_CC66DA);
     }
     //#End of createSavedLevels_button Panel Components
 
@@ -159,8 +159,8 @@ public class HomePage extends JFrame {
     //Head Label Declaration
     private void createHead_label(){
         head_label = new JLabel("Game Type");
-        head_label.setForeground(Theme.color_CC66DA);
-        head_label.setFont(new Font(Theme.fontName1, Font.BOLD, 48));
+        head_label.setForeground(UITheme.color_CC66DA);
+        head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 48));
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
@@ -177,8 +177,8 @@ public class HomePage extends JFrame {
     private JButton creatGameTypes_button(String buttonLabel){
         JButton button = new JButton(buttonLabel);
         button.setFocusable(false);
-        button.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
-        button.setBackground(Theme.color_63C8FF);
+        button.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
+        button.setBackground(UITheme.color_63C8FF);
         button.setPreferredSize(new Dimension(130, 130));
         return button;
     }
@@ -197,8 +197,8 @@ public class HomePage extends JFrame {
     private void createShowScore_button(){
         showScore_button = new JButton("Show Score");
         showScore_button.setFocusable(false);
-        showScore_button.setBackground(Theme.color_4DFFBE);
-        showScore_button.setFont(new Font(Theme.fontName1, Font.BOLD, 20));
+        showScore_button.setBackground(UITheme.color_4DFFBE);
+        showScore_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 20));
         showScore_button.setPreferredSize(new Dimension(150, 50));
         showScore_button.setHorizontalAlignment(SwingConstants.CENTER);
     }
