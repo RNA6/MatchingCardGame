@@ -80,11 +80,17 @@ public class MatchingCardGame {
         Level15 level15 = new Level15();
         level15.setVisible(true);
         
-       WinLose winLose = new WinLose();
+        WinLose winLose = new WinLose();
         winLose.setVisible(true); 
         
         AdministrationsDashboard adminsDashboard = new AdministrationsDashboard();
-        adminsDashboard.setVisible(true); 
+        adminsDashboard.setVisible(true);
+        
+        ViewUsersList viewUsersList = new ViewUsersList();
+        viewUsersList.setVisible(true);
+
+        SavedLevels savedLevels = new SavedLevels();
+        savedLevels.setVisible(true);
 
     }    
 }
