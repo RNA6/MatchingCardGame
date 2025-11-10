@@ -11,8 +11,6 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -33,8 +31,6 @@ public class AdministrationsDashboard extends baseFrame{
     private JPanel SignOut_panel;
     private JPanel btns_panel;
     private UserMenuPanel userMenu_panel;
-
-    private Icon user_icon;
 
     private JLabel userIcon_label;
     private JLabel dashboard_label;

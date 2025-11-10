@@ -11,8 +11,7 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -33,26 +32,26 @@ public class HardLevels extends baseFrame{
     private JPanel center_panel;
     private JPanel bottom_panel;
     private JPanel levels_panel;
-    private JPanel userMenu_panel;
-
-    private Icon user_icon;
-
+    private UserMenuPanel userMenu_panel;
     private JLabel userIcon_label;
     private JLabel head_label;
 
-    public HardLevels() {
+    public HardLevels(JFrame previousFrame) {
         super("Hard Levels", 130, 500);
+        super.setPreviousFrame(previousFrame);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
         base_panel.setBounds(0, 0, 690, 450);
         base_panel.setOpaque(false);
         
+        userMenu_panel = new UserMenuPanel(this);
+        
         //Beginning of Top Panel
         createTop_panel();
 
         //User Icon Label
-        createUserIcon_label();
+        userIcon_label = UIComponents.createUserIcon_label(userMenu_panel);
         top_panel.add(userIcon_label, BorderLayout.EAST);
 
         base_panel.add(top_panel, BorderLayout.NORTH);
@@ -105,8 +104,6 @@ public class HardLevels extends baseFrame{
         //#End of Bottom Panel
         
         layeredPane.add(base_panel, JLayeredPane.DEFAULT_LAYER);
-        
-        userMenu_panel = new UserMenuPanel(this);
         layeredPane.add(userMenu_panel, JLayeredPane.POPUP_LAYER);
         add(layeredPane);
     }
@@ -118,16 +115,7 @@ public class HardLevels extends baseFrame{
         top_panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 15));
         top_panel.setOpaque(false);
     }
-
-    //Top Panel Components
-    //User Icon Label Declaration
-    private void createUserIcon_label(){
-        user_icon = new ImageIcon(getClass().getResource("user.png"));
-        userIcon_label = new JLabel(user_icon);
-        userIcon_label.setVerticalAlignment(SwingConstants.TOP);
-    }
-    //#End of Top Panel Components
-
+    
     //Center Panel Declaration
     private void createCenter_panel(){
         center_panel = new JPanel();
