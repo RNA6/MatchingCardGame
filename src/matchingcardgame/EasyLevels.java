@@ -9,7 +9,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.Icon;
@@ -18,7 +17,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class EasyLevels extends JFrame {
+public class EasyLevels extends baseFrame{
 
     private JButton level1_button;
     private JButton level2_button;
@@ -42,8 +41,7 @@ public class EasyLevels extends JFrame {
     private JLabel head_label;
 
     public EasyLevels() {
-        super("Easy Levels");
-        UITheme.setFrameProperties(this, 130, 500);
+        super("Easy Levels",300, 500);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());

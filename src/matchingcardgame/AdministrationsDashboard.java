@@ -9,7 +9,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.Icon;
@@ -18,7 +17,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class AdministrationsDashboard extends JFrame{
+public class AdministrationsDashboard extends baseFrame{
     private JButton signout_button;
     private JButton delete_button;
     private JButton view_button;
@@ -41,8 +40,7 @@ public class AdministrationsDashboard extends JFrame{
     private JLabel dashboard_label;
 
     public AdministrationsDashboard() {
-        super("Administrations Dashboard");
-        UITheme.setFrameProperties(this, 130, 500);
+        super("Administrations Dashboard", 130, 500);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());

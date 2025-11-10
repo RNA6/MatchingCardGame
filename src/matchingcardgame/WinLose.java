@@ -4,14 +4,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class WinLose extends JFrame {
+public class WinLose extends baseFrame{
     
     // both panels now use FlowLayout
     JPanel mainpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -32,8 +31,7 @@ public class WinLose extends JFrame {
     
 
     public WinLose() {
-        super("win lose");
-        UITheme.setFrameProperties(this, 130, 500);
+        super("win lose", 130, 500);
         
         mainpanel.setOpaque(false);
         iconpanel.setOpaque(false);

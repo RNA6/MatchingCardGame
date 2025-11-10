@@ -7,12 +7,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class WelcomePage extends JFrame implements ActionListener{
+public class WelcomePage extends baseFrame implements ActionListener{
     
     JPanel signPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
     JPanel guestPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
@@ -34,9 +33,8 @@ public class WelcomePage extends JFrame implements ActionListener{
    
     
     public WelcomePage(){
-        super("matching cards game");
+        super("matching cards game", 130, 500);
         setLayout(new GridLayout(6, 1));
-        UITheme.setFrameProperties(this, 130, 500);
         
         signPanel.setOpaque(false);
         guestPanel.setOpaque(false);

@@ -14,14 +14,13 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class ViewUsersList extends JFrame {
+public class ViewUsersList extends baseFrame{
 
     private JButton ascOrder_button;
     private JButton descOrder_button;
@@ -55,8 +54,7 @@ public class ViewUsersList extends JFrame {
     private int savedLevels = 0;
 
     public ViewUsersList() {
-        super("View Users List");
-        UITheme.setFrameProperties(this, 130, 500);
+        super("View Users List", 130, 500);
 
         //Beginning of Top Panel
         createTop_panel();

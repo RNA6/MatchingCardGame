@@ -12,14 +12,13 @@ import java.awt.GridLayout;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class SavedLevels extends JFrame {
+public class SavedLevels extends baseFrame{
 
     private JButton ascOrder_button;
     private JButton descOrder_button;
@@ -43,8 +42,7 @@ public class SavedLevels extends JFrame {
     private LocalDate date = LocalDate.now();
 
     public SavedLevels() {
-        super("Saved Levels");
-        UITheme.setFrameProperties(this, 130, 500);
+        super("Saved Levels", 130, 500);
 
         //Beginning of Top Panel
         createTop_panel();

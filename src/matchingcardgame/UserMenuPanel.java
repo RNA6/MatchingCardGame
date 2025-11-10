@@ -25,11 +25,11 @@ public class UserMenuPanel extends JPanel{
         setBackground(UITheme.color_CC66DA);
         
         userInfo_button = createUser_menuItem("User Info");
-        UIUtilities.addNavigation(userInfo_button, originalFrame, new UserInfo());
+        UIUtilities.addNavigation(userInfo_button, originalFrame, new UserInfo(originalFrame));
         add(userInfo_button);
         
         signOut_button = createUser_menuItem("Sign Out");
-        UIUtilities.addNavigation(signOut_button, originalFrame, new UserInfo());
+        UIUtilities.addNavigation(signOut_button, originalFrame, new UserInfo(originalFrame));
         add(signOut_button);
         
         setVisible(false);

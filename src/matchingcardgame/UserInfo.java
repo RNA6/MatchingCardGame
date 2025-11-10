@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
  *
  * @author RNA
  */
-public class UserInfo extends JFrame{
+public class UserInfo extends baseFrame{
     
     private JLabel head_label;
     private JLabel[] inputLabels;
@@ -59,9 +59,9 @@ public class UserInfo extends JFrame{
     private JButton cancelUpdating_button;
     private JButton confirmUpdate_button;
 
-    public UserInfo(){
-        super("User Info");
-        UITheme.setFrameProperties(this, 130, 500);
+    public UserInfo(JFrame previousFrame){
+        super("User Info", 130, 500);
+        super.setPreviousFrame(previousFrame);
         
         //Head Label
         createHead_label();
@@ -288,6 +288,7 @@ public class UserInfo extends JFrame{
         cancel_button.setBackground(UITheme.color_63C8FF);
         cancel_button.setPreferredSize(new Dimension(150, 40));
         cancel_button.setFocusable(false);
+        UIUtilities.addNavigation(cancel_button, this, super.getPreviousFrame());
     }
     
     //Update Button Declaration

@@ -10,14 +10,13 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class SignIn extends JFrame {
+public class SignIn extends baseFrame{
 
     private JLabel head_label;
     private JLabel[] inputLabels;
@@ -36,8 +35,7 @@ public class SignIn extends JFrame {
     private JButton signIn_button;
 
     public SignIn() {
-        super("SignIn");
-        UITheme.setFrameProperties(this, 130, 500);
+        super("SignIn", 130, 500);
 
         createHead_label();
         add(head_label, BorderLayout.NORTH);

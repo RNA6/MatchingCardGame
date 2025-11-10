@@ -7,7 +7,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.JLabel;
-import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
@@ -16,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.Box;
 
 
-public class ShowScore extends JFrame{
+public class ShowScore extends baseFrame{
     private String name="";
     private int score=0;
     JLabel lbl = new JLabel("Congratulations '"+name+"' Your Score is : "+score+" Points");
@@ -25,9 +24,8 @@ public class ShowScore extends JFrame{
     JButton okButton = new JButton("Ok");
     
     public ShowScore(){
-        super("Score");
+        super("Score", 130, 500);
         setLayout(new BorderLayout());
-        UITheme.setFrameProperties(this, 130, 500);
         
         lbl.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
         lbl.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));

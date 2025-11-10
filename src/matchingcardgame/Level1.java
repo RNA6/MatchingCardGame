@@ -10,7 +10,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -19,14 +18,14 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 
-public class Level1 extends JFrame{
+public class Level1 extends baseFrame{
     private JLabel timerLabel;
     private JLabel messageLabel;
     private Timer gameTimer;
     private int secondsLeft = 300;
     
     public Level1() {
-        super("Level 1");
+        super("Level 1", 130, 500);
         setLayout(new BorderLayout());
         initializeUI();
         startTimer();
@@ -34,8 +33,6 @@ public class Level1 extends JFrame{
     }
 
     private void initializeUI() {
-        UITheme.setFrameProperties(this, 130, 500);
-        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         topPanel.setOpaque(false);
