@@ -30,7 +30,7 @@ public class UserMenuPanel extends JPanel{
         
         signOut_button = createUser_menuItem("Sign Out");
         CustomizedComponents.addNavigation(signOut_button, originalFrame, new UserInfo());
-        add(userInfo_button);
+        add(signOut_button);
         
         setVisible(false);
     }
