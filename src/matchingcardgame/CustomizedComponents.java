@@ -6,8 +6,11 @@ package matchingcardgame;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -38,23 +41,15 @@ public class CustomizedComponents{
         panel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         panel.setBackground(Theme.color_C2EAFF);
         return(panel);
-    }
+    }     
     
-    public static JPanel createUserMenu_panel(){
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 10));
-        panel.setBounds(540, 60, 120, 110);
-        panel.setBackground(Theme.color_CC66DA);
-        panel.add(createUser_menuItem("User Info"));
-        panel.add(createUser_menuItem("Sign Out"));
-        panel.setVisible(false);
-        return(panel);
-    }
-    
-    private static JButton createUser_menuItem(String label){
-        JButton button = new JButton(label);  
-        button.setFocusable(false);
-        button.setBackground(Theme.color_E29EEB);
-        button.setPreferredSize(new Dimension(100, 40));
-        return(button);
+    public static void addNavigation(JButton button, JFrame originalFrame, JFrame nextFrame){
+        button.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                originalFrame.dispose();
+                nextFrame.setVisible(true);
+            }
+        });
     }
 }
