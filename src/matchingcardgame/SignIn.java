@@ -65,6 +65,7 @@ public class SignIn extends JFrame {
         bottom_panel.add(signIn_button);
         add(bottom_panel, BorderLayout.SOUTH);
     }
+    
 
     private void createHead_label() {
         head_label = new JLabel("Sign In");
