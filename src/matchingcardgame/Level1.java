@@ -13,23 +13,20 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
 
 
 public class Level1 extends baseFrame{
     private JLabel timerLabel;
     private JLabel messageLabel;
-    private Timer gameTimer;
-    private int secondsLeft = 300;
+    private GameTimer gameTimer;
     
     public Level1() {
         super("Level 1", 130, 500);
         setLayout(new BorderLayout());
-        initializeUI();
-        startTimer();
-
+        initializeUI();gameTimer = new GameTimer(timerLabel, 300, () -> {
+        messageLabel.setText("Time's up! Game Over.");
+        });
+        gameTimer.start();
     }
 
     private void initializeUI() {
@@ -91,27 +88,6 @@ public class Level1 extends baseFrame{
         cardsPanel.add(card4);
         
         add(cardsPanel, BorderLayout.SOUTH);
-    }
-    
-    private void startTimer() {
-        gameTimer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                secondsLeft--;
-                if (secondsLeft <= 0) {
-                    gameTimer.stop();
-                    messageLabel.setText("Time's up! Game Over.");
-                }
-                updateTimerDisplay();
-            }
-        });
-        gameTimer.start();
-    }
-    
-    private void updateTimerDisplay() {
-        int minutes = secondsLeft / 60;
-        int seconds = secondsLeft % 60;
-        timerLabel.setText(String.format("%d:%02d", minutes, seconds));
     }
 
     private void cardStyle(JButton card){
