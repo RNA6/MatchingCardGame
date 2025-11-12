@@ -18,11 +18,16 @@ import javax.swing.SwingConstants;
 public class Level2 extends baseFrame{
     private JLabel timerLabel;
     private JLabel messageLabel;
+    private GameTimer gameTimer;
     
     public Level2() {
         super("Level 2", 130, 500);
         setLayout(new BorderLayout());
         initializeUI();
+        gameTimer = new GameTimer(timerLabel, 300, () -> {
+        messageLabel.setText("Time's up! Game Over.");
+        });
+        gameTimer.start();
     }
 
     private void initializeUI() {
@@ -35,6 +40,10 @@ public class Level2 extends baseFrame{
         homeButton.setBackground(UITheme.color_FF2DD1);
         homeButton.setFocusable(false);
         homeButton.setPreferredSize(new Dimension(80, 30));
+        homeButton.addActionListener(e -> {
+            dispose();
+            new HomePage().setVisible(true);
+        });
 
         JLabel levelLabel = new JLabel("Level 2");
         levelLabel.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
