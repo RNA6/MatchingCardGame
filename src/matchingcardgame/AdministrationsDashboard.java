@@ -15,7 +15,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class AdministrationsDashboard extends baseFrame{
+public class AdministrationsDashboard extends BaseFrame{
     private JButton signout_button;
     private JButton delete_button;
     private JButton view_button;

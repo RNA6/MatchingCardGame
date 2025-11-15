@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class ViewUsersList extends baseFrame{
+public class ViewUsersList extends BaseFrame{
 
     private JButton ascOrder_button;
     private JButton descOrder_button;

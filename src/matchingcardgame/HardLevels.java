@@ -16,7 +16,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class HardLevels extends baseFrame{
+public class HardLevels extends BaseFrame{
 
     private JButton level11_button;
     private JButton level12_button;

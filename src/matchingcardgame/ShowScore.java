@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.Box;
 
 
-public class ShowScore extends baseFrame{
+public class ShowScore extends BaseFrame{
     private String name="";
     private int score=0;
     JLabel lbl = new JLabel("Congratulations '"+name+"' Your Score is : "+score+" Points");

@@ -4,13 +4,12 @@ package matchingcardgame;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class WelcomePage extends baseFrame implements ActionListener{
+public class WelcomePage extends BaseFrame{
     
     JPanel signPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
     JPanel guestPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));

@@ -16,7 +16,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class HomePage extends baseFrame{
+public class HomePage extends BaseFrame{
 
     private JButton savedLevels_button;
     private JButton easy_button;

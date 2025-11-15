@@ -16,7 +16,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class NormalLevels extends baseFrame{
+public class NormalLevels extends BaseFrame{
 
     private JButton level6_button;
     private JButton level7_button;

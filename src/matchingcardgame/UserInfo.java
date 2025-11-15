@@ -29,7 +29,7 @@ import javax.swing.SwingConstants;
  *
  * @author RNA
  */
-public class UserInfo extends baseFrame{
+public class UserInfo extends BaseFrame{
     
     private JLabel head_label;
     private JLabel[] inputLabels;
