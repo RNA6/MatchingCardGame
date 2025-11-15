@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -82,29 +81,21 @@ public class WelcomePage extends baseFrame implements ActionListener{
         add(signPanel);
         add(join);
         add(guestPanel);
-        
-        signin.addActionListener(this);
-        signup.addActionListener(this);
-        guest.addActionListener(this);
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-       if (e.getSource()==signin){
-       in.setVisible(true);
-       setVisible(false);
-       }
-       else if(e.getSource()==signup){
-       up.setVisible(true);
-       setVisible(false);
-       }
-       else{
-       home.setVisible(true);
-       setVisible(false);
-       }
+        guest.addActionListener(e -> {
+            dispose();
+            new HomePage().setVisible(true);
+        });
+        
+        signup.addActionListener(e -> {
+            dispose();
+            new SignUp().setVisible(true);
+        });
+        
+        signin.addActionListener(e -> {
+            dispose();
+            new SignIn().setVisible(true);
+        });
         
     }
 }
-
-
-
