@@ -6,6 +6,10 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< Updated upstream
+=======
+import javax.swing.Action;
+>>>>>>> Stashed changes
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
@@ -13,6 +17,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -110,8 +115,12 @@ public class SignUp extends BaseFrame {
         bottom_panel.add(cancel_button);
         bottom_panel.add(submit_button);
         add(bottom_panel, BorderLayout.SOUTH);
+<<<<<<< Updated upstream
 
        
+=======
+        
+>>>>>>> Stashed changes
         addEventHandlers();
     }
     
@@ -248,13 +257,50 @@ submit_button.setPreferredSize(new Dimension(150, 40)); submit_button.setFocusab
         female_radioButton.setEnabled(true);
         male_radioButton.setEnabled(true);
     }
+<<<<<<< Updated upstream
+=======
+    
+     private void addEventHandlers() {
+        // Cancel Button Action
+        cancel_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clearFields();
+            }
+        });
+
+       
+        submit_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                submitForm();
+            }
+        });
+
+       
+        female_radioButton.addActionListener(e -> enableFields());
+        male_radioButton.addActionListener(e -> enableFields());
+    }
+
+    private void enableFields() {
+        username_textField.setEnabled(true);
+        passwordField.setEnabled(true);
+        phoneNumber_textField.setEnabled(true);
+        female_radioButton.setEnabled(true);
+        male_radioButton.setEnabled(true);
+    }
+>>>>>>> Stashed changes
 
     private void clearFields() {
         username_textField.setText("");
         passwordField.setText("");
         phoneNumber_textField.setText("");
         gender_buttonGroup.clearSelection();
+<<<<<<< Updated upstream
         female_radioButton.setSelected(true); 
+=======
+        female_radioButton.setSelected(true);
+>>>>>>> Stashed changes
     }
 
     private void submitForm() {
@@ -277,6 +323,10 @@ submit_button.setPreferredSize(new Dimension(150, 40)); submit_button.setFocusab
                 "Form Submitted",
                 JOptionPane.INFORMATION_MESSAGE);
     }
+<<<<<<< Updated upstream
 
    
 }
+=======
+}
+>>>>>>> Stashed changes
