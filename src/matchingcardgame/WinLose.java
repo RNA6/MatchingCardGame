@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class WinLose extends baseFrame{
+public class WinLose extends BaseFrame{
     
     // both panels now use FlowLayout
     JPanel mainpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));

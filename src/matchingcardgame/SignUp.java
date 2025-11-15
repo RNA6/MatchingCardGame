@@ -15,7 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-public class SignUp extends baseFrame{
+public class SignUp extends BaseFrame{
 
     private JLabel head_label;
     private JLabel[] inputLabels;

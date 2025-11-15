@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class SavedLevels extends baseFrame{
+public class SavedLevels extends BaseFrame{
 
     private JButton ascOrder_button;
     private JButton descOrder_button;

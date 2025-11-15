@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 
-public class Level1 extends baseFrame{
+public class Level1 extends BaseFrame{
     private JLabel timerLabel;
     private JLabel messageLabel;
     private GameTimer gameTimer;

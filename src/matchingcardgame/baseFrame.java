@@ -11,11 +11,11 @@ import javax.swing.JFrame;
  *
  * @author RNA
  */
-public class baseFrame extends JFrame{
+public class BaseFrame extends JFrame{
     
     private JFrame previousFrame;
     
-    public baseFrame(String title, int y_location, int frame_hieght){
+    public BaseFrame(String title, int y_location, int frame_hieght){
         super(title);
         getContentPane().setBackground(UITheme.color_FDFFB8);
         setLocation(300, y_location);

@@ -16,7 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class SignIn extends baseFrame{
+public class SignIn extends BaseFrame{
 
     private JLabel head_label;
     private JLabel[] inputLabels;
