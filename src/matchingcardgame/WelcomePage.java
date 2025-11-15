@@ -6,12 +6,11 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class WelcomePage extends JFrame{
+public class WelcomePage extends baseFrame implements ActionListener{
     
     JPanel signPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
     JPanel guestPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
@@ -25,45 +24,49 @@ public class WelcomePage extends JFrame{
     JButton signup = new JButton("Sign Up");
     JButton guest = new JButton("Guest");
     
+    //references of frames
+    
+    SignUp up = new SignUp();
+    SignIn in = new SignIn();
+    HomePage home = new HomePage();
    
     
     public WelcomePage(){
-        super("matching cards game");
+        super("matching cards game", 130, 500);
         setLayout(new GridLayout(6, 1));
-        Theme.setFrameProperties(this, 130, 500);
         
         signPanel.setOpaque(false);
         guestPanel.setOpaque(false);
         
         //title labels
-        welcome.setFont(new Font(Theme.fontName2, Font.BOLD, 36));
-        welcome.setForeground(Theme.color_CC66DA);
+        welcome.setFont(new Font(UITheme.fontName2, Font.BOLD, 36));
+        welcome.setForeground(UITheme.color_CC66DA);
         welcome.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
-        match.setFont(new Font(Theme.fontName1, Font.BOLD, 70));
-        match.setForeground(Theme.color_FF2DD1);
+        match.setFont(new Font(UITheme.fontName1, Font.BOLD, 70));
+        match.setForeground(UITheme.color_FF2DD1);
         match.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
-        game.setFont(new Font(Theme.fontName1, Font.BOLD, 70));
+        game.setFont(new Font(UITheme.fontName1, Font.BOLD, 70));
         game.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-        game.setForeground(Theme.color_FF2DD1);
+        game.setForeground(UITheme.color_FF2DD1);
         game.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
         //or join us as a guist label color black
-        join.setFont(new Font(Theme.fontName1, Font.BOLD, 12));
+        join.setFont(new Font(UITheme.fontName1, Font.BOLD, 12));
         join.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
         //Buttons
-        signin.setBackground(Theme.color_63C8FF);
-        signin.setFont(new Font(Theme.fontName2, Font.BOLD, 18));
+        signin.setBackground(UITheme.color_63C8FF);
+        signin.setFont(new Font(UITheme.fontName2, Font.BOLD, 18));
         signin.setFocusPainted(false);
 
-        signup.setBackground(Theme.color_CC66DA);
-        signup.setFont(new Font(Theme.fontName2, Font.BOLD, 18));
+        signup.setBackground(UITheme.color_CC66DA);
+        signup.setFont(new Font(UITheme.fontName2, Font.BOLD, 18));
         signup.setFocusPainted(false);
 
-        guest.setBackground(Theme.color_4DFFBE);
-        guest.setFont(new Font(Theme.fontName2, Font.BOLD, 18));
+        guest.setBackground(UITheme.color_4DFFBE);
+        guest.setFont(new Font(UITheme.fontName2, Font.BOLD, 18));
         guest.setFocusPainted(false);
         
         signPanel.setBorder(BorderFactory.createEmptyBorder(40, 0, 0, 0));
@@ -95,7 +98,4 @@ public class WelcomePage extends JFrame{
         });
         
     }
-
-    
-    
 }

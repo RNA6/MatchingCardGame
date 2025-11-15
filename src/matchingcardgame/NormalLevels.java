@@ -9,16 +9,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class NormalLevels extends JFrame {
+public class NormalLevels extends baseFrame{
 
     private JButton level6_button;
     private JButton level7_button;
@@ -34,27 +32,27 @@ public class NormalLevels extends JFrame {
     private JPanel center_panel;
     private JPanel bottom_panel;
     private JPanel levels_panel;
-    private JPanel userMenu_panel;
-
-    private Icon user_icon;
-
+    private UserMenuPanel userMenu_panel;
+    
     private JLabel userIcon_label;
     private JLabel head_label;
 
-    public NormalLevels() {
-        super("Normal Levels");
-        Theme.setFrameProperties(this, 130, 500);
+    public NormalLevels(JFrame previousFrame) {
+        super("Normal Levels", 130, 500);
+        super.setPreviousFrame(previousFrame);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
         base_panel.setBounds(0, 0, 690, 450);
         base_panel.setOpaque(false);
-                
+        
+        userMenu_panel = new UserMenuPanel(this);
+        
         //Beginning of Top Panel
         createTop_panel();
 
         //User Icon Label
-        createUserIcon_label();
+        userIcon_label = UIComponents.createUserIcon_label(userMenu_panel);
         top_panel.add(userIcon_label, BorderLayout.EAST);
 
         base_panel.add(top_panel, BorderLayout.NORTH);
@@ -107,9 +105,8 @@ public class NormalLevels extends JFrame {
         //#End of Bottom Panel
     
         layeredPane.add(base_panel, JLayeredPane.DEFAULT_LAYER);
-        
-        userMenu_panel = CustomizedComponents.createUserMenu_panel();
-        userMenu_panel.setVisible(false);
+
+
         layeredPane.add(userMenu_panel, JLayeredPane.POPUP_LAYER);
         add(layeredPane);
     }
@@ -121,16 +118,7 @@ public class NormalLevels extends JFrame {
         top_panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 15));
         top_panel.setOpaque(false);
     }
-
-    //Top Panel Components
-    //User Icon Label Declaration
-    private void createUserIcon_label(){
-        user_icon = new ImageIcon(getClass().getResource("user.png"));
-        userIcon_label = new JLabel(user_icon);
-        userIcon_label.setVerticalAlignment(SwingConstants.TOP);
-    }
-    //#End of Top Panel Components
-
+    
     //Center Panel Declaration
     private void createCenter_panel(){
         center_panel = new JPanel();
@@ -142,8 +130,8 @@ public class NormalLevels extends JFrame {
     //Head Label Declaration
     private void createHead_label(){
         head_label = new JLabel("Normal Levels");
-        head_label.setForeground(Theme.color_CC66DA);
-        head_label.setFont(new Font(Theme.fontName1, Font.BOLD, 48));
+        head_label.setForeground(UITheme.color_CC66DA);
+        head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 48));
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
@@ -161,8 +149,8 @@ public class NormalLevels extends JFrame {
     private JButton creatLevels_button(String buttonLabel){
         JButton button = new JButton(buttonLabel);
         button.setFocusable(false);
-        button.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
-        button.setBackground(Theme.color_63C8FF);
+        button.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
+        button.setBackground(UITheme.color_63C8FF);
         button.setPreferredSize(new Dimension(80, 80));
         return button;
     }
@@ -182,8 +170,8 @@ public class NormalLevels extends JFrame {
     private void createBack_button(){
         back_button = new JButton("Back");
         back_button.setFocusable(false);
-        back_button.setBackground(Theme.color_4DFFBE);
-        back_button.setFont(new Font(Theme.fontName1, Font.BOLD, 20));
+        back_button.setBackground(UITheme.color_4DFFBE);
+        back_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 20));
         back_button.setPreferredSize(new Dimension(150, 50));
         back_button.setHorizontalAlignment(SwingConstants.CENTER);
     }

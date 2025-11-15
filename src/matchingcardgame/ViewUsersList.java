@@ -14,14 +14,13 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class ViewUsersList extends JFrame {
+public class ViewUsersList extends baseFrame{
 
     private JButton ascOrder_button;
     private JButton descOrder_button;
@@ -55,8 +54,7 @@ public class ViewUsersList extends JFrame {
     private int savedLevels = 0;
 
     public ViewUsersList() {
-        super("View Users List");
-        Theme.setFrameProperties(this, 130, 500);
+        super("View Users List", 130, 500);
 
         //Beginning of Top Panel
         createTop_panel();
@@ -90,7 +88,7 @@ public class ViewUsersList extends JFrame {
         //#End of Sorting Panel
 
         //Beggining of Users List Panel
-        usersList_panel = CustomizedComponents.createScrolling_panel();
+        usersList_panel = UIComponents.createScrolling_panel();
 
         //Users Panels
         Users_panels = new ArrayList();
@@ -107,7 +105,7 @@ public class ViewUsersList extends JFrame {
         }
         //#End of Users List Panel
         //ScrollPane declaration
-        scrollPane = CustomizedComponents.createScrollPane(usersList_panel);
+        scrollPane = UIComponents.createScrollPane(usersList_panel);
         center_panel.add(scrollPane);
         
         add(center_panel, BorderLayout.CENTER);
@@ -135,8 +133,8 @@ public class ViewUsersList extends JFrame {
     //Head Label Declaration
     private void createHead_label() {
         head_label = new JLabel("View Users List");
-        head_label.setForeground(Theme.color_CC66DA);
-        head_label.setFont(new Font(Theme.fontName1, Font.BOLD, 40));
+        head_label.setForeground(UITheme.color_CC66DA);
+        head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 40));
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
     //#End of Top Panel Components
@@ -160,7 +158,7 @@ public class ViewUsersList extends JFrame {
     //Sort Label Declaration
     private void createSort_label() {
         sort_label = new JLabel("Sort");
-        sort_label.setFont(new Font(Theme.fontName1, Font.PLAIN, 18));
+        sort_label.setFont(new Font(UITheme.fontName1, Font.PLAIN, 18));
     }
 
     //Ascending Order Button Declaration
@@ -169,7 +167,7 @@ public class ViewUsersList extends JFrame {
         ascOrder_button = new JButton(ascOrder_icon);
         ascOrder_button.setFocusable(true);
         ascOrder_button.setPreferredSize(new Dimension(40, 40));
-        ascOrder_button.setBackground(Theme.color_CC66DA);
+        ascOrder_button.setBackground(UITheme.color_CC66DA);
     }
 
     //Ascending Order Button Declaration
@@ -178,13 +176,13 @@ public class ViewUsersList extends JFrame {
         descOrder_button = new JButton(descOrder_icon);
         descOrder_button.setFocusable(true);
         descOrder_button.setPreferredSize(new Dimension(40, 40));
-        descOrder_button.setBackground(Theme.color_CC66DA);
+        descOrder_button.setBackground(UITheme.color_CC66DA);
     }
     //#End of Sorting Panel Components
     
     //Users Panel Declaration
     private JPanel createUser_panel(int rank) {
-        JPanel user_panel = CustomizedComponents.createContent_panel();
+        JPanel user_panel = UIComponents.createContent_panel();
         user_panel.setLayout(new GridLayout(1, 2));
         user_panel.setPreferredSize(new Dimension(500, 120));
         user_panel.add(createUserInfo_panel());
@@ -196,19 +194,19 @@ public class ViewUsersList extends JFrame {
     //User Information Labels Declaration
     private void createUserInfo_labels() {
         username_label = new JLabel(("Username: " + username), SwingConstants.LEFT);
-        username_label.setFont(new Font(Theme.fontName1, Font.BOLD, 14));
+        username_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
 
         id_label = new JLabel("Id: " + id, SwingConstants.LEFT);
-        id_label.setFont(new Font(Theme.fontName1, Font.BOLD, 14));
+        id_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
 
         phoneNumber_label = new JLabel("Phone Number: " + phoneNumber, SwingConstants.LEFT);
-        phoneNumber_label.setFont(new Font(Theme.fontName1, Font.BOLD, 14));
+        phoneNumber_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
 
         totalScores_label = new JLabel("Total Scores: " + totalScores, SwingConstants.LEFT);
-        totalScores_label.setFont(new Font(Theme.fontName1, Font.BOLD, 14));
+        totalScores_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
 
         savedLevels_label = new JLabel("Saved Levels: " + savedLevels, SwingConstants.LEFT);
-        savedLevels_label.setFont(new Font(Theme.fontName1, Font.BOLD, 14));
+        savedLevels_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
     }
     
     //User Information Panel Declaration
@@ -241,7 +239,7 @@ public class ViewUsersList extends JFrame {
     //Rank Label Declaration
     private void createRank_label(int rank) {
         rank_label = new JLabel("Rank #" + rank);
-        rank_label.setFont(new Font(Theme.fontName1, Font.BOLD, 20));
+        rank_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 20));
         rank_label.setPreferredSize(new Dimension(100, 50));
         rank_label.setBorder(BorderFactory.createLineBorder(Color.black, 4, true));
         rank_label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -263,8 +261,8 @@ public class ViewUsersList extends JFrame {
     private void createBack_button() {
         back_button = new JButton("Back");
         back_button.setFocusable(false);
-        back_button.setBackground(Theme.color_4DFFBE);
-        back_button.setFont(new Font(Theme.fontName1, Font.BOLD, 20));
+        back_button.setBackground(UITheme.color_4DFFBE);
+        back_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 20));
         back_button.setPreferredSize(new Dimension(100, 40));
         back_button.setHorizontalAlignment(SwingConstants.CENTER);
     }

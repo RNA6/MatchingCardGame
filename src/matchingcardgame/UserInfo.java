@@ -5,9 +5,12 @@
 package matchingcardgame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
@@ -26,7 +29,7 @@ import javax.swing.SwingConstants;
  *
  * @author RNA
  */
-public class UserInfo extends JFrame{
+public class UserInfo extends baseFrame{
     
     private JLabel head_label;
     private JLabel[] inputLabels;
@@ -58,11 +61,17 @@ public class UserInfo extends JFrame{
     private JButton update_button;
     private JButton cancelUpdating_button;
     private JButton confirmUpdate_button;
+    
+    private boolean updating = false;
+    
+    private String username = "";
+    private String phoneNumber = "";
+    private String password = "";
+    private String gender = "";
 
-    public UserInfo(){
-        super("User Info");
-        Theme.setFrameProperties(this, 130, 500);
-        
+    public UserInfo(JFrame previousFrame){
+        super("User Info", 130, 500);
+        super.setPreviousFrame(previousFrame);
         //Head Label
         createHead_label();
         add(head_label, BorderLayout.NORTH);
@@ -154,8 +163,8 @@ public class UserInfo extends JFrame{
     //Head Label Declaration
     private void createHead_label(){
         head_label = new JLabel("Update User Information");
-        head_label.setFont(new Font(Theme.fontName1, Font.BOLD, 36));
-        head_label.setForeground(Theme.color_CC66DA);
+        head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 36));
+        head_label.setForeground(UITheme.color_CC66DA);
         head_label.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
@@ -186,9 +195,9 @@ public class UserInfo extends JFrame{
         
         for(int counter = 0; counter < labelNames.length; counter++){
             inputLabels[counter] = new JLabel(labelNames[counter]);
-            inputLabels[counter].setFont(new Font(Theme.fontName1, Font.BOLD, 24));
+            inputLabels[counter].setFont(new Font(UITheme.fontName1, Font.BOLD, 24));
             inputLabels[counter].setHorizontalAlignment(SwingConstants.LEFT);
-            inputLabels[counter].setForeground(Theme.color_CC66DA);
+            inputLabels[counter].setForeground(UITheme.color_CC66DA);
             labels_panel.add(inputLabels[counter]);
         }
     }
@@ -206,25 +215,28 @@ public class UserInfo extends JFrame{
     //Username Text Field Declaration
     private void createUsername_textField(){
         username_textField = new JTextField();
-        username_textField.setBackground(Theme.color_F3EFEF);
+        username_textField.setBackground(UITheme.color_F3EFEF);
         username_textField.setPreferredSize(new Dimension(280,35));
         username_textField.setEnabled(false);
+        username_textField.setDisabledTextColor(Color.DARK_GRAY);
     }
     
     //Password Field Declaration
     private void createPasswordField(){
         passwordField = new JPasswordField();
-        passwordField.setBackground(Theme.color_F3EFEF);
+        passwordField.setBackground(UITheme.color_F3EFEF);
         passwordField.setPreferredSize(new Dimension(280,35));
         passwordField.setEnabled(false);
+        passwordField.setDisabledTextColor(Color.DARK_GRAY);
     }
     
     //Phone Number Declaration
     private void createPhoneNumber_textField(){
         phoneNumber_textField = new JTextField();
-        phoneNumber_textField.setBackground(Theme.color_F3EFEF);
+        phoneNumber_textField.setBackground(UITheme.color_F3EFEF);
         phoneNumber_textField.setPreferredSize(new Dimension(280, 35));
         phoneNumber_textField.setEnabled(false);
+        phoneNumber_textField.setDisabledTextColor(Color.DARK_GRAY);
     }
     
     //Female Box Declaration
@@ -261,6 +273,7 @@ public class UserInfo extends JFrame{
     //Male Radio Button Declaration
     private void createMale_radioButton(){
         male_radioButton = new JRadioButton();
+        male_radioButton.setName("Male");
         male_radioButton.setOpaque(false);
         male_radioButton.setEnabled(false);
     }
@@ -284,39 +297,99 @@ public class UserInfo extends JFrame{
     //Cancel Button Declaration
     private void createCancel_button(){
         cancel_button = new JButton("Cancel");
-        cancel_button.setFont(new Font(Theme.fontName1, Font.BOLD, 15));
-        cancel_button.setBackground(Theme.color_63C8FF);
+        cancel_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 15));
+        cancel_button.setBackground(UITheme.color_63C8FF);
         cancel_button.setPreferredSize(new Dimension(150, 40));
         cancel_button.setFocusable(false);
+        UIUtilities.addNavigation(cancel_button, this, super.getPreviousFrame());
     }
     
     //Update Button Declaration
     private void createUpdate_button(){
         update_button = new JButton("Update");
-        update_button.setFont(new Font(Theme.fontName1, Font.BOLD, 15));
-        update_button.setBackground(Theme.color_4DFFBE);
+        update_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 15));
+        update_button.setBackground(UITheme.color_4DFFBE);
         update_button.setPreferredSize(new Dimension(150, 40));
         update_button.setFocusable(false);
+        update_button.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchButtons();
+                enableInputs();
+            }
+        });
+    }
+    
+    //Switching Buttons
+    private void switchButtons(){
+        cancel_button.setVisible(updating);
+        update_button.setVisible(updating);
+        cancelUpdating_button.setVisible(!updating);
+        confirmUpdate_button.setVisible(!updating);
+        updating = !updating;
+    }
+    
+    //Enabling Inputs
+    private void enableInputs(){
+        username_textField.setEnabled(updating);
+        passwordField.setEnabled(updating);
+        phoneNumber_textField.setEnabled(updating);
+        female_radioButton.setEnabled(updating);
+        male_radioButton.setEnabled(updating);
     }
     
     //Cancel Updating Button Declaration
     private void createCancelUpdating_button(){
         cancelUpdating_button = new JButton("Cancel Updating");
-        cancelUpdating_button.setFont(new Font(Theme.fontName1, Font.BOLD, 15));
-        cancelUpdating_button.setBackground(Theme.color_63C8FF);
+        cancelUpdating_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 15));
+        cancelUpdating_button.setBackground(UITheme.color_63C8FF);
         cancelUpdating_button.setPreferredSize(new Dimension(150, 40));
         cancelUpdating_button.setFocusable(false);
         cancelUpdating_button.setVisible(false);
+        cancelUpdating_button.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchButtons();
+                enableInputs();
+                username_textField.setText(username);
+                phoneNumber_textField.setText(phoneNumber);
+                passwordField.setText(password);
+                if(gender.equals(male_radioButton.getName())){
+                    male_radioButton.setSelected(true);
+                }
+                else{
+                    female_radioButton.setSelected(true);
+                }
+            }
+        });
     }
     
     //Confirm Update Button Declaration
     private void createConfirmUpdate_button(){
         confirmUpdate_button = new JButton("Confirm Update");
-        confirmUpdate_button.setFont(new Font(Theme.fontName1, Font.BOLD, 15));
-        confirmUpdate_button.setBackground(Theme.color_4DFFBE);
+        confirmUpdate_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 15));
+        confirmUpdate_button.setBackground(UITheme.color_4DFFBE);
         confirmUpdate_button.setPreferredSize(new Dimension(150, 40));
         confirmUpdate_button.setFocusable(false);
         confirmUpdate_button.setVisible(false);
+        
+        confirmUpdate_button.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                username = username_textField.getText();
+                phoneNumber = phoneNumber_textField.getText();
+                password = String.valueOf(passwordField.getPassword());
+                if(male_radioButton.isSelected()){
+                    gender =male_radioButton.getName();
+                }
+                else{
+                    gender = female_radioButton.getName();
+                }
+                //Saving in database
+                switchButtons();
+                enableInputs();
+            }
+        });
     }
     //#End of Bottom Panel Components 
 }

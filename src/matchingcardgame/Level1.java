@@ -10,39 +10,33 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
 
 
-public class Level1 extends JFrame{
+public class Level1 extends baseFrame{
     private JLabel timerLabel;
     private JLabel messageLabel;
-    private Timer gameTimer;
-    private int secondsLeft = 300;
+    private GameTimer gameTimer;
     
     public Level1() {
-        super("Level 1");
+        super("Level 1", 130, 500);
         setLayout(new BorderLayout());
-        initializeUI();
-        startTimer();
-
+        initializeUI();gameTimer = new GameTimer(timerLabel, 300, () -> {
+        messageLabel.setText("Time's up! Game Over.");
+        });
+        gameTimer.start();
     }
 
     private void initializeUI() {
-        Theme.setFrameProperties(this, 130, 500);
-        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         topPanel.setOpaque(false);
 
         JButton homeButton = new JButton("Home");
-        homeButton.setFont(new Font(Theme.fontName2, Font.BOLD, 14));
-        homeButton.setBackground(Theme.color_FF2DD1);
+        homeButton.setFont(new Font(UITheme.fontName2, Font.BOLD, 14));
+        homeButton.setBackground(UITheme.color_FF2DD1);
         homeButton.setFocusable(false);
         homeButton.setPreferredSize(new Dimension(80, 30));
         homeButton.addActionListener(e -> {
@@ -51,8 +45,8 @@ public class Level1 extends JFrame{
         });
 
         JLabel levelLabel = new JLabel("Level 1");
-        levelLabel.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
-        levelLabel.setForeground(Theme.color_CC66DA);
+        levelLabel.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
+        levelLabel.setForeground(UITheme.color_CC66DA);
         levelLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         timerLabel = new JLabel("5:00");
@@ -66,7 +60,7 @@ public class Level1 extends JFrame{
 
         
         messageLabel = new JLabel("correct, good job /wrong, try again");
-        messageLabel.setFont(new Font(Theme.fontName1, Font.BOLD, 18));
+        messageLabel.setFont(new Font(UITheme.fontName1, Font.BOLD, 18));
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setVerticalAlignment(SwingConstants.CENTER);
         messageLabel.setForeground(Color.BLACK);
@@ -95,31 +89,10 @@ public class Level1 extends JFrame{
         
         add(cardsPanel, BorderLayout.SOUTH);
     }
-    
-    private void startTimer() {
-        gameTimer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                secondsLeft--;
-                if (secondsLeft <= 0) {
-                    gameTimer.stop();
-                    messageLabel.setText("Time's up! Game Over.");
-                }
-                updateTimerDisplay();
-            }
-        });
-        gameTimer.start();
-    }
-    
-    private void updateTimerDisplay() {
-        int minutes = secondsLeft / 60;
-        int seconds = secondsLeft % 60;
-        timerLabel.setText(String.format("%d:%02d", minutes, seconds));
-    }
 
     private void cardStyle(JButton card){
-        card.setFont(new Font(Theme.fontName1, Font.BOLD, 36));
-        card.setBackground(Theme.color_63C8FF);
+        card.setFont(new Font(UITheme.fontName1, Font.BOLD, 36));
+        card.setBackground(UITheme.color_63C8FF);
         card.setFocusable(false);
         card.setPreferredSize(new Dimension(100, 100));
     }

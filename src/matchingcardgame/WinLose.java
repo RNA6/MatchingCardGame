@@ -4,14 +4,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class WinLose extends JFrame {
+public class WinLose extends baseFrame{
     
     // both panels now use FlowLayout
     JPanel mainpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -32,8 +31,7 @@ public class WinLose extends JFrame {
     
 
     public WinLose() {
-        super("win lose");
-        Theme.setFrameProperties(this, 130, 500);
+        super("win lose", 130, 500);
         
         mainpanel.setOpaque(false);
         iconpanel.setOpaque(false);
@@ -54,26 +52,26 @@ public class WinLose extends JFrame {
         iconpanel.add(star3);
 
         // label styles
-        win.setFont(new Font(Theme.fontName1, Font.BOLD, 40));
-        win.setForeground(Theme.color_FF2DD1);
+        win.setFont(new Font(UITheme.fontName1, Font.BOLD, 40));
+        win.setForeground(UITheme.color_FF2DD1);
 
-        lose.setFont(new Font(Theme.fontName1, Font.BOLD, 40));
-        lose.setForeground(Theme.color_FF2DD1);
+        lose.setFont(new Font(UITheme.fontName1, Font.BOLD, 40));
+        lose.setForeground(UITheme.color_FF2DD1);
         
-        reward.setFont(new Font(Theme.fontName1, Font.BOLD, 36));
-        reward.setForeground(Theme.color_FF2DD1);
+        reward.setFont(new Font(UITheme.fontName1, Font.BOLD, 36));
+        reward.setForeground(UITheme.color_FF2DD1);
         
-        tryagain.setFont(new Font(Theme.fontName1, Font.BOLD, 36));
-        tryagain.setForeground(Theme.color_FF2DD1);
+        tryagain.setFont(new Font(UITheme.fontName1, Font.BOLD, 36));
+        tryagain.setForeground(UITheme.color_FF2DD1);
         
         //btn style
-        home.setBackground(Theme.color_63C8FF);
-        home.setFont(new Font(Theme.fontName2, Font.BOLD, 20));
+        home.setBackground(UITheme.color_63C8FF);
+        home.setFont(new Font(UITheme.fontName2, Font.BOLD, 20));
         home.setPreferredSize(new Dimension(150, 40));
         home.setFocusPainted(false);
         
-        next.setBackground(Theme.color_4DFFBE);
-        next.setFont(new Font(Theme.fontName2, Font.BOLD, 20));
+        next.setBackground(UITheme.color_4DFFBE);
+        next.setFont(new Font(UITheme.fontName2, Font.BOLD, 20));
         next.setPreferredSize(new Dimension(150, 40));
         next.setFocusPainted(false);
         

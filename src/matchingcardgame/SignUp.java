@@ -9,14 +9,13 @@ import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-public class SignUp extends JFrame {
+public class SignUp extends baseFrame{
 
     private JLabel head_label;
     private JLabel[] inputLabels;
@@ -43,14 +42,12 @@ public class SignUp extends JFrame {
 
     private JButton cancel_button;
     private JButton submit_button;
-
     
     private Icon female_icon;
     private Icon male_icon;
 
     public SignUp() {
-        super("SignUp");
-        Theme.setFrameProperties(this, 130, 500);
+        super("SignUp", 130, 500);
         
         createHead_label();
         add(head_label, BorderLayout.NORTH);
@@ -114,8 +111,8 @@ public class SignUp extends JFrame {
     
     private void createHead_label() {
         head_label = new JLabel("Sign Up");
-        head_label.setFont(new Font(Theme.fontName1, Font.BOLD, 36));
-        head_label.setForeground(Theme.color_CC66DA);
+        head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 36));
+        head_label.setForeground(UITheme.color_CC66DA);
         head_label.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
@@ -140,9 +137,9 @@ public class SignUp extends JFrame {
         inputLabels = new JLabel[labelNames.length];
         for (int i = 0; i < labelNames.length; i++) {
             inputLabels[i] = new JLabel(labelNames[i]);
-            inputLabels[i].setFont(new Font(Theme.fontName1, Font.BOLD, 24));
+            inputLabels[i].setFont(new Font(UITheme.fontName1, Font.BOLD, 24));
             inputLabels[i].setPreferredSize(new Dimension(220, 30));
-            inputLabels[i].setForeground(Theme.color_CC66DA);
+            inputLabels[i].setForeground(UITheme.color_CC66DA);
             labels_panel.add(inputLabels[i]);
         }
     }
@@ -156,21 +153,21 @@ public class SignUp extends JFrame {
 
     private void createUsername_textField() {
         username_textField = new JTextField();
-        username_textField.setBackground(Theme.color_F3EFEF);
+        username_textField.setBackground(UITheme.color_F3EFEF);
         username_textField.setPreferredSize(new Dimension(280, 35));
         username_textField.setEnabled(false);
     }
     
     private void createPasswordField() {
         passwordField = new JPasswordField();
-        passwordField.setBackground(Theme.color_F3EFEF);
+        passwordField.setBackground(UITheme.color_F3EFEF);
         passwordField.setPreferredSize(new Dimension(280, 35));
         passwordField.setEnabled(false);
     }
 
     private void createPhoneNumber_textField() {
         phoneNumber_textField = new JTextField();
-        phoneNumber_textField.setBackground(Theme.color_F3EFEF);
+        phoneNumber_textField.setBackground(UITheme.color_F3EFEF);
         phoneNumber_textField.setPreferredSize(new Dimension(280, 35));
         phoneNumber_textField.setEnabled(false);
     }
@@ -228,16 +225,16 @@ public class SignUp extends JFrame {
     }
  private void createCancel_button() {
         cancel_button = new JButton("Cancel");
-        cancel_button.setFont(new Font(Theme.fontName1, Font.BOLD, 15));
-        cancel_button.setBackground(Theme.color_63C8FF);
+        cancel_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 15));
+        cancel_button.setBackground(UITheme.color_63C8FF);
         cancel_button.setPreferredSize(new Dimension(150, 40));
         cancel_button.setFocusable(false);
     }
 
     private void createSubmit_button() {
         submit_button = new JButton("Submit");
-        submit_button.setFont(new Font(Theme.fontName1, Font.BOLD, 15));
-        submit_button.setBackground(Theme.color_4DFFBE);
+        submit_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 15));
+        submit_button.setBackground(UITheme.color_4DFFBE);
         submit_button.setPreferredSize(new Dimension(150, 40));
         submit_button.setFocusable(false);
     }

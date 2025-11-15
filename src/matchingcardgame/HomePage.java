@@ -9,16 +9,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class HomePage extends JFrame {
+public class HomePage extends baseFrame{
 
     private JButton savedLevels_button;
     private JButton easy_button;
@@ -34,21 +32,22 @@ public class HomePage extends JFrame {
     private JPanel bottom_panel;
     private JPanel savedLevels_panel;
     private JPanel gameTypes_panel;
-    private JPanel userMenu_panel;
-
-    private Icon user_icon;
+    
+    private UserMenuPanel userMenu_panel;
 
     private JLabel userIcon_label;
     private JLabel head_label;
+    
 
     public HomePage() {
-        super("Home Page");
-        Theme.setFrameProperties(this, 130, 500);
+        super("Home Page", 130, 500);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
         base_panel.setBounds(0, 0, 690, 450);
         base_panel.setOpaque(false);
+        
+        userMenu_panel = new UserMenuPanel(this);
         //Beginning of Top Panel
         createTop_panel();
 
@@ -62,7 +61,7 @@ public class HomePage extends JFrame {
         //#End of SignOut panel
 
         //User Icon Label
-        createUserIcon_label();
+        userIcon_label = UIComponents.createUserIcon_label(userMenu_panel);
         top_panel.add(userIcon_label, BorderLayout.EAST);
 
         base_panel.add(top_panel, BorderLayout.NORTH);
@@ -79,15 +78,15 @@ public class HomePage extends JFrame {
         createGameTypes_panel();
 
         //Easy Button
-        easy_button = creatGameTypes_button("Easy");
+        easy_button = creatGameTypes_button("Easy", new EasyLevels(this));
         gameTypes_panel.add(easy_button);
 
         //Normal Button
-        normal_button = creatGameTypes_button("Normal");
+        normal_button = creatGameTypes_button("Normal", new NormalLevels(this));
         gameTypes_panel.add(normal_button);
 
         //Hard Button
-        hard_button = creatGameTypes_button("Hard");
+        hard_button = creatGameTypes_button("Hard", new HardLevels(this));
         gameTypes_panel.add(hard_button);
 
         center_panel.add(gameTypes_panel, BorderLayout.CENTER);
@@ -107,9 +106,6 @@ public class HomePage extends JFrame {
         //#End of Bottom Panel
         
         layeredPane.add(base_panel, JLayeredPane.DEFAULT_LAYER);
-        
-        userMenu_panel = CustomizedComponents.createUserMenu_panel();
-        userMenu_panel.setVisible(false);
         layeredPane.add(userMenu_panel, JLayeredPane.POPUP_LAYER);
         add(layeredPane);
     }
@@ -134,19 +130,14 @@ public class HomePage extends JFrame {
     //Saved Levels Button Declaration
     private void createSavedLevels_button(){
         savedLevels_button = new JButton("Saved Levels");
-        savedLevels_button.setFont(new Font(Theme.fontName1, Font.BOLD, 12));
+        savedLevels_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 12));
         savedLevels_button.setPreferredSize(new Dimension(110, 30));
         savedLevels_button.setFocusable(false);
-        savedLevels_button.setBackground(Theme.color_CC66DA);
+        savedLevels_button.setBackground(UITheme.color_CC66DA);
+        UIUtilities.addNavigation(savedLevels_button, this, new SavedLevels());
     }
     //#End of createSavedLevels_button Panel Components
 
-    //User Icon Label Declaration
-    private void createUserIcon_label(){
-        user_icon = new ImageIcon(getClass().getResource("user.png"));
-        userIcon_label = new JLabel(user_icon);
-        userIcon_label.setVerticalAlignment(SwingConstants.TOP);
-    }
     //#End of Top Panel Components
 
     //Center Panel Declaration
@@ -160,12 +151,12 @@ public class HomePage extends JFrame {
     //Head Label Declaration
     private void createHead_label(){
         head_label = new JLabel("Game Type");
-        head_label.setForeground(Theme.color_CC66DA);
-        head_label.setFont(new Font(Theme.fontName1, Font.BOLD, 48));
+        head_label.setForeground(UITheme.color_CC66DA);
+        head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 48));
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
-    //Game Types Panel Declaration
+     //Game Types Panel Declaration
     private void createGameTypes_panel(){
         gameTypes_panel = new JPanel();
         gameTypes_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 0));
@@ -175,12 +166,13 @@ public class HomePage extends JFrame {
 
     //Game Types Panel Components
     //Object of a Game Type Button Declaration
-    private JButton creatGameTypes_button(String buttonLabel){
+    private JButton creatGameTypes_button(String buttonLabel, JFrame nextFrame){
         JButton button = new JButton(buttonLabel);
         button.setFocusable(false);
-        button.setFont(new Font(Theme.fontName1, Font.BOLD, 28));
-        button.setBackground(Theme.color_63C8FF);
+        button.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
+        button.setBackground(UITheme.color_63C8FF);
         button.setPreferredSize(new Dimension(130, 130));
+        UIUtilities.addNavigation(button, this, nextFrame);
         return button;
     }
     //#End of Game Types Panel Components
@@ -198,10 +190,11 @@ public class HomePage extends JFrame {
     private void createShowScore_button(){
         showScore_button = new JButton("Show Score");
         showScore_button.setFocusable(false);
-        showScore_button.setBackground(Theme.color_4DFFBE);
-        showScore_button.setFont(new Font(Theme.fontName1, Font.BOLD, 20));
+        showScore_button.setBackground(UITheme.color_4DFFBE);
+        showScore_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 20));
         showScore_button.setPreferredSize(new Dimension(150, 50));
         showScore_button.setHorizontalAlignment(SwingConstants.CENTER);
+        UIUtilities.addNavigation(showScore_button, this, new ShowScore());
     }
     //#End of Bottom Panel Components
 }
