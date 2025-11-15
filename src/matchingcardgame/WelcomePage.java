@@ -4,6 +4,7 @@ package matchingcardgame;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -77,8 +78,24 @@ public class WelcomePage extends JFrame{
         add(signPanel);
         add(join);
         add(guestPanel);
+
+        guest.addActionListener(e -> {
+            dispose();
+            new HomePage().setVisible(true);
+        });
+        
+        signup.addActionListener(e -> {
+            dispose();
+            new SignUp().setVisible(true);
+        });
+        
+        signin.addActionListener(e -> {
+            dispose();
+            new SignIn().setVisible(true);
+        });
+        
     }
+
+    
+    
 }
-
-
-
