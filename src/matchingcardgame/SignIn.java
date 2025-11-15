@@ -62,6 +62,27 @@ public class SignIn extends BaseFrame{
         bottom_panel.add(cancel_button);
         bottom_panel.add(signIn_button);
         add(bottom_panel, BorderLayout.SOUTH);
+        
+        username_textField.setEnabled(true);
+        passwordField.setEnabled(true);
+
+        UIUtilities.addNavigation(cancel_button, this, Frames.welcomePage);
+
+        signIn_button.addActionListener(e -> {
+            String username = username_textField.getText();
+            String password = new String(passwordField.getPassword());
+
+            if (username.isEmpty() || password.isEmpty()) {
+                System.out.println("Please fill all fields!");
+                return;
+            }
+
+            if (username.equals("admin") && password.equals("123")) {
+                System.out.println("Login Successful!");
+            } else {
+                System.out.println("Incorrect Username or Password.");
+            }
+        });
     }
     
 
