@@ -1,8 +1,11 @@
 package matchingcardgame;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
@@ -15,7 +18,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-public class SignUp extends BaseFrame{
+
+public class SignUp extends BaseFrame {
 
     private JLabel head_label;
     private JLabel[] inputLabels;
@@ -28,27 +32,27 @@ public class SignUp extends BaseFrame{
     private JPanel bottom_panel;
     private JPanel labels_panel;
     private JPanel inputs_panel;
-    
+
     private JTextField username_textField;
     private JTextField phoneNumber_textField;
     private JPasswordField passwordField;
 
     private JRadioButton female_radioButton;
     private JRadioButton male_radioButton;
-    private final ButtonGroup gender_buttonGroup;
-    
+    private ButtonGroup gender_buttonGroup;
+
     private Box female_box;
     private Box male_box;
 
     private JButton cancel_button;
     private JButton submit_button;
-    
+
     private Icon female_icon;
     private Icon male_icon;
 
     public SignUp() {
         super("SignUp", 130, 500);
-        
+
         createHead_label();
         add(head_label, BorderLayout.NORTH);
 
@@ -67,33 +71,23 @@ public class SignUp extends BaseFrame{
 
         createPhoneNumber_textField();
         inputs_panel.add(phoneNumber_textField);
-        
-        
-        //Create Gender Button Group
+
         gender_buttonGroup = new ButtonGroup();
-        
-        //Female Box
+
         createFemale_box();
-        
-        //Female Radio Button
-        createFemale_radioButton();        
+        createFemale_radioButton();
         gender_buttonGroup.add(female_radioButton);
         female_box.add(female_radioButton);
-        
-        //Female Icon Label
+
         createFemaleIcon_label();
         female_box.add(femaleIcon_label);
         inputs_panel.add(female_box);
-        
-        //Male Box
+
         createMale_box();
-               
-        //Male Radio Button
         createMale_radioButton();
         gender_buttonGroup.add(male_radioButton);
         male_box.add(male_radioButton);
-        
-        //Male Icon Label
+
         createMaleIcon_label();
         male_box.add(maleIcon_label);
         inputs_panel.add(male_box);
@@ -104,11 +98,43 @@ public class SignUp extends BaseFrame{
         createBottom_panel();
         createCancel_button();
         createSubmit_button();
+
+        // ---------- ADD EVENT HANDLERS ----------
+        addEventHandlers();
+
         bottom_panel.add(cancel_button);
         bottom_panel.add(submit_button);
         add(bottom_panel, BorderLayout.SOUTH);
     }
-    
+
+    private void addEventHandlers() {
+        // Cancel Button → Close window
+        cancel_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();  // يغلق صفحة الـ SignUp
+            }
+        });
+
+        // Submit Button → Retrieve Inputs
+        submit_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String username = username_textField.getText();
+                String password = new String(passwordField.getPassword());
+                String phone = phoneNumber_textField.getText();
+                String gender = female_radioButton.isSelected() ? "Female" : "Male";
+
+                System.out.println("==== Submitted Data ====");
+                System.out.println("Username: " + username);
+                System.out.println("Password: " + password);
+                System.out.println("Phone Number: " + phone);
+                System.out.println("Gender: " + gender);
+            }
+        });
+    }
+
     private void createHead_label() {
         head_label = new JLabel("Sign Up");
         head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 36));
@@ -155,67 +181,55 @@ public class SignUp extends BaseFrame{
         username_textField = new JTextField();
         username_textField.setBackground(UITheme.color_F3EFEF);
         username_textField.setPreferredSize(new Dimension(280, 35));
-        username_textField.setEnabled(false);
+        username_textField.setEnabled(true);
     }
-    
+
     private void createPasswordField() {
         passwordField = new JPasswordField();
         passwordField.setBackground(UITheme.color_F3EFEF);
         passwordField.setPreferredSize(new Dimension(280, 35));
-        passwordField.setEnabled(false);
+        passwordField.setEnabled(true);
     }
 
     private void createPhoneNumber_textField() {
         phoneNumber_textField = new JTextField();
         phoneNumber_textField.setBackground(UITheme.color_F3EFEF);
         phoneNumber_textField.setPreferredSize(new Dimension(280, 35));
-        phoneNumber_textField.setEnabled(false);
+        phoneNumber_textField.setEnabled(true);
     }
 
-    //Female Box Declaration
-    private void createFemale_box(){
+    private void createFemale_box() {
         female_box = Box.createHorizontalBox();
         female_box.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 80));
     }
-    
-    //Female Box Components
-    //Female Radio Button Declaration
-    private void createFemale_radioButton(){
+
+    private void createFemale_radioButton() {
         female_radioButton = new JRadioButton();
         female_radioButton.setOpaque(false);
-        female_radioButton.setEnabled(false);
+        female_radioButton.setEnabled(true);
         female_radioButton.setSelected(true);
     }
-    
-    //Female Icon Label Declaration
-    private void createFemaleIcon_label(){
+
+    private void createFemaleIcon_label() {
         female_icon = new ImageIcon(getClass().getResource("female.png"));
         femaleIcon_label = new JLabel(female_icon);
-    } 
-    //#End of Female Box Components    
-    //#End of Inputs Panel Components
-    //#End of Center Panel Components
-    
-    //Male Box Declaration
-    private void createMale_box(){
+    }
+
+    private void createMale_box() {
         male_box = Box.createHorizontalBox();
         male_box.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 80));
     }
-    
-    //Male Box Components
-    //Male Radio Button Declaration
-    private void createMale_radioButton(){
+
+    private void createMale_radioButton() {
         male_radioButton = new JRadioButton();
         male_radioButton.setOpaque(false);
-        male_radioButton.setEnabled(false);
+        male_radioButton.setEnabled(true);
     }
-    
-    //Male Icon Label Declaration
-    private void createMaleIcon_label(){
+
+    private void createMaleIcon_label() {
         male_icon = new ImageIcon(getClass().getResource("male.png"));
         maleIcon_label = new JLabel(male_icon);
     }
-    //#End of Male Box Components
 
     private void createBottom_panel() {
         bottom_panel = new JPanel();
@@ -223,7 +237,8 @@ public class SignUp extends BaseFrame{
         bottom_panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 50, 0));
         bottom_panel.setOpaque(false);
     }
- private void createCancel_button() {
+
+    private void createCancel_button() {
         cancel_button = new JButton("Cancel");
         cancel_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 15));
         cancel_button.setBackground(UITheme.color_63C8FF);
