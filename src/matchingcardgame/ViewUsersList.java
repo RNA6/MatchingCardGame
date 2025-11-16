@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -168,6 +170,12 @@ public class ViewUsersList extends BaseFrame{
         ascOrder_button.setFocusable(true);
         ascOrder_button.setPreferredSize(new Dimension(40, 40));
         ascOrder_button.setBackground(UITheme.color_CC66DA);
+        ascOrder_button.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //Sorting using database
+                }
+            });
     }
 
     //Ascending Order Button Declaration
@@ -177,6 +185,12 @@ public class ViewUsersList extends BaseFrame{
         descOrder_button.setFocusable(true);
         descOrder_button.setPreferredSize(new Dimension(40, 40));
         descOrder_button.setBackground(UITheme.color_CC66DA);
+        descOrder_button.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //Sorting using database
+                }
+            });
     }
     //#End of Sorting Panel Components
     

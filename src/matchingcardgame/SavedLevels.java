@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -62,10 +64,29 @@ public class SavedLevels extends BaseFrame{
 
         //Levels Panels
         levels_panels = new ArrayList();
-        levels_panels.add(createLevels_panel());
-        levels_panels.add(createLevels_panel());
-        levels_panels.add(createLevels_panel());
-        levels_panels.add(createLevels_panel());
+        for(int i=0; i<4; i++){
+            levelNumber = i+1;
+            int level = levelNumber;
+            levels_panels.add(createLevels_panel());
+            levels_panels.get(i).addMouseListener(new MouseAdapter(){
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    dispose();
+                    if(level >=1 && level<=5){
+                        Frames.easyLevel[level-1].setVisible(true);
+                        Frames.easyLevel[level-1].getGameTimer().start();
+                    }
+                    else if(level >=6 && level<=10){                        
+                        Frames.normalLevel[level-6].setVisible(true);
+                        Frames.normalLevel[level-6].getGameTimer().start();
+                    }
+                    else if(level >=11 && level<=15){
+                        Frames.hardLevel[level-11].setVisible(true);
+                        Frames.hardLevel[level-11].getGameTimer().start();
+                    }
+                }
+            });
+        }
         
         int rowCount = 0;
         for (JPanel user_panel : levels_panels) {
@@ -179,5 +200,9 @@ public class SavedLevels extends BaseFrame{
 
     public JButton getBack_button() {
         return back_button;
-    }    
+    } 
+
+    public ArrayList<JPanel> getLevels_panels() {
+        return levels_panels;
+    }
 }
