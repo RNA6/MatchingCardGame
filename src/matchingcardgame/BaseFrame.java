@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  */
 public class BaseFrame extends JFrame{
     
-    private JFrame previousFrame;
+    private BaseFrame previousFrame;
     
     public BaseFrame(String title, int y_location, int frame_hieght){
         super(title);
@@ -25,11 +25,11 @@ public class BaseFrame extends JFrame{
         pack();
     }
 
-    public JFrame getPreviousFrame() {
+    public BaseFrame getPreviousFrame() {
         return previousFrame;
     }
 
-    public void setPreviousFrame(JFrame previousFrame) {
+    public void setPreviousFrame(BaseFrame previousFrame) {
         this.previousFrame = previousFrame;
     }
     

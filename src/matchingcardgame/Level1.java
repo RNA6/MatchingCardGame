@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -18,15 +19,15 @@ import javax.swing.SwingConstants;
 public class Level1 extends BaseFrame{
     private JLabel timerLabel;
     private JLabel messageLabel;
+    
+    private JButton homeButton;
     private GameTimer gameTimer;
     
     public Level1() {
         super("Level 1", 130, 500);
         setLayout(new BorderLayout());
-        initializeUI();gameTimer = new GameTimer(timerLabel, 300, () -> {
-        messageLabel.setText("Time's up! Game Over.");
-        });
-        gameTimer.start();
+        initializeUI();
+        System.out.println("Creating Level 1");
     }
 
     private void initializeUI() {
@@ -34,15 +35,14 @@ public class Level1 extends BaseFrame{
         topPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         topPanel.setOpaque(false);
 
-        JButton homeButton = new JButton("Home");
+        homeButton = new JButton("Home");
         homeButton.setFont(new Font(UITheme.fontName2, Font.BOLD, 14));
         homeButton.setBackground(UITheme.color_FF2DD1);
         homeButton.setFocusable(false);
         homeButton.setPreferredSize(new Dimension(80, 30));
-        homeButton.addActionListener(e -> {
-            dispose();
-            new HomePage().setVisible(true);
-        });
+        System.out.println("Before creating HomePage");
+        UIUtilities.addNavigation(homeButton, this, Frames.homePage);
+        System.out.println("After creating HomePage");
 
         JLabel levelLabel = new JLabel("Level 1");
         levelLabel.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));

@@ -11,25 +11,18 @@ import javax.swing.JPanel;
 
 public class WelcomePage extends BaseFrame{
     
-    JPanel signPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
-    JPanel guestPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
+    private JPanel signPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
+    private JPanel guestPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,15, 0));
     
-    JLabel welcome = new JLabel("WELCOME TO THE",JLabel.CENTER);
-    JLabel match = new JLabel("MATCHING",JLabel.CENTER);
-    JLabel game = new JLabel("CARDS GAME",JLabel.CENTER);
-    JLabel join = new JLabel("or join us as:",JLabel.CENTER);
+    private JLabel welcome = new JLabel("WELCOME TO THE",JLabel.CENTER);
+    private JLabel match = new JLabel("MATCHING",JLabel.CENTER);
+    private JLabel game = new JLabel("CARDS GAME",JLabel.CENTER);
+    private JLabel join = new JLabel("or join us as:",JLabel.CENTER);
     
-    JButton signin = new JButton("Sign In");
-    JButton signup = new JButton("Sign Up");
-    JButton guest = new JButton("Guest");
-    
-    //references of frames
-    
-    SignUp up = new SignUp();
-    SignIn in = new SignIn();
-    HomePage home = new HomePage();
-   
-    
+    private JButton signin = new JButton("Sign In");
+    private JButton signup = new JButton("Sign Up");
+    private JButton guest = new JButton("Guest");
+        
     public WelcomePage(){
         super("matching cards game", 130, 500);
         setLayout(new GridLayout(6, 1));
@@ -80,21 +73,37 @@ public class WelcomePage extends BaseFrame{
         add(signPanel);
         add(join);
         add(guestPanel);
-
-        guest.addActionListener(e -> {
-            dispose();
-            new HomePage().setVisible(true);
-        });
         
-        signup.addActionListener(e -> {
-            dispose();
-            new SignUp().setVisible(true);
-        });
-        
-        signin.addActionListener(e -> {
-            dispose();
-            new SignIn().setVisible(true);
-        });
+//        UIUtilities.addNavigation(guest, this, Frames.homePage);
+//        guest.addActionListener(e -> {
+//            dispose();
+//            new HomePage().setVisible(true);
+//        });
+//        
+//        UIUtilities.addNavigation(signup, this, new SignUp());
+//        signup.addActionListener(e -> {
+//            dispose();
+//            new SignUp().setVisible(true);
+//        });
+//        
+//        UIUtilities.addNavigation(signin, this, new SignIn());
+//        signin.addActionListener(e -> {
+//            dispose();
+//            new SignIn().setVisible(true);
+//        });
         
     }
+
+    public JButton getSignin() {
+        return signin;
+    }
+
+    public JButton getSignup() {
+        return signup;
+    }
+
+    public JButton getGuest() {
+        return guest;
+    }
+    
 }

@@ -22,7 +22,7 @@ public class UserMenuPanel extends JPanel implements ActionListener{
     private JButton signOut_button;
     private boolean mouseClicked = false;
     
-    public UserMenuPanel(JFrame originalFrame){
+    public UserMenuPanel(BaseFrame originalFrame){
         setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
         setBounds(540, 60, 120, 110);
         setBackground(UITheme.color_CC66DA);

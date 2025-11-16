@@ -10,7 +10,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -18,11 +17,7 @@ import javax.swing.SwingConstants;
 
 public class NormalLevels extends BaseFrame{
 
-    private JButton level6_button;
-    private JButton level7_button;
-    private JButton level8_button;
-    private JButton level9_button;
-    private JButton level10_button;
+    private JButton[] levels_buttons;
     private JButton back_button;
     
     private JLayeredPane layeredPane;
@@ -37,9 +32,8 @@ public class NormalLevels extends BaseFrame{
     private JLabel userIcon_label;
     private JLabel head_label;
 
-    public NormalLevels(JFrame previousFrame) {
+    public NormalLevels() {
         super("Normal Levels", 130, 500);
-        super.setPreviousFrame(previousFrame);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
@@ -68,25 +62,13 @@ public class NormalLevels extends BaseFrame{
         //Beginning of Levels Panel
         createLevels_panel();
 
-        //Level 6 Button
-        level6_button = creatLevels_button("6");
-        levels_panel.add(level6_button);
-
-        //Level 7 Button
-        level7_button = creatLevels_button("7");
-        levels_panel.add(level7_button);
-
-        //Level 8 Button
-        level8_button = creatLevels_button("8");
-        levels_panel.add(level8_button);
+        levels_buttons = new JButton[5];
         
-        //Level 9 Button
-        level9_button = creatLevels_button("9");
-        levels_panel.add(level9_button);
-
-        //Level 10 Button
-        level10_button = creatLevels_button("10");
-        levels_panel.add(level10_button);
+        //initialize the cards
+        for(int i=0; i<levels_buttons.length; i++){
+            levels_buttons[i] = creatLevels_button((i+6) + "");
+            levels_panel.add(levels_buttons[i]);
+        }
 
         center_panel.add(levels_panel, BorderLayout.CENTER);
         //#End of Levels Panel
@@ -173,7 +155,20 @@ public class NormalLevels extends BaseFrame{
         back_button.setBackground(UITheme.color_4DFFBE);
         back_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 20));
         back_button.setPreferredSize(new Dimension(150, 50));
-        back_button.setHorizontalAlignment(SwingConstants.CENTER);
+        UIUtilities.addNavigation(back_button, this, Frames.homePage);    back_button.setHorizontalAlignment(SwingConstants.CENTER);
+    
     }
     //#End of Bottom Panel Components
+
+    public JButton[] getLevels_buttons() {
+        return levels_buttons;
+    }
+
+    public JButton getBack_button() {
+        return back_button;
+    }
+    
+    public JLabel getUserIcon_label() {
+        return userIcon_label;
+    }
 }

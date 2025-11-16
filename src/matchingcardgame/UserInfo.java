@@ -69,7 +69,7 @@ public class UserInfo extends BaseFrame{
     private String password = "";
     private String gender = "";
 
-    public UserInfo(JFrame previousFrame){
+    public UserInfo(BaseFrame previousFrame){
         super("User Info", 130, 500);
         super.setPreviousFrame(previousFrame);
         //Head Label

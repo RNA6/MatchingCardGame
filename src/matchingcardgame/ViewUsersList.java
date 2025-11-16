@@ -267,4 +267,8 @@ public class ViewUsersList extends BaseFrame{
         back_button.setHorizontalAlignment(SwingConstants.CENTER);
     }
     //#End of Bottom Panel Components
+
+    public JButton getBack_button() {
+        return back_button;
+    }
 }
