@@ -123,11 +123,11 @@ public class SavedLevels extends BaseFrame{
     //Center Panel Components    
     //Levels Panel Declaration
     private JPanel createLevels_panel() {
-        JPanel user_panel = UIComponents.createContent_panel();
-        user_panel.setLayout(new GridLayout(1, 2));
-        user_panel.setPreferredSize(new Dimension(150, 120));
-        user_panel.add(createLevel_panel());
-        return (user_panel);
+        JPanel levels_panel = UIComponents.createContent_panel();
+        levels_panel.setLayout(new GridLayout(1, 2));
+        levels_panel.setPreferredSize(new Dimension(150, 120));
+        levels_panel.add(createLevel_panel());
+        return (levels_panel);
     }
     
     //Levels Panel Components
