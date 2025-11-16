@@ -11,7 +11,6 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -78,15 +77,15 @@ public class HomePage extends BaseFrame{
         createGameTypes_panel();
 
         //Easy Button
-        easy_button = creatGameTypes_button("Easy", new EasyLevels(this));
+        easy_button = creatGameTypes_button("Easy");
         gameTypes_panel.add(easy_button);
 
         //Normal Button
-        normal_button = creatGameTypes_button("Normal", new NormalLevels(this));
+        normal_button = creatGameTypes_button("Normal");
         gameTypes_panel.add(normal_button);
 
         //Hard Button
-        hard_button = creatGameTypes_button("Hard", new HardLevels(this));
+        hard_button = creatGameTypes_button("Hard");
         gameTypes_panel.add(hard_button);
 
         center_panel.add(gameTypes_panel, BorderLayout.CENTER);
@@ -108,6 +107,7 @@ public class HomePage extends BaseFrame{
         layeredPane.add(base_panel, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(userMenu_panel, JLayeredPane.POPUP_LAYER);
         add(layeredPane);
+        
     }
 
     //Top Panel Declaration
@@ -134,7 +134,6 @@ public class HomePage extends BaseFrame{
         savedLevels_button.setPreferredSize(new Dimension(110, 30));
         savedLevels_button.setFocusable(false);
         savedLevels_button.setBackground(UITheme.color_CC66DA);
-        UIUtilities.addNavigation(savedLevels_button, this, new SavedLevels());
     }
     //#End of createSavedLevels_button Panel Components
 
@@ -166,13 +165,12 @@ public class HomePage extends BaseFrame{
 
     //Game Types Panel Components
     //Object of a Game Type Button Declaration
-    private JButton creatGameTypes_button(String buttonLabel, JFrame nextFrame){
+    private JButton creatGameTypes_button(String buttonLabel){
         JButton button = new JButton(buttonLabel);
         button.setFocusable(false);
         button.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
         button.setBackground(UITheme.color_63C8FF);
         button.setPreferredSize(new Dimension(130, 130));
-        UIUtilities.addNavigation(button, this, nextFrame);
         return button;
     }
     //#End of Game Types Panel Components
@@ -194,7 +192,30 @@ public class HomePage extends BaseFrame{
         showScore_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 20));
         showScore_button.setPreferredSize(new Dimension(150, 50));
         showScore_button.setHorizontalAlignment(SwingConstants.CENTER);
-        UIUtilities.addNavigation(showScore_button, this, new ShowScore());
     }
     //#End of Bottom Panel Components
+
+    public JButton getSavedLevels_button() {
+        return savedLevels_button;
+    }
+
+    public JButton getEasy_button() {
+        return easy_button;
+    }
+
+    public JButton getNormal_button() {
+        return normal_button;
+    }
+
+    public JButton getHard_button() {
+        return hard_button;
+    }
+
+    public JButton getShowScore_button() {
+        return showScore_button;
+    }
+
+    public JLabel getUserIcon_label() {
+        return userIcon_label;
+    }
 }

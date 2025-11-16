@@ -8,22 +8,19 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class EasyLevels extends BaseFrame{
 
-    private JButton level1_button;
-    private JButton level2_button;
-    private JButton level3_button;
-    private JButton level4_button;
-    private JButton level5_button;
     private JButton back_button;
+    private JButton[] levels_buttons;
     
     private JLayeredPane layeredPane;
 
@@ -36,9 +33,8 @@ public class EasyLevels extends BaseFrame{
     private JLabel userIcon_label;
     private JLabel head_label;
     
-    public EasyLevels(JFrame previousFrame) {
+    public EasyLevels() {
         super("Easy Levels", 130, 500);
-        super.setPreviousFrame(previousFrame);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
@@ -66,27 +62,14 @@ public class EasyLevels extends BaseFrame{
 
         //Beginning of Levels Panel
         createLevels_panel();
-
-        //Level 1 Button
-        level1_button = creatLevels_button("1");
-        levels_panel.add(level1_button);
-
-        //Level 2 Button
-        level2_button = creatLevels_button("2");
-        levels_panel.add(level2_button);
-
-        //Level 3 Button
-        level3_button = creatLevels_button("3");
-        levels_panel.add(level3_button);
         
-        //Level 4 Button
-        level4_button = creatLevels_button("4");
-        levels_panel.add(level4_button);
-
-        //Level 5 Button
-        level5_button = creatLevels_button("5");
-        levels_panel.add(level5_button);
-
+        levels_buttons = new JButton[5];
+        
+        //initialize the cards
+        for(int i=0; i<levels_buttons.length; i++){
+            levels_buttons[i] = creatLevels_button((i+1) + "");
+            levels_panel.add(levels_buttons[i]);
+        }
         center_panel.add(levels_panel, BorderLayout.CENTER);
         //#End of Levels Panel
 
@@ -175,4 +158,17 @@ public class EasyLevels extends BaseFrame{
         back_button.setHorizontalAlignment(SwingConstants.CENTER);
     }
     //#End of Bottom Panel Components
+
+    public JButton getBack_button() {
+        return back_button;
+    }
+
+    public JButton[] getLevels_buttons() {
+        return levels_buttons;
+    }
+
+    public JLabel getUserIcon_label() {
+        return userIcon_label;
+    }
+    
 }

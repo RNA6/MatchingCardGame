@@ -11,18 +11,13 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class HardLevels extends BaseFrame{
 
-    private JButton level11_button;
-    private JButton level12_button;
-    private JButton level13_button;
-    private JButton level14_button;
-    private JButton level15_button;
+    private JButton[] levels_buttons;
     private JButton back_button;
     
     private JLayeredPane layeredPane;
@@ -36,9 +31,8 @@ public class HardLevels extends BaseFrame{
     private JLabel userIcon_label;
     private JLabel head_label;
 
-    public HardLevels(JFrame previousFrame) {
+    public HardLevels() {
         super("Hard Levels", 130, 500);
-        super.setPreviousFrame(previousFrame);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
@@ -67,26 +61,13 @@ public class HardLevels extends BaseFrame{
         //Beginning of Levels Panel
         createLevels_panel();
 
-        //Level 11 Button
-        level11_button = creatLevels_button("11");
-        levels_panel.add(level11_button);
-
-        //Level 12 Button
-        level12_button = creatLevels_button("12");
-        levels_panel.add(level12_button);
-
-        //Level 13 Button
-        level13_button = creatLevels_button("13");
-        levels_panel.add(level13_button);
+        levels_buttons = new JButton[5];
         
-        //Level 14 Button
-        level14_button = creatLevels_button("14");
-        levels_panel.add(level14_button);
-
-        //Level 15 Button
-        level15_button = creatLevels_button("15");
-        levels_panel.add(level15_button);
-
+        //initialize the cards
+        for(int i=0; i<levels_buttons.length; i++){
+            levels_buttons[i] = creatLevels_button((i+11) + "");
+            levels_panel.add(levels_buttons[i]);
+        }
         center_panel.add(levels_panel, BorderLayout.CENTER);
         //#End of Levels Panel
 
@@ -173,4 +154,16 @@ public class HardLevels extends BaseFrame{
         back_button.setHorizontalAlignment(SwingConstants.CENTER);
     }
     //#End of Bottom Panel Components
+
+    public JButton[] getLevels_buttons() {
+        return levels_buttons;
+    }
+
+    public JButton getBack_button() {
+        return back_button;
+    }
+    
+    public JLabel getUserIcon_label() {
+        return userIcon_label;
+    }
 }

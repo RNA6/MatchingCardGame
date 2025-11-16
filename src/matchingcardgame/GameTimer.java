@@ -15,17 +15,19 @@ import java.awt.event.ActionListener;
 public class GameTimer {
 
     private Timer timer;
+    private final int totalSeconds;
     private int secondsLeft;
     private JLabel timerLabel;
     private Runnable onTimeUp;
 
     public GameTimer(JLabel timerLabel, int totalSeconds, Runnable onTimeUp) {
+        this.totalSeconds = totalSeconds;
         this.timerLabel = timerLabel;
-        this.secondsLeft = totalSeconds;
         this.onTimeUp = onTimeUp;
     }
 
     public void start() {
+        this.secondsLeft = totalSeconds;
         updateTimerDisplay();
         timer = new Timer(1000, new ActionListener() {
             @Override

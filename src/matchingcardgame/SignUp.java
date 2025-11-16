@@ -3,6 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
@@ -15,6 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
 public class SignUp extends BaseFrame{
 
     private JLabel head_label;
@@ -104,6 +107,10 @@ public class SignUp extends BaseFrame{
         createBottom_panel();
         createCancel_button();
         createSubmit_button();
+        
+        // ---------- ADD EVENT HANDLERS ----------
+        addEventHandlers();
+        
         bottom_panel.add(cancel_button);
         bottom_panel.add(submit_button);
         add(bottom_panel, BorderLayout.SOUTH);
@@ -155,21 +162,21 @@ public class SignUp extends BaseFrame{
         username_textField = new JTextField();
         username_textField.setBackground(UITheme.color_F3EFEF);
         username_textField.setPreferredSize(new Dimension(280, 35));
-        username_textField.setEnabled(false);
+        username_textField.setEnabled(true);
     }
     
     private void createPasswordField() {
         passwordField = new JPasswordField();
         passwordField.setBackground(UITheme.color_F3EFEF);
         passwordField.setPreferredSize(new Dimension(280, 35));
-        passwordField.setEnabled(false);
+        passwordField.setEnabled(true);
     }
 
     private void createPhoneNumber_textField() {
         phoneNumber_textField = new JTextField();
         phoneNumber_textField.setBackground(UITheme.color_F3EFEF);
         phoneNumber_textField.setPreferredSize(new Dimension(280, 35));
-        phoneNumber_textField.setEnabled(false);
+        phoneNumber_textField.setEnabled(true);
     }
 
     //Female Box Declaration
@@ -183,8 +190,7 @@ public class SignUp extends BaseFrame{
     private void createFemale_radioButton(){
         female_radioButton = new JRadioButton();
         female_radioButton.setOpaque(false);
-        female_radioButton.setEnabled(false);
-        female_radioButton.setSelected(true);
+        female_radioButton.setEnabled(true);
     }
     
     //Female Icon Label Declaration
@@ -207,7 +213,15 @@ public class SignUp extends BaseFrame{
     private void createMale_radioButton(){
         male_radioButton = new JRadioButton();
         male_radioButton.setOpaque(false);
-        male_radioButton.setEnabled(false);
+        male_radioButton.setEnabled(true);
+    }
+
+    public JButton getCancel_button() {
+        return cancel_button;
+    }
+
+    public JButton getSubmit_button() {
+        return submit_button;
     }
     
     //Male Icon Label Declaration
@@ -237,5 +251,26 @@ public class SignUp extends BaseFrame{
         submit_button.setBackground(UITheme.color_4DFFBE);
         submit_button.setPreferredSize(new Dimension(150, 40));
         submit_button.setFocusable(false);
+    }
+    
+    
+    private void addEventHandlers() {
+        // Submit Button → Retrieve Inputs
+        submit_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String username = username_textField.getText();
+                String password = new String(passwordField.getPassword());
+                String phone = phoneNumber_textField.getText();
+                String gender = female_radioButton.isSelected() ? "Female" : "Male";
+
+                System.out.println("==== Submitted Data ====");
+                System.out.println("Username: " + username);
+                System.out.println("Password: " + password);
+                System.out.println("Phone Number: " + phone);
+                System.out.println("Gender: " + gender);
+            }
+        });
     }
 }

@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -20,7 +21,7 @@ public class Level8 extends BaseFrame{
     private JLabel messageLabel;
     private GameTimer gameTimer;
     
-    public Level8() {
+    public Level8(JFrame previousFrame) {
         super("Level 8", 130, 500);
         setLayout(new BorderLayout());
         initializeUI();

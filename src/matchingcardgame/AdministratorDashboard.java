@@ -15,12 +15,11 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class AdministrationsDashboard extends BaseFrame{
-    private JButton signout_button;
+public class AdministratorDashboard extends BaseFrame{
+    
     private JButton delete_button;
     private JButton view_button;
     private JButton top5_button;
-    
     
     private JLayeredPane layeredPane;
 
@@ -28,15 +27,14 @@ public class AdministrationsDashboard extends BaseFrame{
     private JPanel top_panel;
     private JPanel center_panel;
     
-    private JPanel SignOut_panel;
     private JPanel btns_panel;
     private UserMenuPanel userMenu_panel;
 
     private JLabel userIcon_label;
     private JLabel dashboard_label;
 
-    public AdministrationsDashboard() {
-        super("Administrations Dashboard", 130, 500);
+    public AdministratorDashboard() {
+        super("Administrator Dashboard", 130, 500);
         
         layeredPane = new JLayeredPane();
         base_panel = new JPanel(new BorderLayout());
@@ -47,15 +45,6 @@ public class AdministrationsDashboard extends BaseFrame{
         
         //Beginning of Top Panel
         createTop_panel();
-
-        //Beginning of SignOut Panel
-        createSignOut_panel();
-
-        //SignOut Button
-        createSignOut_button();
-        SignOut_panel.add(signout_button);
-        top_panel.add(SignOut_panel, BorderLayout.WEST);
-        //#End of SignOut panel
 
         //User Icon Label
         userIcon_label = UIComponents.createUserIcon_label(userMenu_panel);
@@ -105,25 +94,6 @@ public class AdministrationsDashboard extends BaseFrame{
         top_panel.setOpaque(false);
     }
 
-    //Top Panel Components
-    //Sign Out panel Declaration
-    private void createSignOut_panel(){
-        SignOut_panel = new JPanel();
-        SignOut_panel.setLayout(new FlowLayout());
-        SignOut_panel.setOpaque(false);
-    }
-
-    //Saved Levels Panel Components
-    //sign out Button Declaration
-    private void createSignOut_button(){
-        signout_button = new JButton("Sign Out");
-        signout_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 12));
-        signout_button.setPreferredSize(new Dimension(110, 30));
-        signout_button.setFocusable(false);
-        signout_button.setBackground(UITheme.color_CC66DA);
-    }
-    //#End of createSavedLevels_button Panel Components
-
     //Center Panel Declaration
     private void createCenter_panel(){
         center_panel = new JPanel();
@@ -134,7 +104,7 @@ public class AdministrationsDashboard extends BaseFrame{
     //Center Panel Components
     //Head Label Declaration
     private void Dashboard_label(){
-        dashboard_label = new JLabel("Adminstration Dashboard");
+        dashboard_label = new JLabel("Administrator Dashboard");
         dashboard_label.setForeground(UITheme.color_CC66DA);
         dashboard_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 48));
         dashboard_label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -154,14 +124,14 @@ public class AdministrationsDashboard extends BaseFrame{
         JButton button = new JButton(buttonLabel);
         button.setFocusable(false);
         button.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
-        button.setBackground(UITheme.color_4DFFBE);
+        button.setBackground(UITheme.color_63C8FF);
         button.setPreferredSize(new Dimension(350, 50));
         return button;
     }
     //#End of Game Types Panel Components
 
-
-    
-    
+    public JLabel getUserIcon_label() {
+        return userIcon_label;
+    }
     
 }

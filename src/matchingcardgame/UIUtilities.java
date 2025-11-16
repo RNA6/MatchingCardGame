@@ -7,7 +7,6 @@ package matchingcardgame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 /**
  *
@@ -15,10 +14,21 @@ import javax.swing.JFrame;
  */
 public class UIUtilities {
 
-    public static void addNavigation(JButton button, JFrame originalFrame, JFrame nextFrame) {
+    public static void addNavigation(JButton button, BaseFrame originalFrame, BaseFrame nextFrame) {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(nextFrame.getClass() == HomePage.class){
+                    if(originalFrame.getClass() == WelcomePage.class){
+                        
+                        Frames.homePage.getUserIcon_label().setVisible(false);
+                        Frames.easyLevels.getUserIcon_label().setVisible(false);
+                        Frames.normalLevels.getUserIcon_label().setVisible(false);
+                        Frames.hardLevels.getUserIcon_label().setVisible(false);
+                    }
+                }
+                
+                
                 originalFrame.dispose();
                 nextFrame.setVisible(true);
             }

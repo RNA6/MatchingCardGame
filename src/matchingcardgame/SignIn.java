@@ -58,15 +58,13 @@ public class SignIn extends BaseFrame{
 
         createBottom_panel();
         createCancel_button();
-        createsignIn_button();
+        createSignIn_button();
         bottom_panel.add(cancel_button);
         bottom_panel.add(signIn_button);
         add(bottom_panel, BorderLayout.SOUTH);
         
         username_textField.setEnabled(true);
         passwordField.setEnabled(true);
-
-        UIUtilities.addNavigation(cancel_button, this, Frames.welcomePage);
 
         signIn_button.addActionListener(e -> {
             String username = username_textField.getText();
@@ -157,12 +155,20 @@ public class SignIn extends BaseFrame{
         cancel_button.setFocusable(false);
     }
 
-    private void createsignIn_button() {
+    private void createSignIn_button() {
         signIn_button = new JButton("Sign In");
         signIn_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 15));
         signIn_button.setBackground(UITheme.color_4DFFBE);
         signIn_button.setPreferredSize(new Dimension(150, 40));
         signIn_button.setFocusable(false);
+    }
+    
+    public JButton getCancel_button(){
+        return(cancel_button);
+    }
+    
+    public JButton getSignIn_button(){
+        return(signIn_button);
     }
 }
 
