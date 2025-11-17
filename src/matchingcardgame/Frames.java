@@ -28,7 +28,7 @@ public class Frames{
         Levels.createLevel8(), Levels.createLevel9(), Levels.createLevel10()};
     
     public static HardLevels hardLevels = new HardLevels();
-    public static Level[] hardLevel = {Levels.createLevel12(), Levels.createLevel12(),
+    public static Level[] hardLevel = {Levels.createLevel11(), Levels.createLevel12(),
         Levels.createLevel13(), Levels.createLevel14(), Levels.createLevel15()};
     
     public static Level[][] allLevels = {easyLevel, normalLevel, hardLevel};

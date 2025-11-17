@@ -7,9 +7,11 @@ package matchingcardgame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,10 +34,13 @@ public class Level extends BaseFrame{
     private int rows;
     private int columns;
     
-    private int buttonWidth;
+    private final int buttonWidth = 65;
+    private int cardsPanelWidth;
+    private int cardsPanelHeight;
+    private int bottomMargin;
     
-    public Level(String title, int y_location, int frame_hieght, int totalSeconds, int totalCards) {
-        super(title, y_location, frame_hieght);
+    public Level(String title, int totalSeconds, int totalCards) {
+        super(title, 130, 500);
         setLayout(new BorderLayout());
         
         cards = new JButton[totalCards];
@@ -65,58 +70,67 @@ public class Level extends BaseFrame{
         
         switch(cards.length){
             case 4:
-                rows = 2;
                 columns = 2;
-                buttonWidth = 100;
+                rows = 2;
                 break;
             case 6:
+                columns = 3;
                 rows = 2;
-                columns = 2;
-                buttonWidth = 100;
                 break;
             case 8:
-                rows = 2;
                 columns = 4;
-                buttonWidth = 100;
+                rows = 2;
                 break;
             case 12:
-                rows = 4;
-                columns = 3;
-                buttonWidth = 100;
+                columns = 4;
+                rows = 3;
                 break;
             case 16:
-                rows = 4;
                 columns = 4;
-                buttonWidth = 50;
+                rows = 4;
                 break;
             case 20:
-                rows = 4;
                 columns = 5;
-                buttonWidth = 50;
+                rows = 4;
                 break; 
             case 24:
-                rows = 4;
                 columns = 6;
-                buttonWidth = 50;
+                rows = 4;
                 break; 
             case 28:
-                rows = 4;
                 columns = 7;
-                buttonWidth = 50;
+                rows = 4;
                 break;    
         }
+        cardsPanelWidth = 25 + (columns)*(buttonWidth + 25);
+        cardsPanelHeight = 20 + (rows)*(buttonWidth + 20);
         
-        JPanel cardsPanel = new JPanel(new GridLayout(rows, columns, 25, 20));
+        JPanel cardsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 25, 20));
+        cardsPanel.setPreferredSize(new Dimension(cardsPanelWidth,cardsPanelHeight));
         cardsPanel.setOpaque(false);
-        cardsPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 30, 50));
+        
+        switch(rows){
+            case 2:
+                bottomMargin = 100;
+                break;
+            case 3:
+                bottomMargin = 50;
+                break;
+            default:
+                bottomMargin =0;
+                break;
+        }
         
         for(int i=0; i< cards.length; i++){
             cards[i] = new JButton();
             cardStyle(cards[i]);
             cardsPanel.add(cards[i]);
         }
-        
-        add(cardsPanel, BorderLayout.SOUTH);
+        JPanel cardsPanelWrapper = new JPanel();
+        cardsPanelWrapper.setOpaque(false);
+        cardsPanelWrapper.setBorder(BorderFactory.createEmptyBorder(0, 0, bottomMargin, 0));
+        cardsPanelWrapper.add(cardsPanel);
+        add(cardsPanelWrapper, BorderLayout.SOUTH);
     }
     
     private void createLevelLabel(String levelName){
@@ -157,6 +171,6 @@ public class Level extends BaseFrame{
         card.setFont(new Font(UITheme.fontName1, Font.BOLD, 36));
         card.setBackground(UITheme.color_63C8FF);
         card.setFocusable(false);
-        card.setPreferredSize(new Dimension(100, 100));
+        card.setPreferredSize(new Dimension(buttonWidth, buttonWidth));
     }
 }
