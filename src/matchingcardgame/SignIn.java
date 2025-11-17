@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package matchingcardgame;
 
 import java.awt.BorderLayout;
@@ -11,16 +7,16 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class SignIn extends BaseFrame{
+public class SignIn extends BaseFrame {
 
     private JLabel head_label;
     private JLabel[] inputLabels;
-
     private final String[] labelNames = {"Username", "Password"};
 
     private JPanel center_panel;
@@ -28,63 +24,74 @@ public class SignIn extends BaseFrame{
     private JPanel labels_panel;
     private JPanel inputs_panel;
     private JTextField username_textField;
-
     private JPasswordField passwordField;
 
     private JButton cancel_button;
     private JButton signIn_button;
 
     public SignIn() {
-        super("SignIn", 130, 500);
+        super("Sign In", 130, 500);
 
-        createHead_label();
+     
+        createHeadLabel();
         add(head_label, BorderLayout.NORTH);
 
-        createCenter_panel();
-        createLabels_panel();
+        createCenterPanel();
+        createLabelsPanel();
         createLabels();
         center_panel.add(labels_panel, BorderLayout.WEST);
 
-        createInputs_panel();
-
-        createUsername_textField();
+        createInputsPanel();
+        createUsernameTextField();
         inputs_panel.add(username_textField);
-
         createPasswordField();
         inputs_panel.add(passwordField);
-
         center_panel.add(inputs_panel, BorderLayout.CENTER);
         add(center_panel, BorderLayout.CENTER);
 
-        createBottom_panel();
-        createCancel_button();
-        createSignIn_button();
+        createBottomPanel();
+        createCancelButton();
+        createSignInButton();
         bottom_panel.add(cancel_button);
         bottom_panel.add(signIn_button);
         add(bottom_panel, BorderLayout.SOUTH);
-        
+
+       
         username_textField.setEnabled(true);
         passwordField.setEnabled(true);
 
-        signIn_button.addActionListener(e -> {
-            String username = username_textField.getText();
-            String password = new String(passwordField.getPassword());
-
-            if (username.isEmpty() || password.isEmpty()) {
-                System.out.println("Please fill all fields!");
-                return;
-            }
-
-            if (username.equals("admin") && password.equals("123")) {
-                System.out.println("Login Successful!");
-            } else {
-                System.out.println("Incorrect Username or Password.");
-            }
-        });
+       
+        addEventHandlers();
     }
-    
 
-    private void createHead_label() {
+    
+    private void addEventHandlers() {
+      
+        UIUtilities.addNavigation(cancel_button, this, Frames.welcomePage);
+
+       
+        signIn_button.addActionListener(e -> handleSignIn());
+    }
+
+    private void handleSignIn() {
+        String username = username_textField.getText();
+        String password = new String(passwordField.getPassword());
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (username.equals("admin") && password.equals("123")) {
+           
+            UIUtilities.addNavigation(signIn_button, this, Frames.dashboardPage);
+            signIn_button.doClick(); 
+        } else {
+            JOptionPane.showMessageDialog(this, "Incorrect Username or Password.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void createHeadLabel() {
         head_label = new JLabel("Sign In");
         head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 36));
         head_label.setForeground(UITheme.color_CC66DA);
@@ -92,7 +99,7 @@ public class SignIn extends BaseFrame{
         head_label.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
-    private void createCenter_panel() {
+    private void createCenterPanel() {
         center_panel = new JPanel();
         center_panel.setOpaque(false);
         center_panel.setLayout(new BorderLayout());
@@ -100,7 +107,7 @@ public class SignIn extends BaseFrame{
         center_panel.setBorder(BorderFactory.createEmptyBorder(70, 50, 0, 50));
     }
 
-    private void createLabels_panel() {
+    private void createLabelsPanel() {
         labels_panel = new JPanel();
         labels_panel.setOpaque(false);
         labels_panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 25));
@@ -119,35 +126,33 @@ public class SignIn extends BaseFrame{
         }
     }
 
-    private void createInputs_panel() {
+    private void createInputsPanel() {
         inputs_panel = new JPanel();
         inputs_panel.setOpaque(false);
         inputs_panel.setPreferredSize(new Dimension(300, 200));
         inputs_panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 22));
     }
 
-    private void createUsername_textField() {
+    private void createUsernameTextField() {
         username_textField = new JTextField();
         username_textField.setBackground(UITheme.color_F3EFEF);
         username_textField.setPreferredSize(new Dimension(280, 35));
-        username_textField.setEnabled(false);
     }
 
     private void createPasswordField() {
         passwordField = new JPasswordField();
         passwordField.setBackground(UITheme.color_F3EFEF);
         passwordField.setPreferredSize(new Dimension(280, 35));
-        passwordField.setEnabled(false);
     }
 
-    private void createBottom_panel() {
+    private void createBottomPanel() {
         bottom_panel = new JPanel();
         bottom_panel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 0));
         bottom_panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
         bottom_panel.setOpaque(false);
     }
 
-    private void createCancel_button() {
+    private void createCancelButton() {
         cancel_button = new JButton("Cancel");
         cancel_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 15));
         cancel_button.setBackground(UITheme.color_63C8FF);
@@ -155,20 +160,23 @@ public class SignIn extends BaseFrame{
         cancel_button.setFocusable(false);
     }
 
-    private void createSignIn_button() {
+    private void createSignInButton() {
         signIn_button = new JButton("Sign In");
         signIn_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 15));
         signIn_button.setBackground(UITheme.color_4DFFBE);
         signIn_button.setPreferredSize(new Dimension(150, 40));
         signIn_button.setFocusable(false);
     }
-    
-    public JButton getCancel_button(){
-        return(cancel_button);
+
+   
+    public JButton getCancel_button() {
+        return cancel_button;
     }
-    
-    public JButton getSignIn_button(){
-        return(signIn_button);
+
+    public JButton getSignIn_button() {
+        return signIn_button;
     }
 }
+
+
 
