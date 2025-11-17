@@ -5,6 +5,7 @@
 package matchingcardgame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -67,7 +68,8 @@ public class SavedLevels extends BaseFrame{
         for(int i=0; i<4; i++){
             levelNumber = i+1;
             int level = levelNumber;
-            levels_panels.add(createLevels_panel());
+            JPanel level_panel = createLevels_panel();
+            levels_panels.add(level_panel);
             levels_panels.get(i).addMouseListener(new MouseAdapter(){
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -85,6 +87,16 @@ public class SavedLevels extends BaseFrame{
                         Frames.hardLevel[level-11].getGameTimer().start();
                     }
                 }
+                
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    level_panel.setBorder(BorderFactory.createLineBorder(Color.blue, 1));
+                } 
+                
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    level_panel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 0));
+                } 
             });
         }
         
@@ -145,9 +157,9 @@ public class SavedLevels extends BaseFrame{
     //Levels Panel Declaration
     private JPanel createLevels_panel() {
         JPanel levels_panel = UIComponents.createContent_panel();
-        levels_panel.setLayout(new GridLayout(1, 2));
+        levels_panel.setLayout(new GridLayout(1, 1));
         levels_panel.setPreferredSize(new Dimension(150, 120));
-        levels_panel.add(createLevel_panel());
+        levels_panel.add(createSavedLevel_panel());
         return (levels_panel);
     }
     
@@ -164,8 +176,8 @@ public class SavedLevels extends BaseFrame{
         date_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
     }
     
-    //Level Information Panel Declaration
-    private JPanel createLevel_panel() {
+    //Saved Level Information Panel Declaration
+    private JPanel createSavedLevel_panel() {
         createLevelInfo_labels();
         JPanel userInfo_panel = new JPanel(new GridLayout(3, 1));
         userInfo_panel.setOpaque(false);
