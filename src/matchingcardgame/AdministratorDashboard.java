@@ -63,17 +63,21 @@ public class AdministratorDashboard extends BaseFrame{
         //Beginning of GameTypes Panel
         createBtns_panel();
 
-        //Easy Button
+        //delete Button
         delete_button = creatGameTypes_button("Delete User Account");
         btns_panel.add(delete_button);
 
-        //Normal Button
+        //view Button
         view_button = creatGameTypes_button("View Users List");
         btns_panel.add(view_button);
 
-        //Hard Button
+        //top5 Button
         top5_button = creatGameTypes_button("View Top 5 Players");
         btns_panel.add(top5_button);
+        
+        delete_button.setBackground(UITheme.color_63C8FF);
+        view_button.setBackground(UITheme.color_CC66DA);
+        top5_button.setBackground(UITheme.color_4DFFBE);
 
         center_panel.add(btns_panel, BorderLayout.CENTER);
         //#End of GameTypes Panel
@@ -124,7 +128,6 @@ public class AdministratorDashboard extends BaseFrame{
         JButton button = new JButton(buttonLabel);
         button.setFocusable(false);
         button.setFont(new Font(UITheme.fontName1, Font.BOLD, 28));
-        button.setBackground(UITheme.color_63C8FF);
         button.setPreferredSize(new Dimension(350, 50));
         return button;
     }
@@ -134,4 +137,15 @@ public class AdministratorDashboard extends BaseFrame{
         return userIcon_label;
     }
     
+     public JButton getdelete_button() {
+        return delete_button;
+    }
+
+    public JButton getview_button() {
+        return view_button;
+    }
+
+    public JButton gettop5_button() {
+        return top5_button;
+    }
 }
