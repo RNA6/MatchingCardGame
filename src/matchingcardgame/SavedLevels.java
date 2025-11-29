@@ -77,14 +77,17 @@ public class SavedLevels extends BaseFrame{
                     if(level >=1 && level<=5){
                         Frames.easyLevel[level-1].setVisible(true);
                         Frames.easyLevel[level-1].getGameTimer().start();
+                        Frames.easyLevel[level-1].closeCards();
                     }
                     else if(level >=6 && level<=10){                        
                         Frames.normalLevel[level-6].setVisible(true);
                         Frames.normalLevel[level-6].getGameTimer().start();
+                        Frames.normalLevel[level-6].closeCards();
                     }
                     else if(level >=11 && level<=15){
                         Frames.hardLevel[level-11].setVisible(true);
                         Frames.hardLevel[level-11].getGameTimer().start();
+                        Frames.hardLevel[level-11].closeCards();
                     }
                 }
                 
