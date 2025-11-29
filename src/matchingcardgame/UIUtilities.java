@@ -28,6 +28,17 @@ public class UIUtilities {
                     }
                 }
                 
+                if(originalFrame.getClass() == SignIn.class){
+                    SignIn signIn = (SignIn)originalFrame;
+                    if(!signIn.userInfoExists()){
+                        return;
+                    }
+                }
+                
+                if(originalFrame.getClass() == Level.class){
+                    Level level = (Level)originalFrame;
+                    level.getGameTimer().stop();
+                }
                 
                 originalFrame.dispose();
                 nextFrame.setVisible(true);

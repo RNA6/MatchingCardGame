@@ -4,8 +4,6 @@
  */
 package matchingcardgame;
 import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JFrame;
 
 public class UITheme {
     public static Color color_FF2DD1 = new Color(255, 45, 209);//Pink

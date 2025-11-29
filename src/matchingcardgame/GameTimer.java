@@ -14,27 +14,35 @@ import java.awt.event.ActionListener;
 
 public class GameTimer {
 
-    private Timer timer;
+    private Timer levelTimer;
     private final int totalSeconds;
     private int secondsLeft;
     private JLabel timerLabel;
     private Runnable onTimeUp;
+    
+    private boolean solved;
 
     public GameTimer(JLabel timerLabel, int totalSeconds, Runnable onTimeUp) {
         this.totalSeconds = totalSeconds;
+        this.secondsLeft = totalSeconds;
         this.timerLabel = timerLabel;
         this.onTimeUp = onTimeUp;
+        setLevelTimer();
+        solved = false;
     }
-
-    public void start() {
-        this.secondsLeft = totalSeconds;
-        updateTimerDisplay();
-        timer = new Timer(1000, new ActionListener() {
+    
+    private void setLevelTimer(){
+        levelTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(solved){
+                    levelTimer.stop();
+                    return;
+                }
                 secondsLeft--;
+                System.out.println("Remaining Seconds: " + secondsLeft);
                 if (secondsLeft <= 0) {
-                    timer.stop();
+                    levelTimer.stop();
                     if (onTimeUp != null) {
                         onTimeUp.run();
                     }
@@ -42,16 +50,28 @@ public class GameTimer {
                 updateTimerDisplay();
             }
         });
-        timer.start();
+    }
+
+    public void start(){
+        this.secondsLeft = totalSeconds;
+        solved = false;
+        updateTimerDisplay();
+        levelTimer.start();
     }
 
     public void stop() {
-        if (timer != null) timer.stop();
+        if (levelTimer != null){
+            levelTimer.stop();
+        }
     }
 
     private void updateTimerDisplay() {
         int minutes = secondsLeft / 60;
         int seconds = secondsLeft % 60;
         timerLabel.setText(String.format("%d:%02d", minutes, seconds));
+    }
+    
+    public void setSolved(boolean solved){
+        this.solved = solved;
     }
 }

@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -22,6 +23,8 @@ public class SignIn extends BaseFrame{
     private JLabel[] inputLabels;
 
     private final String[] labelNames = {"Username", "Password"};
+    private String username = "";
+    private String password = "";
 
     private JPanel center_panel;
     private JPanel bottom_panel;
@@ -35,7 +38,7 @@ public class SignIn extends BaseFrame{
     private JButton signIn_button;
 
     public SignIn() {
-        super("SignIn", 130, 500);
+        super("Sign In", 130, 500);
 
         createHead_label();
         add(head_label, BorderLayout.NORTH);
@@ -65,24 +68,24 @@ public class SignIn extends BaseFrame{
         
         username_textField.setEnabled(true);
         passwordField.setEnabled(true);
-
-        signIn_button.addActionListener(e -> {
-            String username = username_textField.getText();
-            String password = new String(passwordField.getPassword());
-
-            if (username.isEmpty() || password.isEmpty()) {
-                System.out.println("Please fill all fields!");
-                return;
-            }
-
-            if (username.equals("admin") && password.equals("123")) {
-                System.out.println("Login Successful!");
-            } else {
-                System.out.println("Incorrect Username or Password.");
-            }
-        });
+        
+        signIn_button.addActionListener(e -> handleSignIn());
     }
-    
+
+    private void handleSignIn() {
+        username = username_textField.getText();
+        password = new String(passwordField.getPassword());
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(userInfoExists()){
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Incorrect Username or Password.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private void createHead_label() {
         head_label = new JLabel("Sign In");
@@ -169,6 +172,10 @@ public class SignIn extends BaseFrame{
     
     public JButton getSignIn_button(){
         return(signIn_button);
+    }
+    
+    public boolean userInfoExists(){
+        return (username.equals("admin") && password.equals("123"));
     }
 }
 

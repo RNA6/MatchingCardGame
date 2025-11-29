@@ -68,7 +68,7 @@ public class Frames{
             easyLevels.getLevels_buttons()[i].addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    level.getGameTimer().start();
+                    level.restartLevel();
                 }
             });
         }
@@ -81,7 +81,7 @@ public class Frames{
             normalLevels.getLevels_buttons()[i].addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    level.getGameTimer().start();
+                    level.restartLevel();
                 }
             });
         }
@@ -94,7 +94,7 @@ public class Frames{
             hardLevels.getLevels_buttons()[i].addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    level.getGameTimer().start();
+                    level.restartLevel();
                 }
             });
         }
