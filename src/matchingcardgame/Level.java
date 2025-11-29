@@ -221,7 +221,6 @@ public class Level extends BaseFrame{
         saveLevelButton.setBackground(UITheme.color_4DFFBE);
         saveLevelButton.setFocusable(false);
         saveLevelButton.setPreferredSize(new Dimension(80, 30));
-        UIUtilities.addNavigation(saveLevelButton, this, Frames.savedLevels);
     }
     
     public GameTimer getGameTimer(){
@@ -384,5 +383,13 @@ public class Level extends BaseFrame{
         Image img = originalIcon.getImage();
         Image scaled = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(scaled);
+    }
+
+    public JButton getHomeButton() {
+        return homeButton;
+    }
+
+    public JButton getSaveLevelButton() {
+        return saveLevelButton;
     }
 }
