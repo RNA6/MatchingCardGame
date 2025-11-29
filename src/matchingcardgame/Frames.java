@@ -64,6 +64,9 @@ public class Frames{
         UIUtilities.addNavigation(easyLevels.getBack_button(), easyLevels, homePage);
         for(int i=0; i<easyLevel.length; i++){
             Level level = easyLevel[i];
+            UIUtilities.addNavigation(level.getHomeButton(), level, homePage);
+            UIUtilities.addNavigation(level.getSaveLevelButton(), level, savedLevels);
+            
             UIUtilities.addNavigation(easyLevels.getLevels_buttons()[i], easyLevels, level);
             easyLevels.getLevels_buttons()[i].addActionListener(new ActionListener(){
                 @Override
@@ -77,7 +80,10 @@ public class Frames{
         UIUtilities.addNavigation(normalLevels.getBack_button(), normalLevels, homePage);
         for(int i=0; i<normalLevel.length; i++){
             Level level = normalLevel[i];
-            UIUtilities.addNavigation(normalLevels.getLevels_buttons()[i], normalLevels, normalLevel[i]);
+            UIUtilities.addNavigation(level.getHomeButton(), level, homePage);
+            UIUtilities.addNavigation(level.getSaveLevelButton(), level, savedLevels);
+            
+            UIUtilities.addNavigation(normalLevels.getLevels_buttons()[i], normalLevels, level);
             normalLevels.getLevels_buttons()[i].addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -90,7 +96,10 @@ public class Frames{
         UIUtilities.addNavigation(hardLevels.getBack_button(), hardLevels, homePage);
         for(int i=0; i<hardLevel.length; i++){
             Level level = hardLevel[i];
-            UIUtilities.addNavigation(hardLevels.getLevels_buttons()[i], hardLevels, hardLevel[i]);
+            UIUtilities.addNavigation(level.getHomeButton(), level, homePage);
+            UIUtilities.addNavigation(level.getSaveLevelButton(), level, savedLevels);
+            
+            UIUtilities.addNavigation(hardLevels.getLevels_buttons()[i], hardLevels, level);
             hardLevels.getLevels_buttons()[i].addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
