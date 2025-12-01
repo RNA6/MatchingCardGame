@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 
 /**
  *
@@ -30,6 +31,8 @@ import javax.swing.Timer;
  */
 public class Level extends BaseFrame{
     
+    private int levelNumber;
+            
     private final static int buttonWidth = 55;
     private static final String[] IMAGES_URL = new String[15];
     private static final Icon[] ALL_IMAGES = new Icon[15];
@@ -50,7 +53,8 @@ public class Level extends BaseFrame{
     
     private JButton homeButton;
     private JButton saveLevelButton;
-    private JButton[] pair = {null, null};;
+    private JButton[] pair = {null, null};
+    private ArrayList<JButton> solvedPairs;
     private ArrayList<JButton> iconedCards; 
     private ArrayList<JButton> emptyCards; 
     
@@ -59,9 +63,7 @@ public class Level extends BaseFrame{
     private int cardsPanelWidth;
     private int cardsPanelHeight;
     private int bottomMargin;
-    private final int totalCards;
-    private int pairsCount = 0;
-    
+    private final int totalCards;    
     
     private ArrayList<Integer> imagesIndexes;    
     private ArrayList<String> cardsRecord;
@@ -75,13 +77,13 @@ public class Level extends BaseFrame{
     private JPanel bottomPanel;
     
     private final Random random = new Random();
-    private final CardsHandler cardsHandler = new CardsHandler();
+    private final CardsHandler cardsHandler = new CardsHandler();    
     
-    
-    public Level(String title, int totalSeconds, int totalCards) {
-        super(title, 130, 500);
+    public Level(int levelNumber, int totalSeconds, int totalCards) {
+        super("Level "+ levelNumber, 130, 500);
         setLayout(new BorderLayout());
         
+        this.levelNumber = levelNumber;
         this.totalCards = totalCards;
         initializeUI();
         
@@ -91,6 +93,7 @@ public class Level extends BaseFrame{
     }
     
     private void initializeUI() {
+        UIManager.put("Button.disabledText", Color.black);
         topPanel = new JPanel(new BorderLayout());
         topPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         topPanel.setOpaque(false);
@@ -235,31 +238,32 @@ public class Level extends BaseFrame{
     }
     
     private void createCards_buttons(){
+        solvedPairs = new ArrayList();
         cardsRecord = new ArrayList();
         cardsRecordImages = new ArrayList();
         imagesIndexes = new ArrayList();
         order = new ArrayList();
         
-        int randomNumber;
-        
-        for(int i=0; i<totalCards/2; i++){
-            randomNumber = random.nextInt(1,16) -1;
-            imagesIndexes.add(randomNumber);
-            imagesIndexes.add(randomNumber);
-        }
-        
-        Collections.shuffle(imagesIndexes);
-        
-        System.out.println("Image indexes: "+ imagesIndexes);
-        for (int i : imagesIndexes) {
-            cardsRecordImages.add(ALL_IMAGES[i]);            
-            cardsRecord.add(IMAGES_URL[i]);
-        }
+//        int randomNumber;
+//        
+//        for(int i=0; i<totalCards/2; i++){
+//            randomNumber = random.nextInt(1,16) -1;
+//            imagesIndexes.add(randomNumber);
+//            imagesIndexes.add(randomNumber);
+//        }
+//        
+//        Collections.shuffle(imagesIndexes);
+//        
+//        System.out.println("Image indexes: "+ imagesIndexes);
+//        for (int i : imagesIndexes) {
+//            cardsRecordImages.add(ALL_IMAGES[i]);            
+//            cardsRecord.add(IMAGES_URL[i]);
+//        }
         
         emptyCards = new ArrayList();
         iconedCards = new ArrayList();
         for(int i=0; i< totalCards; i++){
-            iconedCards.add(new JButton(cardsRecordImages.get(i)));
+            iconedCards.add(new JButton());
             cardStyle(iconedCards.get(i));
             iconedCards.get(i).setVisible(false);
             iconedCards.get(i).putClientProperty("cardId", i);
@@ -296,6 +300,7 @@ public class Level extends BaseFrame{
         
         for(int i=0; i< totalCards; i++){
             iconedCards.get(i).setIcon(cardsRecordImages.get(i));
+            iconedCards.get(i).setDisabledIcon(cardsRecordImages.get(i));
         }
     }
     
@@ -309,23 +314,31 @@ public class Level extends BaseFrame{
             JButton iconedCard = iconedCards.get(cardIndex);
             JButton emptyCard = emptyCards.get(cardIndex);
             
-            if(pair[0] == null || pair[1] == null){
-                emptyCard.setVisible(false);
-                iconedCard.setVisible(true);
+            if(solvedPairs.contains(iconedCard)){
+                messageLabel.setText("You can't select from solved pairs!");
+                return;
             }
+            
+            emptyCard.setVisible(false);
+            iconedCard.setVisible(true);
             
             if(pair[0] == null){
                 pair[0] = iconedCard;
             }
             else if(pair[1] == null){
+                if(pair[0] == iconedCard){
+                    messageLabel.setText("You can't select the same card!");
+                    return;
+                }
                 pair[1] = iconedCard;
                 
                 Icon icon1 = pair[0].getIcon();
                 Icon icon2 = pair[1].getIcon();
                 if(icon1 == icon2){
                     messageLabel.setText("Correct, good job!");
-                    pairsCount++;
+                    System.out.println("Solved Pairs = " + solvedPairs.size());
                     for(int i=0; i<2;i++){
+                        solvedPairs.add(pair[i]);
                         pair[i] = null;
                     }
                 }
@@ -333,21 +346,22 @@ public class Level extends BaseFrame{
                     messageLabel.setText("Wrong, try again!");
                     flipCards();
                 }
-                if(pairsCount == totalCards/2){
+                if(solvedPairs.size() == totalCards){
                     gameTimer.setSolved(true);
+                    saveLevelButton.setEnabled(false);
+                    homeButton.setEnabled(false);
                     //TODO: move to win page
-//                    new Timer(700, new ActionListener(){
-//                        @Override
-//                        public void actionPerformed(ActionEvent e) {
-//                            
-//                        }
-//                    });
+                    onLevelCompleted();
                 }
                 
             }            
         }
         
         private void flipCards(){
+            for(int i=0; i<totalCards; i++){
+                emptyCards.get(i).setEnabled(false);
+                iconedCards.get(i).setEnabled(false);
+            }
             Timer flipCardsTimer = new Timer(700, new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -357,11 +371,29 @@ public class Level extends BaseFrame{
                         pair[i].setVisible(false);
                         pair[i] = null;
                     }
+                    for(int j=0; j<totalCards; j++){
+                        emptyCards.get(j).setEnabled(true);
+                        iconedCards.get(j).setEnabled(true);
+                    }
                 }
             });
             flipCardsTimer.setRepeats(false);
             flipCardsTimer.start();
         }
+    }
+    
+    private void onLevelCompleted(){
+        Timer levelCompletedTimer = new Timer(1000, new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Level.this.dispose();
+                Frames.winLose.setVisible(true);
+                Frames.winLose.setPreviousLevel(Level.this);
+
+            }
+        });
+        levelCompletedTimer.setRepeats(false);
+        levelCompletedTimer.start();
     }
 
     public void closeCards(){
@@ -371,18 +403,28 @@ public class Level extends BaseFrame{
         }
     }
     
-    public void restartLevel(){
+    public void startLevel(){
         gameTimer.start();
+        System.out.println("time started");
         messageLabel.setText("");
+              
+        solvedPairs.clear();
+        for(int i=0; i<2;i++){
+            pair[i] = null;
+        }
+        
         closeCards();
         shuffleCards();
-        pairsCount = 0;
     }
     
     private static ImageIcon resizeImage(ImageIcon originalIcon, int width, int height) {
         Image img = originalIcon.getImage();
         Image scaled = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(scaled);
+    }
+
+    public int getLevelNumber() {
+        return levelNumber;
     }
 
     public JButton getHomeButton() {

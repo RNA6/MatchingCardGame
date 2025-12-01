@@ -36,9 +36,9 @@ public class Frames{
     public static ShowScore showScore = new ShowScore();
     public static AdministratorDashboard administrationsDashboard = new AdministratorDashboard();
     public static ViewUsersList viewUsersList = new ViewUsersList();
-    
-    
-    
+    public static ViewTop5Users viewTop5Users = new ViewTop5Users();
+    public static WinLose winLose = new WinLose();
+        
     public static void InitializeFrames(){
         //WelcomePage buttons
         UIUtilities.addNavigation(welcomePage.getGuest(), welcomePage, homePage);
@@ -68,12 +68,6 @@ public class Frames{
             UIUtilities.addNavigation(level.getSaveLevelButton(), level, savedLevels);
             
             UIUtilities.addNavigation(easyLevels.getLevels_buttons()[i], easyLevels, level);
-            easyLevels.getLevels_buttons()[i].addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    level.restartLevel();
-                }
-            });
         }
         
         //NormalLevels buttons
@@ -84,12 +78,6 @@ public class Frames{
             UIUtilities.addNavigation(level.getSaveLevelButton(), level, savedLevels);
             
             UIUtilities.addNavigation(normalLevels.getLevels_buttons()[i], normalLevels, level);
-            normalLevels.getLevels_buttons()[i].addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    level.restartLevel();
-                }
-            });
         }
         
         //HardLevels buttons
@@ -100,22 +88,27 @@ public class Frames{
             UIUtilities.addNavigation(level.getSaveLevelButton(), level, savedLevels);
             
             UIUtilities.addNavigation(hardLevels.getLevels_buttons()[i], hardLevels, level);
-            hardLevels.getLevels_buttons()[i].addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    level.restartLevel();
-                }
-            });
         }
+        
+        //WinLose buttons
+        UIUtilities.addNavigation(winLose.getHome(), winLose, homePage);        
+        UIUtilities.addNavigation(winLose.getNext(), winLose, null);
         
         //SavedLevels buttons
         UIUtilities.addNavigation(savedLevels.getBack_button(), savedLevels, homePage);
         
         //ShowScore buttons
+        UIUtilities.addNavigation(showScore.getOkButton(), showScore, homePage);
         
         //AdministrationsDashboard buttons
+        //UIUtilities.addNavigation(administrationsDashboard.getdelete_button(), administrationsDashboard, );
+        UIUtilities.addNavigation(administrationsDashboard.getview_button(), administrationsDashboard, viewUsersList);
+        UIUtilities.addNavigation(administrationsDashboard.gettop5_button(), administrationsDashboard, viewTop5Users);
         
         //ViewUsersList buttons
         UIUtilities.addNavigation(viewUsersList.getBack_button(), viewUsersList, administrationsDashboard);
+        
+        //ViewTop5Users buttons
+        UIUtilities.addNavigation(viewTop5Users.getBack_button(), viewTop5Users, administrationsDashboard);
     }
 }
