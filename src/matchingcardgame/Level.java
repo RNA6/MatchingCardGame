@@ -244,22 +244,6 @@ public class Level extends BaseFrame{
         imagesIndexes = new ArrayList();
         order = new ArrayList();
         
-//        int randomNumber;
-//        
-//        for(int i=0; i<totalCards/2; i++){
-//            randomNumber = random.nextInt(1,16) -1;
-//            imagesIndexes.add(randomNumber);
-//            imagesIndexes.add(randomNumber);
-//        }
-//        
-//        Collections.shuffle(imagesIndexes);
-//        
-//        System.out.println("Image indexes: "+ imagesIndexes);
-//        for (int i : imagesIndexes) {
-//            cardsRecordImages.add(ALL_IMAGES[i]);            
-//            cardsRecord.add(IMAGES_URL[i]);
-//        }
-        
         emptyCards = new ArrayList();
         iconedCards = new ArrayList();
         for(int i=0; i< totalCards; i++){
