@@ -9,7 +9,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -34,7 +33,7 @@ public class UserMenuPanel extends JPanel implements ActionListener{
         
         signOut_button = createUser_menuItem("Sign Out");
         signOut_button.addActionListener(this);
-        UIUtilities.addNavigation(signOut_button, originalFrame, new UserInfo(originalFrame));
+        UIUtilities.addNavigation(signOut_button, originalFrame, Frames.welcomePage);
         add(signOut_button);
         setVisible(false);
     }
