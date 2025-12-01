@@ -68,19 +68,14 @@ public class SignIn extends BaseFrame{
         
         username_textField.setEnabled(true);
         passwordField.setEnabled(true);
-        
-        signIn_button.addActionListener(e -> handleSignIn());
     }
 
-    private void handleSignIn() {
+    public void handleSignIn() {
         username = username_textField.getText();
         password = new String(passwordField.getPassword());
 
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill all fields!", "Error", JOptionPane.WARNING_MESSAGE);
-        }
-        else if(userInfoExists()){
-            
         }
         else{
             JOptionPane.showMessageDialog(this, "Incorrect Username or Password.", "Error", JOptionPane.ERROR_MESSAGE);

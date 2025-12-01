@@ -13,22 +13,23 @@ import javax.swing.JPanel;
 public class WinLose extends BaseFrame{
     
     // both panels now use FlowLayout
-    JPanel mainpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-    JPanel iconpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-    JPanel btnpanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
+    private JPanel mainpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    private JPanel iconpanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    private JPanel btnpanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
 
-    JLabel star1 = new JLabel();
-    JLabel star2 = new JLabel();
-    JLabel star3 = new JLabel();
+    private JLabel star1 = new JLabel();
+    private JLabel star2 = new JLabel();
+    private JLabel star3 = new JLabel();
 
-    JLabel win = new JLabel("YOU WIN", JLabel.CENTER);
-    JLabel lose = new JLabel("YOU LOSE", JLabel.CENTER);
-    JLabel reward = new JLabel("YOUR REWARD IS #### POINTS", JLabel.CENTER);
-    JLabel tryagain = new JLabel("LETs TRY AGAIN", JLabel.CENTER);
+    private JLabel win = new JLabel("YOU WIN", JLabel.CENTER);
+    private JLabel lose = new JLabel("YOU LOSE", JLabel.CENTER);
+    private JLabel reward = new JLabel("YOUR REWARD IS #### POINTS", JLabel.CENTER);
+    private JLabel tryagain = new JLabel("LETs TRY AGAIN", JLabel.CENTER);
     
-    JButton next = new JButton("NEXT");
-    JButton home = new JButton("HOME");
+    private JButton next = new JButton("NEXT");
+    private JButton home = new JButton("HOME");
     
+    private Level previousLevel;    
 
     public WinLose() {
         super("win lose", 130, 500);
@@ -103,4 +104,22 @@ public class WinLose extends BaseFrame{
 
         add(mainpanel);
     }
+
+    public void setPreviousLevel(Level previousLevel) {
+        this.previousLevel = previousLevel;
+    }
+    
+    public Level getPreviousLevel() {
+        return previousLevel;
+    }
+
+    public JButton getNext() {
+        return next;
+    }
+
+    public JButton getHome() {
+        return home;
+    }
+    
+    
 }
