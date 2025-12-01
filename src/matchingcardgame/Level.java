@@ -320,11 +320,11 @@ public class Level extends BaseFrame{
                 Icon icon2 = pair[1].getIcon();
                 if(icon1 == icon2){
                     messageLabel.setText("Correct, good job!");
-                    System.out.println("Solved Pairs = " + solvedPairs.size());
                     for(int i=0; i<2;i++){
                         solvedPairs.add(pair[i]);
                         pair[i] = null;
                     }
+                    System.out.println("Solved Pairs = " + solvedPairs.size()/2);
                 }
                 else{
                     messageLabel.setText("Wrong, try again!");
