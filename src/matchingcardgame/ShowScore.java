@@ -53,7 +53,7 @@ public class ShowScore extends BaseFrame{
         
         add(buttonPanel, BorderLayout.SOUTH);
     }
-    public JButton okButton() {
+    public JButton getOkButton() {
         return okButton;
     }
     
