@@ -39,9 +39,10 @@ public class SavedLevels extends BaseFrame{
     private JLabel level_label;
     private JLabel levelId_label;
     private JLabel date_label;
-
+    
+    private int rowCount = 0;
     private int levelNumber = 0;
-    private String levelId = "";
+    private int levelId = 0;
     private LocalDate date = LocalDate.now();
 
     public SavedLevels() {
@@ -66,54 +67,10 @@ public class SavedLevels extends BaseFrame{
         //Levels Panels
         levels_panels = new ArrayList();
         for(int i=0; i<4; i++){
-            levelNumber = i+1;
-            int level = levelNumber;
-            JPanel level_panel = createLevels_panel();
-            levels_panels.add(level_panel);
-            levels_panels.get(i).addMouseListener(new MouseAdapter(){
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    dispose();
-                    if(level >=1 && level<=5){
-                        Frames.easyLevel[level-1].setVisible(true);
-                        Frames.easyLevel[level-1].getGameTimer().start();
-                        Frames.easyLevel[level-1].closeCards();
-                    }
-                    else if(level >=6 && level<=10){                        
-                        Frames.normalLevel[level-6].setVisible(true);
-                        Frames.normalLevel[level-6].getGameTimer().start();
-                        Frames.normalLevel[level-6].closeCards();
-                    }
-                    else if(level >=11 && level<=15){
-                        Frames.hardLevel[level-11].setVisible(true);
-                        Frames.hardLevel[level-11].getGameTimer().start();
-                        Frames.hardLevel[level-11].closeCards();
-                    }
-                }
-                
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    level_panel.setBorder(BorderFactory.createLineBorder(Color.blue, 1));
-                } 
-                
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    level_panel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 0));
-                } 
-            });
-        }
-        
-        int rowCount = 0;
-        for (JPanel user_panel : levels_panels) {
-            if(rowCount++ == 0){
-                levelsList_panel.setPreferredSize(new Dimension(levelsList_panel.getPreferredSize().width, (levelsList_panel.getPreferredSize().height+ 140)));
-            }
-            else if(rowCount == 3){
-                rowCount = 0;
-            }
-            levelsList_panel.add(user_panel);
+            addNewLevel(i+1, 1111);
         }
         //#End of Levels List Panel
+        
         //ScrollPane declaration
         scrollPane = UIComponents.createScrollPane(levelsList_panel);
         center_panel.add(scrollPane);
@@ -163,6 +120,8 @@ public class SavedLevels extends BaseFrame{
         levels_panel.setLayout(new GridLayout(1, 1));
         levels_panel.setPreferredSize(new Dimension(150, 120));
         levels_panel.add(createSavedLevel_panel());
+        levels_panel.putClientProperty("levelNumber", levelNumber);
+        assignSavedLevel(levels_panel);
         return (levels_panel);
     }
     
@@ -212,7 +171,61 @@ public class SavedLevels extends BaseFrame{
         back_button.setHorizontalAlignment(SwingConstants.CENTER);
     }
     //#End of Bottom Panel Components
-
+    
+    private void increaseLevelsListPanel_size(){
+        if(rowCount++ == 0){
+            levelsList_panel.setPreferredSize(new Dimension(levelsList_panel.getPreferredSize().width, (levelsList_panel.getPreferredSize().height+ 140)));
+        }
+        else if(rowCount == 3){
+            rowCount = 0;
+        }
+    }
+    
+    private void assignSavedLevel(JPanel level_panel){
+        int level = (int)level_panel.getClientProperty("levelNumber");
+            level_panel.addMouseListener(new MouseAdapter(){
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    level_panel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 0));
+                    dispose();
+                    if(level >=1 && level<=5){
+                        Frames.easyLevel[level-1].setVisible(true);
+                        Frames.easyLevel[level-1].restartLevel();
+                    }
+                    else if(level >=6 && level<=10){                        
+                        Frames.normalLevel[level-6].setVisible(true);
+                        Frames.easyLevel[level-1].restartLevel();
+                    }
+                    else if(level >=11 && level<=15){
+                        Frames.hardLevel[level-11].setVisible(true);
+                        Frames.easyLevel[level-1].restartLevel();
+                    }
+                }
+                
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    level_panel.setBorder(BorderFactory.createLineBorder(Color.blue, 1));
+                } 
+                
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    level_panel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 0));
+                } 
+            });
+    }
+    
+    public void addNewLevel(int levelNumber, int levelId){
+        this.levelNumber = levelNumber;
+        this.levelId = levelId;
+        date = LocalDate.now();
+        
+        JPanel level_panel = createLevels_panel();
+        levels_panels.add(level_panel);
+        
+        increaseLevelsListPanel_size();
+        levelsList_panel.add(level_panel);
+    }
+    
     public JButton getBack_button() {
         return back_button;
     } 

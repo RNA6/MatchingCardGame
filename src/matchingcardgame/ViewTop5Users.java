@@ -26,7 +26,7 @@ public class ViewTop5Users extends BaseFrame{
     private JPanel center_panel;
     private JPanel bottom_panel;
     private JPanel usersList_panel;
-    private ArrayList<JPanel> Users_panels;
+    private ArrayList<JPanel> users_panels;
 
     private JScrollPane scrollPane;
 
@@ -37,7 +37,7 @@ public class ViewTop5Users extends BaseFrame{
     private JLabel rank_label;
 
     private String username = "";
-    private String id = "";
+    private int id = 0;
     private int totalScores = 0;
 
     public ViewTop5Users() {
@@ -59,12 +59,12 @@ public class ViewTop5Users extends BaseFrame{
         usersList_panel = UIComponents.createScrolling_panel();
 
         //Users Panels
-        Users_panels = new ArrayList();
+        users_panels = new ArrayList();
         for(int i=1; i<=5 ; i++){
-            Users_panels.add(createUser_panel(i));
+            users_panels.add(createUser_panel(i));
         }
 
-        for (JPanel user_panel : Users_panels) {
+        for (JPanel user_panel : users_panels) {
             usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
             usersList_panel.add(user_panel);
         }

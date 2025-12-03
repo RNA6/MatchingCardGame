@@ -33,7 +33,7 @@ public class ViewUsersList extends BaseFrame{
     private JPanel bottom_panel;
     private JPanel sorting_panel;
     private JPanel usersList_panel;
-    private ArrayList<JPanel> Users_panels;
+    private ArrayList<JPanel> users_panels;
 
     private JScrollPane scrollPane;
 
@@ -50,7 +50,7 @@ public class ViewUsersList extends BaseFrame{
     private JLabel rank_label;
 
     private String username = "";
-    private String id = "";
+    private int id = 0;
     private String phoneNumber = "";
     private int totalScores = 0;
     private int savedLevels = 0;
@@ -93,15 +93,15 @@ public class ViewUsersList extends BaseFrame{
         usersList_panel = UIComponents.createScrolling_panel();
 
         //Users Panels
-        Users_panels = new ArrayList();
-        Users_panels.add(createUser_panel(1));
-        Users_panels.add(createUser_panel(2));
-        Users_panels.add(createUser_panel(3));
-        Users_panels.add(createUser_panel(4));
-        Users_panels.add(createUser_panel(5));
-        Users_panels.add(createUser_panel(6));
+        users_panels = new ArrayList();
+        users_panels.add(createUser_panel(1));
+        users_panels.add(createUser_panel(2));
+        users_panels.add(createUser_panel(3));
+        users_panels.add(createUser_panel(4));
+        users_panels.add(createUser_panel(5));
+        users_panels.add(createUser_panel(6));
 
-        for (JPanel user_panel : Users_panels) {
+        for (JPanel user_panel : users_panels) {
             usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
             usersList_panel.add(user_panel);
         }
