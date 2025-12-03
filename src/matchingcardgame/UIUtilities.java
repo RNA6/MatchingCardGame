@@ -37,7 +37,10 @@ public class UIUtilities {
                 
                 if(originalFrame.getClass() == SignIn.class && nextFrame.getClass() == HomePage.class){
                     SignIn signIn = (SignIn)originalFrame;
-                    if(!signIn.userInfoExists()){
+                    if(signIn.userInfoExists()){
+//                      //DataBase
+                    }
+                    else{
                         signIn.handleSignIn();
                         return;
                     }
@@ -48,31 +51,49 @@ public class UIUtilities {
                     level.getGameTimer().stop();
                 }
                 
+                originalFrame.dispose();
+                
                 if(originalFrame.getClass() == WinLose.class && nextFrame == null){
-                    int nextLevelNumber = Frames.winLose.getPreviousLevel().getLevelNumber() + 1;
-                    System.out.println("Next Level: " + nextLevelNumber);
-                    Level levelnextFrame;
-                    if(nextLevelNumber >=1 && nextLevelNumber<=15){
-                        if(nextLevelNumber >=1 && nextLevelNumber<=5){
-                            levelnextFrame = Frames.easyLevel[nextLevelNumber-1];
-                        }
-                        else if(nextLevelNumber >=6 && nextLevelNumber<=10){ 
-                            levelnextFrame = Frames.normalLevel[nextLevelNumber-6];
-                        }
-                        else{
-                            levelnextFrame = Frames.hardLevel[nextLevelNumber-11];
-                        }
-                        levelnextFrame.startLevel();
-                        levelnextFrame.setVisible(true);
+                    int levelNumber = Frames.winLose.getPreviousLevel().getLevelNumber();
+                    if(e.getSource() == Frames.winLose.getTryAgain_button()){
+                        Level level;
+                        if(levelNumber >=1 && levelNumber<=5){
+                                level = Frames.easyLevel[levelNumber-1];
+                            }
+                            else if(levelNumber >=6 && levelNumber<=10){ 
+                                level = Frames.normalLevel[levelNumber-6];
+                            }
+                            else{
+                                level = Frames.hardLevel[levelNumber-11];
+                            }
+                            level.startLevel();
+                            level.setVisible(true);
                     }
-                    else
-                    {
-                        Frames.homePage.setVisible(true);
+                    else{
+                        int nextLevelNumber = levelNumber + 1;
+                        System.out.println("Next Level: " + nextLevelNumber);
+                        Level levelnextFrame;
+                        if(nextLevelNumber >=1 && nextLevelNumber<=15){
+                            if(nextLevelNumber >=1 && nextLevelNumber<=5){
+                                levelnextFrame = Frames.easyLevel[nextLevelNumber-1];
+                            }
+                            else if(nextLevelNumber >=6 && nextLevelNumber<=10){ 
+                                levelnextFrame = Frames.normalLevel[nextLevelNumber-6];
+                            }
+                            else{
+                                levelnextFrame = Frames.hardLevel[nextLevelNumber-11];
+                            }
+                            levelnextFrame.startLevel();
+                            levelnextFrame.setVisible(true);
+                        }
+                        else
+                        {
+                            Frames.homePage.setVisible(true);
+                        }
                     }
                     return;
                 }
                 
-                originalFrame.dispose();
                 nextFrame.setVisible(true);
             }
         });

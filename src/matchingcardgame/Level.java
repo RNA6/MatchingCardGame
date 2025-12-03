@@ -63,7 +63,9 @@ public class Level extends BaseFrame{
     private int cardsPanelWidth;
     private int cardsPanelHeight;
     private int bottomMargin;
-    private final int totalCards;    
+    private final int totalCards;   
+    
+    private boolean buttonsEnabled = true;
     
     private ArrayList<Integer> imagesIndexes;    
     private ArrayList<String> cardsRecord;
@@ -90,6 +92,7 @@ public class Level extends BaseFrame{
         gameTimer = new GameTimer(timerLabel, totalSeconds, () -> {
         messageLabel.setText("Time's up! Game Over.");
         });
+        gameTimer.setLevel(this);
     }
     
     private void initializeUI() {
@@ -224,6 +227,12 @@ public class Level extends BaseFrame{
         saveLevelButton.setBackground(UITheme.color_4DFFBE);
         saveLevelButton.setFocusable(false);
         saveLevelButton.setPreferredSize(new Dimension(80, 30));
+        saveLevelButton.addActionListener( new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Frames.savedLevels.addNewLevel(levelNumber, 1111);
+                }
+        });
     }
     
     public GameTimer getGameTimer(){
@@ -332,9 +341,8 @@ public class Level extends BaseFrame{
                 }
                 if(solvedPairs.size() == totalCards){
                     gameTimer.setSolved(true);
-                    saveLevelButton.setEnabled(false);
-                    homeButton.setEnabled(false);
-                    //TODO: move to win page
+                    switchEnabledButtons();
+                    //move to win page
                     onLevelCompleted();
                 }
                 
@@ -371,13 +379,18 @@ public class Level extends BaseFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Level.this.dispose();
+                Frames.winLose.updateMessage("won");
                 Frames.winLose.setVisible(true);
-                Frames.winLose.setPreviousLevel(Level.this);
-
             }
         });
         levelCompletedTimer.setRepeats(false);
         levelCompletedTimer.start();
+    }
+    
+    public void switchEnabledButtons(){
+        buttonsEnabled = !buttonsEnabled;
+        saveLevelButton.setEnabled(buttonsEnabled);
+        homeButton.setEnabled(buttonsEnabled);
     }
 
     public void closeCards(){
@@ -391,6 +404,10 @@ public class Level extends BaseFrame{
         gameTimer.start();
         System.out.println("time started");
         messageLabel.setText("");
+        
+        if(!buttonsEnabled){
+            switchEnabledButtons();
+        }
               
         solvedPairs.clear();
         for(int i=0; i<2;i++){
@@ -399,6 +416,25 @@ public class Level extends BaseFrame{
         
         closeCards();
         shuffleCards();
+        Frames.winLose.setPreviousLevel(this);
+    }
+    
+    public void restartLevel(){
+        gameTimer.start();
+        System.out.println("time started");
+        messageLabel.setText("");
+        
+        if(!buttonsEnabled){
+            switchEnabledButtons();
+        }
+        
+        solvedPairs.clear();
+        for(int i=0; i<2;i++){
+            pair[i] = null;
+        }
+        
+        closeCards();
+        Frames.winLose.setPreviousLevel(this);
     }
     
     private static ImageIcon resizeImage(ImageIcon originalIcon, int width, int height) {

@@ -20,6 +20,8 @@ public class GameTimer {
     private JLabel timerLabel;
     private Runnable onTimeUp;
     
+    private Level level;
+    
     private boolean solved;
 
     public GameTimer(JLabel timerLabel, int totalSeconds, Runnable onTimeUp) {
@@ -45,6 +47,10 @@ public class GameTimer {
                     levelTimer.stop();
                     if (onTimeUp != null) {
                         onTimeUp.run();
+                        level.dispose();
+                        level.switchEnabledButtons();
+                        Frames.winLose.updateMessage("lost");
+                        Frames.winLose.setVisible(true);
                     }
                 }
                 updateTimerDisplay();
@@ -73,5 +79,9 @@ public class GameTimer {
     
     public void setSolved(boolean solved){
         this.solved = solved;
+    }
+    
+    public void setLevel(Level level){
+        this.level = level;
     }
 }

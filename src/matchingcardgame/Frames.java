@@ -4,9 +4,6 @@
  */
 package matchingcardgame;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 /**
  *
  * @author RNA
@@ -35,6 +32,7 @@ public class Frames{
     public static SavedLevels savedLevels = new SavedLevels();
     public static ShowScore showScore = new ShowScore();
     public static AdministratorDashboard administrationsDashboard = new AdministratorDashboard();
+    public static DeleteUserAccount deleteUserAccount = new DeleteUserAccount();
     public static ViewUsersList viewUsersList = new ViewUsersList();
     public static ViewTop5Users viewTop5Users = new ViewTop5Users();
     public static WinLose winLose = new WinLose();
@@ -93,6 +91,7 @@ public class Frames{
         //WinLose buttons
         UIUtilities.addNavigation(winLose.getHome(), winLose, homePage);        
         UIUtilities.addNavigation(winLose.getNext(), winLose, null);
+        UIUtilities.addNavigation(winLose.getTryAgain_button(), winLose, null);
         
         //SavedLevels buttons
         UIUtilities.addNavigation(savedLevels.getBack_button(), savedLevels, homePage);
@@ -101,9 +100,12 @@ public class Frames{
         UIUtilities.addNavigation(showScore.getOkButton(), showScore, homePage);
         
         //AdministrationsDashboard buttons
-        //UIUtilities.addNavigation(administrationsDashboard.getdelete_button(), administrationsDashboard, );
+        UIUtilities.addNavigation(administrationsDashboard.getdelete_button(), administrationsDashboard, deleteUserAccount);
         UIUtilities.addNavigation(administrationsDashboard.getview_button(), administrationsDashboard, viewUsersList);
         UIUtilities.addNavigation(administrationsDashboard.gettop5_button(), administrationsDashboard, viewTop5Users);
+        
+        //DeleteUserAccount buttons
+        UIUtilities.addNavigation(deleteUserAccount.getBack_button(), deleteUserAccount, administrationsDashboard);
         
         //ViewUsersList buttons
         UIUtilities.addNavigation(viewUsersList.getBack_button(), viewUsersList, administrationsDashboard);
