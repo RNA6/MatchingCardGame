@@ -132,11 +132,11 @@ DROP TABLE IF EXISTS `savedlevels`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `savedlevels` (
-  `levelID` int(11) NOT NULL AUTO_INCREMENT,
+  `savedLevelID` int(11) NOT NULL AUTO_INCREMENT,
   `playerID` int(11) NOT NULL,
   `levelNumber` int(11) NOT NULL,
   `savedDate` date NOT NULL,
-  PRIMARY KEY (`levelID`),
+  PRIMARY KEY (`savedLevelID`),
   KEY `fk_savedLevels_player` (`playerID`),
   KEY `fk_savedLevels_level` (`levelNumber`),
   CONSTRAINT `fk_savedLevels_level` FOREIGN KEY (`levelNumber`) REFERENCES `levels` (`levelnumber`) ON DELETE CASCADE,
@@ -150,7 +150,7 @@ CREATE TABLE `savedlevels` (
 
 LOCK TABLES `savedlevels` WRITE;
 /*!40000 ALTER TABLE `savedlevels` DISABLE KEYS */;
-INSERT INTO `savedlevels` VALUES (1,1,1,'2025-12-09'),(2,1,6,'2025-12-10'),(3,1,9,'2025-12-11'),(4,3,3,'2025-12-09'),(5,3,3,'2025-12-10'),(6,3,15,'2025-12-12'),(7,3,11,'2025-12-12');
+INSERT INTO `savedlevels` VALUES (1,1,1,'2025-12-09');
 /*!40000 ALTER TABLE `savedlevels` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,13 +162,13 @@ DROP TABLE IF EXISTS `savedlevelsrecords`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `savedlevelsrecords` (
-  `levelID` int(11) NOT NULL,
+  `savedLevelID` int(11) NOT NULL,
   `imageID` int(11) NOT NULL,
   `cardNumber` int(11) NOT NULL,
-  PRIMARY KEY (`levelID`,`imageID`,`cardNumber`),
+  PRIMARY KEY (`savedLevelID`,`imageID`,`cardNumber`),
   KEY `fk_records_images` (`imageID`),
   CONSTRAINT `fk_records_images` FOREIGN KEY (`imageID`) REFERENCES `images` (`imageid`) ON DELETE CASCADE,
-  CONSTRAINT `fk_records_savedLevels` FOREIGN KEY (`levelID`) REFERENCES `savedlevels` (`levelid`) ON DELETE CASCADE
+  CONSTRAINT `fk_records_savedLevels` FOREIGN KEY (`savedLevelID`) REFERENCES `savedlevels` (`savedlevelid`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -178,7 +178,7 @@ CREATE TABLE `savedlevelsrecords` (
 
 LOCK TABLES `savedlevelsrecords` WRITE;
 /*!40000 ALTER TABLE `savedlevelsrecords` DISABLE KEYS */;
-INSERT INTO `savedlevelsrecords` VALUES (1,1,1),(1,1,3),(3,1,1),(3,1,5),(3,1,14),(3,1,23),(6,1,1),(6,1,5),(6,1,20),(1,2,2),(1,2,4),(3,2,3),(3,2,7),(3,2,16),(3,2,24),(6,2,2),(6,2,7),(6,2,22),(2,3,1),(2,3,3),(2,3,9),(3,3,2),(3,3,9),(3,3,18),(6,3,3),(6,3,9),(6,3,24),(2,4,2),(2,4,5),(2,4,10),(3,4,4),(3,4,11),(3,4,20),(6,4,4),(6,4,11),(6,4,26),(2,5,4),(2,5,7),(2,5,11),(3,5,6),(3,5,13),(3,5,21),(6,5,6),(6,5,13),(6,5,27),(7,5,1),(7,5,3),(7,5,10),(2,6,6),(2,6,8),(2,6,12),(3,6,8),(3,6,15),(3,6,22),(6,6,8),(6,6,15),(6,6,28),(7,6,2),(7,6,5),(7,6,12),(3,7,10),(3,7,17),(6,7,10),(6,7,17),(7,7,4),(7,7,7),(3,8,12),(3,8,19),(6,8,12),(6,8,19),(7,8,6),(7,8,9),(4,9,1),(4,9,3),(4,9,6),(4,9,8),(6,9,14),(6,9,21),(7,9,8),(7,9,11),(4,10,2),(4,10,5),(6,10,16),(6,10,23),(4,11,4),(4,11,7),(6,11,18),(6,11,25),(5,12,1),(5,12,3),(5,12,6),(5,12,8),(5,13,2),(5,13,5),(5,14,4),(5,14,7);
+INSERT INTO `savedlevelsrecords` VALUES (1,1,1),(1,1,3),(1,2,2),(1,2,4);
 /*!40000 ALTER TABLE `savedlevelsrecords` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-17 20:02:19
+-- Dump completed on 2025-12-18 21:19:40
