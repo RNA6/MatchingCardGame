@@ -8,6 +8,12 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -36,6 +42,7 @@ public class SignIn extends BaseFrame{
 
     private JButton cancel_button;
     private JButton signIn_button;
+    private Connection connection;
 
     public SignIn() {
         super("Sign In", 130, 500);
@@ -68,7 +75,44 @@ public class SignIn extends BaseFrame{
         
         username_textField.setEnabled(true);
         passwordField.setEnabled(true);
+      
+        try {
+              String db_url = "jdbc:mysql://localhost:3306/db?serverTimezone=UTC";
+        String db_username = "root";
+        String db_password = "#";
+            connection = DriverManager.getConnection(db_url, db_username, db_password);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
+@Override
+        public void actionPerformed(ActionEvent e) {
+         if(e.getSource()==signIn_button){
+        String uname = username_textField.getText();
+        String pass =  passwordField.getText();
+        String sql="SELECT username,password FROM matchingcardgame.users";
+         try {
+           Statement s = connection.createStatement();
+           ResultSet resultset = s.executeQuery(sql);
+           
+           while(resultset.next()){
+               if(uname.equals(resultset.getObject(1))&&pass.equals(resultset.getObject(2))){
+                   JOptionPane.showMessageDialog(rootPane, "Sign In!!!");
+               }
+           
+        }
+           
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+      
+
+        }
+          if(e.getSource() == cancel_button){
+            this.dispose();
+          }
+}
 
     public void handleSignIn() {
         username = username_textField.getText();
