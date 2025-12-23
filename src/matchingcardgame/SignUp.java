@@ -5,6 +5,11 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
@@ -12,6 +17,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -48,6 +54,7 @@ public class SignUp extends BaseFrame{
     
     private Icon female_icon;
     private Icon male_icon;
+    private Connection connection;
 
     public SignUp() {
         super("SignUp", 130, 500);
@@ -114,8 +121,53 @@ public class SignUp extends BaseFrame{
         bottom_panel.add(cancel_button);
         bottom_panel.add(submit_button);
         add(bottom_panel, BorderLayout.SOUTH);
+         
+        try {
+             String db_url = "jdbc:mysql://localhost:3306/matcingcardgame?serverTimezone=UTC";
+        String db_username = "root";
+        String db_password = "#";
+            connection = DriverManager.getConnection(db_url, db_username, db_password);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+    @Override
+        public void actionPerformed(ActionEvent e) {
+         if(e.getSource()==submit_button){
+        String uname = username_textField.getText();
+        String pass =  passwordField.getText();
+         String phone = phoneNumber_textField.getText();
+          String gender =  male_radioButton.getText();
+        String sql=String.format("INSERT INTO users(username,"
+        + " password,phoneNumber,gender)\n"+
+                "Values('%s','%s','%s','%s');",
+                uname,pass,phone,gender);
+
+
+        try {
+           Statement s = connection.createStatement();
+           ResultSet resultset = s.executeQuery(sql);
+           
+           while(resultset.next()){
+               if(uname.equals(resultset.getObject(1))&&pass.equals(resultset.getObject(2))){
+                   JOptionPane.showMessageDialog(rootPane, "Submit!!!");
+               }
+           
+        }
+           
+
+        } catch (SQLException sqlException) {
+           System.out.println(sqlException.getMessage());
+        }
+      
+
+        }
+          if(e.getSource() == cancel_button){
+            this.dispose();
+          }
+}
+
+
     private void createHead_label() {
         head_label = new JLabel("Sign Up");
         head_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 36));
