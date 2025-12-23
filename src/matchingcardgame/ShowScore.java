@@ -57,6 +57,11 @@ public class ShowScore extends BaseFrame{
         return okButton;
     }
     
-    //show score will be with the database
+    public void displayPlayerInfo(int playerId, String playerName) {
+    
+    String dbData = DatabaseUtilities.getPlayerScoreData(playerId);
+    
+    lbl.setText("<html><center>Congratulations '" + playerName + "'!<br>" + dbData + "</center></html>");
+}
     
 }
