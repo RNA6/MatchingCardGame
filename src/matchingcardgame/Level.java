@@ -230,11 +230,25 @@ public class Level extends BaseFrame{
         saveLevelButton.setBackground(UITheme.color_4DFFBE);
         saveLevelButton.setFocusable(false);
         saveLevelButton.setPreferredSize(new Dimension(80, 30));
-        saveLevelButton.addActionListener( new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    Frames.savedLevels.addNewLevel(levelNumber);
+
+        saveLevelButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (Frames.currentPlayerID == -1) {
+                    System.err.println("No signed-in player.");
+                    return;
                 }
+
+                ArrayList<Integer> imagesToSave = Level.this.getImagesIndexes();
+                DatabaseUtilities.saveCurrentLevel(
+                    Frames.currentPlayerID,
+                    levelNumber,
+                    imagesToSave
+                );
+
+                saveLevelButton.setEnabled(false);
+            }
         });
     }
     
@@ -481,5 +495,10 @@ public class Level extends BaseFrame{
 
     public void setLevelRecord(ArrayList<LevelRecord> levelRecord) {
         this.levelRecord = levelRecord;
-    }    
+    } 
+    
+    public ArrayList<Integer> getImagesIndexes() {
+        return new ArrayList<>(this.imagesIndexes);
+    }
+
 }
