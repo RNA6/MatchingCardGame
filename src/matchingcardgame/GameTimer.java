@@ -42,7 +42,7 @@ public class GameTimer {
                     return;
                 }
                 secondsLeft--;
-                System.out.println("Remaining Seconds: " + secondsLeft);
+//                System.out.println("Remaining Seconds: " + secondsLeft);
                 if (secondsLeft <= 0) {
                     levelTimer.stop();
                     if (onTimeUp != null) {

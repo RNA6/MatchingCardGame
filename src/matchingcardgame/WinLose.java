@@ -156,14 +156,13 @@ public class WinLose extends BaseFrame{
         // 1. Prepare the data to be sent
     int playerId = 1;        // Replace with your actual player ID variable
     int levelNum = 1;        // Replace with your actual level variable
-    String time = "01:30";   // Replace with your actual timer variable
+    int time = 90;   // Replace with your actual timer variable
     int currentScore = this.points; 
     
     // Determine stars based on win/lose
     int starsEarned = wonOrLost.equals("lost") ? 0 : 3;
 
     DatabaseUtilities.saveGameData(playerId, levelNum, time, currentScore, starsEarned);    
-    
     
         if(wonOrLost.equals("lost")){
             if(won_label.isVisible()){

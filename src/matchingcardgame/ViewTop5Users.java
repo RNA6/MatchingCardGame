@@ -10,16 +10,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import matchingcardgame.models.UserPlayer;
 
 public class ViewTop5Users extends BaseFrame {
 
@@ -40,56 +38,16 @@ public class ViewTop5Users extends BaseFrame {
         add(top_panel, BorderLayout.NORTH);
 
         createCenter_panel();
-        loadTop5Users();
+        usersList_panel = UIComponents.createScrolling_panel();
+        
+        scrollPane = UIComponents.createScrollPane(usersList_panel);
+        center_panel.add(scrollPane);
         add(center_panel, BorderLayout.CENTER);
 
         createBottom_panel();
         createBack_button();
         bottom_panel.add(back_button);
         add(bottom_panel, BorderLayout.SOUTH);
-    }
-
-            // Database
-    private Connection getConnection() throws Exception {
-        return DriverManager.getConnection(
-            "jdbc:mysql://localhost:3306/matchingcardgame?serverTimezone=UTC",
-            "root",
-            "#"
-        );
-    }
-
-    private void loadTop5Users() {
-        usersList_panel = UIComponents.createScrolling_panel();
-
-        String sql =
-            "SELECT u.username, p.playerID, p.totalScores " +
-            "FROM players p " +
-            "JOIN users u ON p.playerID = u.playerID " +
-            "ORDER BY p.totalScores DESC " +
-            "LIMIT 5";
-
-        try (Connection con = getConnection();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            int rank = 1;
-            while (rs.next()) {
-                String username = rs.getString("username");
-                int playerID = rs.getInt("playerID");
-                int totalScores = rs.getInt("totalScores");
-
-                usersList_panel.add(
-                    createUser_panel(rank, username, playerID, totalScores)
-                );
-                rank++;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        scrollPane = UIComponents.createScrollPane(usersList_panel);
-        center_panel.add(scrollPane);
     }
     
     private void createTop_panel() {
@@ -110,7 +68,7 @@ public class ViewTop5Users extends BaseFrame {
         center_panel.setOpaque(false);
     }
 
-    private JPanel createUser_panel(int rank, String username, int id, int score) {
+    public JPanel createUser_panel(int rank, String username, int id, int score) {
         JPanel panel = UIComponents.createContent_panel();
         panel.setLayout(new GridLayout(1, 2));
         panel.setPreferredSize(new Dimension(500, 120));
@@ -162,5 +120,24 @@ public class ViewTop5Users extends BaseFrame {
 
     public JButton getBack_button() {
         return back_button;
+    }
+
+    public JPanel getUsersList_panel() {
+        return usersList_panel;
+    }   
+    
+    public void displayUsersList(){
+        ArrayList<UserPlayer> userPlayers = DatabaseUtilities.loadTop5Users();        
+        
+        usersList_panel.removeAll();  
+        usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, 20));
+        
+        for(int i=1; i <= userPlayers.size(); i++){
+            usersList_panel.add(
+                createUser_panel(i, userPlayers.get(i-1).getUsername(), userPlayers.get(i-1).getPlayerID(), userPlayers.get(i-1).getTotalScores())
+            );
+            usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
+        }
+        repaint();
     }
 }

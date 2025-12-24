@@ -4,6 +4,7 @@
  */
 package matchingcardgame;
 
+import matchingcardgame.models.User;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -32,6 +33,8 @@ public class AdministratorDashboard extends BaseFrame{
 
     private JLabel userIcon_label;
     private JLabel dashboard_label;
+    
+    private User signedIn_user;
 
     public AdministratorDashboard() {
         super("Administrator Dashboard", 130, 500);
@@ -148,4 +151,12 @@ public class AdministratorDashboard extends BaseFrame{
     public JButton gettop5_button() {
         return top5_button;
     }
+
+    public User getSignedIn_user() {
+        return signedIn_user;
+    }
+
+    public void setSignedIn_user(User signedIn_user) {
+        this.signedIn_user = signedIn_user;
+    }    
 }

@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.UIManager;
+import matchingcardgame.models.LevelRecord;
 
 /**
  *
@@ -71,6 +72,8 @@ public class Level extends BaseFrame{
     private ArrayList<String> cardsRecord;
     private ArrayList<Icon> cardsRecordImages;
     private ArrayList<Integer> order;
+    
+    private ArrayList<LevelRecord> levelRecord;
     
     private JPanel topPanel;
     private JPanel cardsPanel;
@@ -230,7 +233,7 @@ public class Level extends BaseFrame{
         saveLevelButton.addActionListener( new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    Frames.savedLevels.addNewLevel(levelNumber, 1111);
+                    Frames.savedLevels.addNewLevel(levelNumber);
                 }
         });
     }
@@ -333,7 +336,7 @@ public class Level extends BaseFrame{
                         solvedPairs.add(pair[i]);
                         pair[i] = null;
                     }
-                    System.out.println("Solved Pairs = " + solvedPairs.size()/2);
+//                    System.out.println("Solved Pairs = " + solvedPairs.size()/2);
                 }
                 else{
                     messageLabel.setText("Wrong, try again!");
@@ -402,7 +405,6 @@ public class Level extends BaseFrame{
     
     public void startLevel(){
         gameTimer.start();
-        System.out.println("time started");
         messageLabel.setText("");
         
         if(!buttonsEnabled){
@@ -415,13 +417,35 @@ public class Level extends BaseFrame{
         }
         
         closeCards();
-        shuffleCards();
+        if(levelRecord == null){
+            shuffleCards();
+        }
+        else{
+            loadSavedLevelRecord();
+        }
+        
         Frames.winLose.setPreviousLevel(this);
+    }
+    
+    private void loadSavedLevelRecord(){
+        imagesIndexes.clear();
+        cardsRecord.clear();
+        cardsRecordImages.clear();
+
+        for (int i : imagesIndexes) {
+            cardsRecordImages.add(ALL_IMAGES[i]);            
+            cardsRecord.add(IMAGES_URL[i]);
+        }
+        
+        for(int i=0; i< totalCards; i++){
+            iconedCards.get(i).setIcon(ALL_IMAGES[levelRecord.get(i).getImageID()-1]);
+            iconedCards.get(i).setDisabledIcon(ALL_IMAGES[levelRecord.get(i).getImageID()-1]);
+        }
+        levelRecord = null;
     }
     
     public void restartLevel(){
         gameTimer.start();
-        System.out.println("time started");
         messageLabel.setText("");
         
         if(!buttonsEnabled){
@@ -454,4 +478,8 @@ public class Level extends BaseFrame{
     public JButton getSaveLevelButton() {
         return saveLevelButton;
     }
+
+    public void setLevelRecord(ArrayList<LevelRecord> levelRecord) {
+        this.levelRecord = levelRecord;
+    }    
 }

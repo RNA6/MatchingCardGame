@@ -44,6 +44,7 @@ public class Frames{
         UIUtilities.addNavigation(welcomePage.getSignup(), welcomePage, signUp);
         
         //HomePage buttons
+        UIUtilities.addNavigation(homePage.getBack_button(), homePage, welcomePage);
         UIUtilities.addNavigation(homePage.getEasy_button(), homePage, easyLevels);
         UIUtilities.addNavigation(homePage.getNormal_button(), homePage, normalLevels);
         UIUtilities.addNavigation(homePage.getHard_button(), homePage, hardLevels);
@@ -52,11 +53,10 @@ public class Frames{
     
         //SignIn buttons
         UIUtilities.addNavigation(signIn.getCancel_button(), signIn, welcomePage);
-        UIUtilities.addNavigation(signIn.getSignIn_button(), signIn, homePage);
+        UIUtilities.addNavigation(signIn.getSignIn_button(), signIn, null);
         
         //SignUp buttons
         UIUtilities.addNavigation(signUp.getCancel_button(), signUp, welcomePage);
-        UIUtilities.addNavigation(signUp.getSubmit_button(), signUp, welcomePage);
         
         //EasyLevels buttons
         UIUtilities.addNavigation(easyLevels.getBack_button(), easyLevels, homePage);

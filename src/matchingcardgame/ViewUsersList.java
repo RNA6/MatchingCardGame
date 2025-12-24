@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import matchingcardgame.models.UserPlayer;
 
 public class ViewUsersList extends BaseFrame{
 
@@ -54,6 +55,8 @@ public class ViewUsersList extends BaseFrame{
     private String phoneNumber = "";
     private int totalScores = 0;
     private int savedLevels = 0;
+    
+    private ArrayList<UserPlayer> userPlayers;
 
     public ViewUsersList() {
         super("View Users List", 130, 500);
@@ -94,17 +97,6 @@ public class ViewUsersList extends BaseFrame{
 
         //Users Panels
         users_panels = new ArrayList();
-        users_panels.add(createUser_panel(1));
-        users_panels.add(createUser_panel(2));
-        users_panels.add(createUser_panel(3));
-        users_panels.add(createUser_panel(4));
-        users_panels.add(createUser_panel(5));
-        users_panels.add(createUser_panel(6));
-
-        for (JPanel user_panel : users_panels) {
-            usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
-            usersList_panel.add(user_panel);
-        }
         //#End of Users List Panel
         //ScrollPane declaration
         scrollPane = UIComponents.createScrollPane(usersList_panel);
@@ -173,7 +165,7 @@ public class ViewUsersList extends BaseFrame{
         ascOrder_button.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    //Sorting using database
+                    ascOrder();
                 }
             });
     }
@@ -188,29 +180,29 @@ public class ViewUsersList extends BaseFrame{
         descOrder_button.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    //Sorting using database
+                    descOrder();
                 }
             });
     }
     //#End of Sorting Panel Components
     
     //Users Panel Declaration
-    private JPanel createUser_panel(int rank) {
+    private JPanel createUser_panel(int rank, String username, int playerID, String phoneNumber, int totalScores, int savedLevels) {
         JPanel user_panel = UIComponents.createContent_panel();
         user_panel.setLayout(new GridLayout(1, 2));
         user_panel.setPreferredSize(new Dimension(500, 120));
-        user_panel.add(createUserInfo_panel());
+        user_panel.add(createUserInfo_panel(username, playerID, phoneNumber, totalScores, savedLevels));
         user_panel.add(createRank_panel(rank));
         return (user_panel);
     }
     
     //Users Panel Components
     //User Information Labels Declaration
-    private void createUserInfo_labels() {
+    private void createUserInfo_labels(String username, int playerID, String phoneNumber, int totalScores, int savedLevels) {
         username_label = new JLabel(("Username: " + username), SwingConstants.LEFT);
         username_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
 
-        id_label = new JLabel("Id: " + id, SwingConstants.LEFT);
+        id_label = new JLabel("Id: " + playerID, SwingConstants.LEFT);
         id_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
 
         phoneNumber_label = new JLabel("Phone Number: " + phoneNumber, SwingConstants.LEFT);
@@ -224,8 +216,8 @@ public class ViewUsersList extends BaseFrame{
     }
     
     //User Information Panel Declaration
-    private JPanel createUserInfo_panel() {
-        createUserInfo_labels();
+    private JPanel createUserInfo_panel(String username, int playerID, String phoneNumber, int totalScores, int savedLevels) {
+        createUserInfo_labels(username, playerID, phoneNumber, totalScores, savedLevels);
         JPanel userInfo_panel = new JPanel(new GridLayout(5, 1));
         userInfo_panel.setOpaque(false);
         userInfo_panel.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
@@ -284,5 +276,69 @@ public class ViewUsersList extends BaseFrame{
 
     public JButton getBack_button() {
         return back_button;
+    }
+    
+    public void ascOrder(){
+        usersList_panel.removeAll();  
+        usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, 20));
+        
+        users_panels.clear();
+        
+        for(int i=1; i <= userPlayers.size(); i++){
+            usersList_panel.add(
+                createUser_panel(i, userPlayers.get(i-1).getUsername(),
+                userPlayers.get(i-1).getPlayerID(),userPlayers.get(i-1).getPhoneNumber(), userPlayers.get(i-1).getTotalScores(), userPlayers.get(i-1).getSavedLevels())
+            );
+            usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
+        }
+
+        for (JPanel user_panel : users_panels) {
+            usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
+            usersList_panel.add(user_panel);
+        }
+        repaint();
+    }
+    
+    public void descOrder(){
+        usersList_panel.removeAll();  
+        usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, 20));
+        
+        users_panels.clear();
+        
+        for(int i=userPlayers.size(); i >= 1; i--){
+            usersList_panel.add(
+                createUser_panel(i, userPlayers.get(i-1).getUsername(),
+                userPlayers.get(i-1).getPlayerID(),userPlayers.get(i-1).getPhoneNumber(), userPlayers.get(i-1).getTotalScores(), userPlayers.get(i-1).getSavedLevels())
+            );
+            usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
+        }
+
+        for (JPanel user_panel : users_panels) {
+            usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
+            usersList_panel.add(user_panel);
+        }
+        repaint();
+    }
+    
+    public void displayUsersList(){
+        userPlayers = DatabaseUtilities.loadUsers();
+        usersList_panel.removeAll();  
+        usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, 20));
+        
+        users_panels.clear();
+        
+        for(int i=1; i <= userPlayers.size(); i++){
+            usersList_panel.add(
+                createUser_panel(i, userPlayers.get(i-1).getUsername(),
+                userPlayers.get(i-1).getPlayerID(),userPlayers.get(i-1).getPhoneNumber(), userPlayers.get(i-1).getTotalScores(), userPlayers.get(i-1).getSavedLevels())
+            );
+            usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
+        }
+
+        for (JPanel user_panel : users_panels) {
+            usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
+            usersList_panel.add(user_panel);
+        }
+        repaint();
     }
 }
