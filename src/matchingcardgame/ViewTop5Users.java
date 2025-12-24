@@ -138,6 +138,6 @@ public class ViewTop5Users extends BaseFrame {
             );
             usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
         }
-        repaint();
+        usersList_panel.revalidate();
     }
 }

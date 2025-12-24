@@ -296,7 +296,8 @@ public class ViewUsersList extends BaseFrame{
             usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
             usersList_panel.add(user_panel);
         }
-        repaint();
+        
+        usersList_panel.revalidate();
     }
     
     public void descOrder(){
@@ -317,7 +318,7 @@ public class ViewUsersList extends BaseFrame{
             usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
             usersList_panel.add(user_panel);
         }
-        repaint();
+        usersList_panel.revalidate();
     }
     
     public void displayUsersList(){
@@ -339,6 +340,6 @@ public class ViewUsersList extends BaseFrame{
             usersList_panel.setPreferredSize(new Dimension(usersList_panel.getPreferredSize().width, (usersList_panel.getPreferredSize().height+ 140)));
             usersList_panel.add(user_panel);
         }
-        repaint();
+        usersList_panel.revalidate();
     }
 }
