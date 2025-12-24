@@ -12,14 +12,17 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import matchingcardgame.models.LevelRecord;
+import matchingcardgame.models.User;
+import matchingcardgame.models.UserSavedLevel;
 
 public class SavedLevels extends BaseFrame{
 
@@ -42,8 +45,10 @@ public class SavedLevels extends BaseFrame{
     
     private int rowCount = 0;
     private int levelNumber = 0;
-    private int levelId = 0;
-    private LocalDate date = LocalDate.now();
+    private int savedLevelID = 0;
+    private Date date;
+    private User signedIn_user;
+    private ArrayList<UserSavedLevel> userSavedLevels;
 
     public SavedLevels() {
         super("Saved Levels", 130, 500);
@@ -66,9 +71,6 @@ public class SavedLevels extends BaseFrame{
 
         //Levels Panels
         levels_panels = new ArrayList();
-        for(int i=0; i<4; i++){
-            addNewLevel(i+1, 1111);
-        }
         //#End of Levels List Panel
         
         //ScrollPane declaration
@@ -121,6 +123,7 @@ public class SavedLevels extends BaseFrame{
         levels_panel.setPreferredSize(new Dimension(150, 120));
         levels_panel.add(createSavedLevel_panel());
         levels_panel.putClientProperty("levelNumber", levelNumber);
+        levels_panel.putClientProperty("savedLevelID", savedLevelID);
         assignSavedLevel(levels_panel);
         return (levels_panel);
     }
@@ -131,7 +134,7 @@ public class SavedLevels extends BaseFrame{
         level_label = new JLabel(("Level: " + levelNumber), SwingConstants.LEFT);
         level_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
 
-        levelId_label = new JLabel("Id: " + levelId, SwingConstants.LEFT);
+        levelId_label = new JLabel("Id: " + savedLevelID, SwingConstants.LEFT);
         levelId_label.setFont(new Font(UITheme.fontName1, Font.BOLD, 14));
 
         date_label = new JLabel("Date: " + date, SwingConstants.LEFT);
@@ -188,18 +191,21 @@ public class SavedLevels extends BaseFrame{
                 public void mouseClicked(MouseEvent e) {
                     level_panel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 0));
                     dispose();
+                    Level savedLevel;
+                    ArrayList<LevelRecord> levelRecord = DatabaseUtilities.loadSavedLevel(savedLevelID);
                     if(level >=1 && level<=5){
-                        Frames.easyLevel[level-1].setVisible(true);
-                        Frames.easyLevel[level-1].restartLevel();
+                        savedLevel = Frames.easyLevel[level-1];
                     }
                     else if(level >=6 && level<=10){                        
-                        Frames.normalLevel[level-6].setVisible(true);
-                        Frames.easyLevel[level-1].restartLevel();
+                        savedLevel = Frames.normalLevel[level-6];
                     }
-                    else if(level >=11 && level<=15){
-                        Frames.hardLevel[level-11].setVisible(true);
-                        Frames.easyLevel[level-1].restartLevel();
+                    else{
+                        savedLevel = Frames.hardLevel[level-11];
                     }
+                    savedLevel.setVisible(true);
+                    savedLevel.setLevelRecord(levelRecord);
+                    savedLevel.startLevel();
+                    
                 }
                 
                 @Override
@@ -214,10 +220,22 @@ public class SavedLevels extends BaseFrame{
             });
     }
     
-    public void addNewLevel(int levelNumber, int levelId){
+    public void addNewLevel(int levelNumber){
         this.levelNumber = levelNumber;
-        this.levelId = levelId;
-        date = LocalDate.now();
+//        this.levelId = savedLevelID;
+//        date = savedDate;
+        
+        JPanel level_panel = createLevels_panel();
+        levels_panels.add(level_panel);
+        
+        increaseLevelsListPanel_size();
+        levelsList_panel.add(level_panel);
+    }
+    
+    private void displayLevel(int savedLevelID, int levelNumber, Date savedDate){
+        this.levelNumber = levelNumber;
+        this.savedLevelID = savedLevelID;
+        date = savedDate;
         
         JPanel level_panel = createLevels_panel();
         levels_panels.add(level_panel);
@@ -231,6 +249,28 @@ public class SavedLevels extends BaseFrame{
     } 
 
     public ArrayList<JPanel> getLevels_panels() {
-        return levels_panels;
+        return levels_panels;   
+    }
+
+    public User getSignedIn_user() {
+        return signedIn_user;
+    }
+
+    public void setSignedIn_user(User signedIn_user) {
+        this.signedIn_user = signedIn_user;
+    }    
+    
+    public void displaySavedLevelsList(){
+        userSavedLevels = DatabaseUtilities.loadUserSavedLevels(signedIn_user.getPlayerID());
+
+        levelsList_panel.removeAll();  
+        levelsList_panel.setPreferredSize(new Dimension(levelsList_panel.getPreferredSize().width, 20));
+
+        levels_panels.clear();
+
+        for(int i=1; i<=userSavedLevels.size(); i++){
+            displayLevel(userSavedLevels.get(i-1).getSavedLevelID(), userSavedLevels.get(i-1).getLevelNumber(), userSavedLevels.get(i-1).getSavedDate());
+        }
+        repaint();
     }
 }

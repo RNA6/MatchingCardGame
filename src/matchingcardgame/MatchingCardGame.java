@@ -10,6 +10,5 @@ public class MatchingCardGame {
     public static void main(String[] args) {
         Frames.InitializeFrames();
         Frames.welcomePage.setVisible(true);
-//        Frames.viewUsersList.setVisible(true);
     }    
 }

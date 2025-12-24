@@ -4,6 +4,8 @@
  */
 package matchingcardgame;
 
+import matchingcardgame.models.User;
+import matchingcardgame.models.Player;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -18,6 +20,7 @@ import javax.swing.SwingConstants;
 public class HomePage extends BaseFrame{
 
     private JButton savedLevels_button;
+    private JButton back_button;
     private JButton easy_button;
     private JButton normal_button;
     private JButton hard_button;
@@ -26,10 +29,12 @@ public class HomePage extends BaseFrame{
     private JLayeredPane layeredPane;
 
     private JPanel base_panel;
+    private JPanel east_panel;
     private JPanel top_panel;
     private JPanel center_panel;
     private JPanel bottom_panel;
     private JPanel savedLevels_panel;
+    private JPanel backButton_panel;
     private JPanel gameTypes_panel;
     
     private UserMenuPanel userMenu_panel;
@@ -37,6 +42,8 @@ public class HomePage extends BaseFrame{
     private JLabel userIcon_label;
     private JLabel head_label;
     
+    private User signedIn_user;  
+    private Player player;
 
     public HomePage() {
         super("Home Page", 130, 500);
@@ -50,18 +57,31 @@ public class HomePage extends BaseFrame{
         //Beginning of Top Panel
         createTop_panel();
 
-        //Beginning of SignOut Panel
+        //Beginning of SavedLevels Panel
         createSavedLevels_panel();
 
-        //SignOut Button
+        //SavedLevels Button
         createSavedLevels_button();
         savedLevels_panel.add(savedLevels_button);
         top_panel.add(savedLevels_panel, BorderLayout.WEST);
-        //#End of SignOut panel
-
+        //#End of SavedLevels panel
+        
+        //Beginning of Back Button Panel
+        createBackButton_panel();
+        
+        east_panel = new JPanel();
+        east_panel.setOpaque(false);
+        
+        //Back Button
+        createBack_button();
+        backButton_panel.add(back_button);
+        east_panel.add(backButton_panel);
+        top_panel.add(east_panel, BorderLayout.EAST);
+        //#End of Back Button Panel
         //User Icon Label
         userIcon_label = UIComponents.createUserIcon_label(userMenu_panel);
-        top_panel.add(userIcon_label, BorderLayout.EAST);
+        east_panel.add(userIcon_label);
+        top_panel.add(east_panel, BorderLayout.EAST);
 
         base_panel.add(top_panel, BorderLayout.NORTH);
         //#End of Header Panel
@@ -110,6 +130,15 @@ public class HomePage extends BaseFrame{
         
     }
 
+    public void setSignedIn_user(User signedIn_user) {
+        this.signedIn_user = signedIn_user;
+    }
+
+    public User getSignedIn_user() {
+        return signedIn_user;
+    }
+    
+
     //Top Panel Declaration
     private void createTop_panel(){
         top_panel = new JPanel();
@@ -135,8 +164,25 @@ public class HomePage extends BaseFrame{
         savedLevels_button.setFocusable(false);
         savedLevels_button.setBackground(UITheme.color_CC66DA);
     }
-    //#End of createSavedLevels_button Panel Components
-
+    //#End of SavedLevels Panel Components
+    
+    //Back Button Panel Declaration
+    private void createBackButton_panel(){
+        backButton_panel = new JPanel();
+        backButton_panel.setLayout(new FlowLayout());
+        backButton_panel.setOpaque(false);
+    }
+    //Back Button Panel Components
+    //Back Button Declaration
+    private void createBack_button(){
+        back_button = new JButton("Back");
+        back_button.setFont(new Font(UITheme.fontName1, Font.BOLD, 12));
+        back_button.setPreferredSize(new Dimension(70, 30));
+        back_button.setFocusable(false);
+        back_button.setBackground(UITheme.color_CC66DA);
+        back_button.setVisible(false);
+    }
+    //#End of Back Button Panel Components
     //#End of Top Panel Components
 
     //Center Panel Declaration
@@ -218,4 +264,19 @@ public class HomePage extends BaseFrame{
     public JLabel getUserIcon_label() {
         return userIcon_label;
     }
+
+    public JButton getBack_button() {
+        return back_button;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+    
+    
+    
 }

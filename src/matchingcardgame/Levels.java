@@ -25,8 +25,8 @@ public class Levels {
 
     private static Level createLevel(int levelNumber) {
 
-        try (Connection con = getConnection()) {
-
+        try{
+            Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
                 "SELECT totalTime, totalCards FROM levels WHERE levelNumber = ?"
             );
@@ -48,8 +48,6 @@ public class Levels {
         return null;
     }
 
-    // =========================
-    // نفس الميثودات القديمة (بدون كسر UI)
     // =========================
     public static Level createLevel1() { return createLevel(1); }
     public static Level createLevel2() { return createLevel(2); }

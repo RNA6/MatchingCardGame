@@ -4,6 +4,7 @@
  */
 package matchingcardgame;
 
+import matchingcardgame.models.User;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -67,11 +68,14 @@ public class UserInfo extends BaseFrame{
     private String username = "";
     private String phoneNumber = "";
     private String password = "";
-    private String gender = "";
+    private String gender = "F";
+    
+    private User signedIn_user;
 
     public UserInfo(BaseFrame previousFrame){
         super("User Info", 130, 500);
         super.setPreviousFrame(previousFrame);
+        
         //Head Label
         createHead_label();
         add(head_label, BorderLayout.NORTH);
@@ -251,7 +255,6 @@ public class UserInfo extends BaseFrame{
         female_radioButton = new JRadioButton();
         female_radioButton.setOpaque(false);
         female_radioButton.setEnabled(false);
-        female_radioButton.setSelected(true);
     }
     
     //Female Icon Label Declaration
@@ -273,7 +276,6 @@ public class UserInfo extends BaseFrame{
     //Male Radio Button Declaration
     private void createMale_radioButton(){
         male_radioButton = new JRadioButton();
-        male_radioButton.setName("Male");
         male_radioButton.setOpaque(false);
         male_radioButton.setEnabled(false);
     }
@@ -354,7 +356,7 @@ public class UserInfo extends BaseFrame{
                 username_textField.setText(username);
                 phoneNumber_textField.setText(phoneNumber);
                 passwordField.setText(password);
-                if(gender.equals(male_radioButton.getName())){
+                if(gender.equals("M")){
                     male_radioButton.setSelected(true);
                 }
                 else{
@@ -380,16 +382,44 @@ public class UserInfo extends BaseFrame{
                 phoneNumber = phoneNumber_textField.getText();
                 password = String.valueOf(passwordField.getPassword());
                 if(male_radioButton.isSelected()){
-                    gender =male_radioButton.getName();
+                    gender = "M";
                 }
                 else{
-                    gender = female_radioButton.getName();
+                    gender = "F";
                 }
+                signedIn_user.setUsername(username);
+                signedIn_user.setPhoneNumber(phoneNumber);
+                signedIn_user.setPassword(password);
+                signedIn_user.setGender(gender);
+                DatabaseUtilities.updateUserInfo(signedIn_user);
                 //Saving in database
                 switchButtons();
                 enableInputs();
             }
         });
     }
-    //#End of Bottom Panel Components 
+    //#End of Bottom Panel Components
+    
+    public void displayUserInfo(){
+        username_textField.setText(signedIn_user.getUsername());
+        passwordField.setText(signedIn_user.getPassword());
+        phoneNumber_textField.setText(signedIn_user.getPhoneNumber());
+        if(signedIn_user.getGender().equals("M")){
+            male_radioButton.setSelected(true);
+        }
+        else{
+            female_radioButton.setSelected(true);
+        }
+        
+    }
+
+    public void setSignedIn_user(User signedIn_user) {
+        this.signedIn_user = signedIn_user;
+    }    
+
+    public User getSignedIn_user() {
+        return signedIn_user;
+    }
+    
+    
 }
