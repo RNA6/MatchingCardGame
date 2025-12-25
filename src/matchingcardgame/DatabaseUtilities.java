@@ -355,4 +355,55 @@ public class DatabaseUtilities {
     }
     return result;
 }
+    public static void saveCurrentLevel(int playerID, int levelNumber, ArrayList<Integer> imagesIndexes) {
+        new Thread(() -> {
+            String insertSavedLevelSQL = "INSERT INTO savedlevels (playerID, levelNumber, savedDate) VALUES (?, ?, CURDATE())";
+            String insertRecordSQL = "INSERT INTO savedlevelsrecords (savedLevelID, imageID, cardNumber) VALUES (?, ?, ?)";
+            try {
+                connection.setAutoCommit(false);
+                
+                try (PreparedStatement ps = connection.prepareStatement(insertSavedLevelSQL, Statement.RETURN_GENERATED_KEYS)) {
+                    ps.setInt(1, playerID);
+                    ps.setInt(2, levelNumber);
+                    ps.executeUpdate();
+                    ResultSet keys = ps.getGeneratedKeys();
+                    if (!keys.next()) {
+                        throw new SQLException("Failed to retrieve savedLevelID.");
+                    }
+                    int savedLevelID = keys.getInt(1);
+                    
+                    try (PreparedStatement ps2 = connection.prepareStatement(insertRecordSQL)) {
+                        for (int i = 0; i < imagesIndexes.size(); i++) {
+                            int imageIndexZeroBased = imagesIndexes.get(i);
+                            int imageID = imageIndexZeroBased + 1;
+                            int cardNumber = i + 1;
+
+                            ps2.setInt(1, savedLevelID);
+                            ps2.setInt(2, imageID);
+                            ps2.setInt(3, cardNumber);
+                            ps2.addBatch();
+                        }
+                        ps2.executeBatch();
+                    }
+                }
+
+                connection.commit();
+                System.out.println("Saved level successfully (savedLevel created).");
+            } catch (SQLException ex) {
+                try {
+                    connection.rollback();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                ex.printStackTrace();
+                System.err.println("Failed to save level: " + ex.getMessage());
+            } finally {
+                try {
+                    connection.setAutoCommit(true);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }).start();
+    }
 }

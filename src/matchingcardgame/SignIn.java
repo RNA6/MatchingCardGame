@@ -168,6 +168,7 @@ public class SignIn extends BaseFrame{
                 if(DatabaseUtilities.userInfoExists(username, password)){
                     SignIn.this.dispose();
                     User signedIn_user = DatabaseUtilities.getUserInfo(username, password, isAdmin);
+                    Frames.currentPlayerID = signedIn_user.getPlayerID();
                     if(isAdmin == 1){
                         Frames.administrationsDashboard.setSignedIn_user(signedIn_user);
                         Frames.administrationsDashboard.setVisible(true);
